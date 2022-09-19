@@ -10,7 +10,7 @@
     <?php require 'views/header.php'; ?>
 
     <div class="main">
-        <h1 class="center">Binvenido a JADAR BANK</h1>
+        <h1 class="center">Ayuda</h1>
     </div>
 
     <?php require 'views/footer.php'; ?>
