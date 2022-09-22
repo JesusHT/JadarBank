@@ -9,10 +9,8 @@
 <body>
     <?php require 'views/header.php'; ?>
 
-    <div class="main">
+    <div class="area">
         <h1 class="error center"><?php echo $this -> mensaje;?></h1>
-    </div>
-
-    <?php require 'views/footer.php'; ?>
+    </div> 
 </body>
 </html>

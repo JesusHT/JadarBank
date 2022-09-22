@@ -9,10 +9,10 @@
 <body>
     <?php require 'views/header.php'; ?>
 
-    <div class="main">
+    <div class="area">
         <h1 class="center">Ayuda</h1>
     </div>
 
-    <?php require 'views/footer.php'; ?>
+    
 </body>
 </html>

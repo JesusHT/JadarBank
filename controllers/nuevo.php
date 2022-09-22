@@ -1,16 +1,15 @@
-    <?php
+<?php
 
-    class Nuevo extends Controller{
-
+    class Nuevo extends Controller {
+        
         function __construct(){
             parent::__construct();
-            $this->view->render('nuevo/index');
-            //echo "<p>Nuevo controlador Main</p>";
+            $this -> view -> render('nuevo/index');
         }
 
         function registrarCliente(){
-            echo "Cliente Creado! ";
-            $this->model->insert();
+            echo 'Alumno Creado';
+            $this -> model -> insert();
         }
     }
 

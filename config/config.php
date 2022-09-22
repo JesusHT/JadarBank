@@ -1,6 +1,6 @@
 <?php 
 
-    define('URL', 'http://localhost/JadarBank/');
+    define('URL', 'http://jadarbank.com/');
 
     define('HOST','localhost');
     define('DB','database');
