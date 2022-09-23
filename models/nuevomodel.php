@@ -10,6 +10,10 @@
             // Ingresar datos en la BD
             echo 'Insertar Datos';
         }
+
+        public function update(){
+            echo 'Actualizar datos';
+        }
     }
 
 ?>
