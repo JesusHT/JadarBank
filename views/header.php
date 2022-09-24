@@ -17,7 +17,6 @@
                             Inicio
                         </span>
                     </a>
-                  
                 </li>
                 <li class="has-subnav">
                     <a href="<?php echo constant('URL');?>perfil">
@@ -26,7 +25,6 @@
                             Perfil
                         </span>
                     </a>
-                    
                 </li>
                 <li class="has-subnav">
                     <a href="<?php echo constant('URL');?>consulta">
@@ -35,7 +33,6 @@
                             Consulta
                         </span>
                     </a>
-                    
                 </li>
                 <li class="has-subnav">
                     <a href="<?php echo constant('URL');?>nuevo">
