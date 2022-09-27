@@ -1,10 +1,9 @@
 <?php
 
-    class Errores extends Controller {
+    class LoginModel extends Model {
 
         function __construct(){
             parent::__construct();
-            $this -> view -> render('errores/index');
         }
     }
 

@@ -11,7 +11,7 @@
     <nav class="main-menu">
             <ul>
                 <li>
-                    <a href="<?php echo constant('URL');?>main">
+                    <a href="<?php echo constant('URL');?>home">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Inicio
@@ -30,7 +30,7 @@
                     <a href="<?php echo constant('URL');?>consulta">
                        <i class="fa fa-table fa-2x"></i>
                         <span class="nav-text">
-                            Consulta
+                            Tablas de amortización
                         </span>
                     </a>
                 </li>
@@ -43,10 +43,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="<?php echo constant('URL');?>transacciones">
                         <i class="fa fa-font fa-2x"></i>
                         <span class="nav-text">
-                            Quotes
+                            Transacciones 
                         </span>
                     </a>
                 </li>

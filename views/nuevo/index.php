@@ -8,7 +8,7 @@
     <title>JADAR BANK</title>
 </head>
 <body>
-    <?php require 'views/header.php'; ?>
+    <?php require 'views/nav.php'; ?>
 
     <div class="">
         <!-- multistep form -->

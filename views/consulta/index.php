@@ -10,7 +10,7 @@
     <?php require 'views/nav.php'; ?>
 
     <div class="area">
-        <h1 class="center">Perfil</h1>
+        <h1 class="center">Tablas de amortización</h1>
     </div>
 </body>
 </html>

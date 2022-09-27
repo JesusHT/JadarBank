@@ -1,14 +1,14 @@
 <?php
 
-    class Main extends Controller {
+    class Home extends Controller {
         
         function __construct(){
             parent::__construct();
-            $this -> view -> render('main/index');
+            $this -> view -> render('home/index');
         }
 
         function saludo(){
-            echo '<p>Hola!</p>';
+            echo '<h1>Hola!</h1>';
         }
     }
 

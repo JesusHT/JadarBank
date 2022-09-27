@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JADAR BANK</title>
+    <title>ERROR 404</title>
 </head>
 <body>
-    <?php require 'views/header.php'; ?>
-
     <div class="area">
-        <h1 class="center">Binvenido a JADAR BANK</h1>
-    </div>
+        <h1 class="error center">404</h1>
+        <p><?php echo $this->showMessages(); ?></p>
+    </div> 
 </body>
 </html>

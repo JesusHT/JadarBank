@@ -7,10 +7,12 @@
     <title>JADAR BANK</title>
 </head>
 <body>
-    <?php require 'views/nav.php'; ?>
+    <?php require 'views/nav_client.php'; ?>
 
     <div class="area">
-        <h1 class="center">Perfil</h1>
+        <h1 class="center">Abonos a los prestamos</h1>
     </div>
+
+    
 </body>
 </html>
