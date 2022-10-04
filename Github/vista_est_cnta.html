@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/accounting.js/0.3.2/accounting.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.js"></script>
+    <title>Estado de cuenta</title>
+</head>
+<body>
+    <hr> 
+    <p>Detalles de tus movimientos</p>
+    <div id="app">
+        <hr>
+        <center>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Referencia</th>
+                        <th>Depósito</th>
+                        <th>Retiro</th>
+                        <th>Saldo</th>
+                        <th>Fecha</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr v-for="data in stock">
+                    <td>{{data.concepto}}</td>
+                    <td>{{data.referencia}}</td>
+                    <td>{{data.deposito | deposito}}</td>
+                    <td>{{data.retiro}}</td>
+                    <td>{{data.saldo}}</td>
+                    <td>{{data.fecha | fecha}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+    </div>
+    <!--CDN V2-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+    <script>
+        Vue.filter('valor', function(data){
+            return accounting.formatMoney(data, "$", 0., ".", ",");   
+        })
+        Vue.filter('fecha', function(n){
+            return moment(n).format('MM Do YY, h:mm:s a');   
+        })
+        const app = new Vue({
+            el:"#app",
+            data: {
+                //array
+                stock: [
+                    //object
+                    {concepto: 'Easypay', referencia: 'ea3f5fadss', deposito: '650', retiro: '0', saldo: '0', fecha: '09-07-22'}
+                ]
+                
+            }
+        })
+    </script>
+    <hr>
+    <p>Total de comisiones cobradas en el Periodo: </p>
+    <hr>
+</body>
+</html>

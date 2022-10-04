@@ -1,0 +1,198 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <met gita charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abono a crédito</title>
+</head>
+<body>
+    <hr>
+    <p>Rendimiento</p>
+    <div id="app">
+        <center>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Saldo Promedio</th>
+                        <th>Días del periodo</th>
+                        <th>Tasa Bruta Anual</th>
+                        <th>Saldo promedio grabable</th>
+                        <th>Intereses a favor (+)</th>
+                        <th>ISR Retenido (-)</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr v-for="data in stock">
+                    <td>{{data.saldo}}</td>
+                    <td>{{data.diasP}}</td>
+                    <td>{{data.TBA | TBA}}</td>
+                    <td>{{data.SaldoPromGrab}}</td>
+                    <td>{{data.InteresF}}</td>
+                    <td>{{data.ISRR | ISRR}}</td>
+                    </tr>
+                </tbody>
+    </div>
+    <hr>
+    <hr>
+    <p>Comisiones</p>
+    <div id="app">
+        <center>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cheques pagados</th>
+                        <th>Manejo de cuenta</th>
+                    </tr>
+            </thead>  
+            <tbody>
+                <tr v-for="data in stock">
+                    <td>{{data.concepto}}</td>
+                    <td>{{data.referencia}}</td>
+                    <td>{{data.deposito | deposito}}</td>
+                    <td>{{data.retiro}}</td>
+                    <td>{{data.saldo}}</td>
+                    <td>{{data.fecha | fecha}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </center> 
+    </div>
+    <hr>
+    <hr>
+    <p>Total comisiones</p>
+    <div id="app">
+        <center>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cargos objetados</th>
+                        <th>Abonos objetados</th>
+                    </tr>
+            </thead> 
+            <tbody>
+                <tr v-for="data in stock">
+                    <td>{{data.concepto}}</td>
+                    <td>{{data.referencia}}</td>
+                    <td>{{data.deposito | deposito}}</td>
+                    <td>{{data.retiro}}</td>
+                    <td>{{data.saldo}}</td>
+                    <td>{{data.fecha | fecha}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>  
+    </div> -->
+     <!--CDN V2-->
+     <!--<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+     <script>
+         Vue.filter('valor', function(data){
+             return accounting.formatMoney(data, "$", 0., ".", ",");   
+         })
+         Vue.filter('fecha', function(n){
+             return moment(n).format('MM Do YY, h:mm:s a');   
+         })
+         const app = new Vue({
+             el:"#app",
+             data: {
+                 //array
+                 stock: [
+                     //object
+                     {saldo: 'Easypay', diasP: 'ea3f5fadss', TBA: '650', SaldoPromGrab: '0', InteresF: '0', ISRR: ''}
+                 ]
+                 
+             }
+         })
+     </script>
+      <script>
+        Vue.filter('valor', function(data){
+            return accounting.formatMoney(data, "$", 0., ".", ",");   
+        })
+        Vue.filter('fecha', function(n){
+            return moment(n).format('MM Do YY, h:mm:s a');   
+        })
+        const app2 = new Vue({
+            el:"#app2",
+            data: {
+                //array
+                stock: [
+                    //object
+                    {saldo: 'Easypay', diasP: 'ea3f5fadss', TBA: '650', SaldoPromGrab: '0', InteresF: '0', ISRR: '0'}
+                ]
+                
+            }
+        })
+    </script>
+   
+ </body>
+ </html> -->
+ 
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/accounting.js/0.3.2/accounting.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.js"></script>
+    <title>Abono a credito</title>
+</head>
+<body>
+    <hr> 
+    <p>Resumen </p>
+    <div id="app">
+        <center>
+            <table>                    <!--Hacer tres tablas-->
+                <thead>
+                    <tr>
+                        <th>Saldo General</th>
+                        <th>Saldo a favor</th>
+                        <th>Depósito del día</th>
+                        <th>Autorizaciones pendientes</th>
+                        <th>Retiros del día</th>
+                        <th>Interés al cierre del mes</th>
+                        <th>Fecha</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr v-for="data in stock">
+                    <td>{{data.saldo}}</td>
+                    <td>{{data.saldo2}}</td>
+                    <td>{{data. depositoDia| depositoDia}}</td>
+                    <td>{{data.AutorizacionesP}}</td>
+                    <td>{{data.retirosDia}}</td>
+                    <td>{{Interes}}</td>
+                    <td>{{data.fecha | fecha}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+    </div>
+    <!--CDN V2-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> 
+    <script>
+        Vue.filter('valor', function(data){
+            return accounting.formatMoney(data, "$", 0., ".", ",");   
+        })
+        Vue.filter('fecha', function(n){
+            return moment(n).format('MM Do YY, h:mm:s a');   
+        })
+        const app = new Vue({
+            el:"#app",
+            data: {
+                //array
+                stock: [
+                    //object
+                    { saldo: '10000', saldo2: '650', depositoDia: '0', AutorizacionesP: '0', retirosDia: '12', Interes: '0', fecha: '09-07-22'},
+                    { saldo: '10000', saldo2: '650', depositoDia: '0', AutorizacionesP: '0', retirosDia: '12', Interes: '0', fecha: '09-07-22'},
+                    { saldo: '10000', saldo2: '650', depositoDia: '0', AutorizacionesP: '0', retirosDia: '12', Interes: '0', fecha: '09-07-22'}
+                ]
+                
+            }
+        })
+    </script>
+    <hr>
+    <p>Detalles de actividad (redirecciona a otra página)</p>
+    <hr>
+</body>
+</html>
