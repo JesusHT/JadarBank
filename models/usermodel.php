@@ -40,7 +40,7 @@
         public function save(){
             try {
                 $query = $this -> prepare('INSERT INTO users(name, edad, fena, curp, img_client, domicilio, codPostal, municipio, pais, tel, email, pass, num_client, role) VALUES (:name, :edad, :fena, :curp, :img_client, :domicilio, :codPostal, :municipio, :pais, :tel, :email, :pass, :num_client, :role)');
-                $query -> excute([
+                $query -> execute([
                     'name'       => $this -> name,
                     'edad'       => $this -> edad,
                     'fena'       => $this -> fena,
@@ -101,7 +101,7 @@
                 $query = $this->prepare('SELECT * FROM users WHERE id = :id');
                 $query->execute([ 'id' => $id]);
                 $user = $query->fetch(PDO::FETCH_ASSOC);
-                    
+                      
                 $this -> setId($user['id']);
                 $this -> setName($user['name']);
                 $this -> setEdad($user['edad']);
@@ -143,7 +143,7 @@
                 $query = $this->prepare('UPDATE users SET name = :name, edad = :edad, fena = :fena, curp = :curp, img_client = :img_client, domicilio = :domicilio, codPostal = :codPostal, municipio = :municipio, pais = :pais, tel = :tel, email = :email, pass = :pass, :role = :role  WHERE id = :id');
                 $query->execute([ 'id' => $this -> id]);
                     
-                $query -> excute([
+                $query -> execute([
                     'name'       => $this -> name,
                     'edad'       => $this -> edad,
                     'fena'       => $this -> fena,

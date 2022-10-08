@@ -13,8 +13,13 @@
         },
         {
             "site": "ayuda",
-            "access": "public",
-            "role": ""
+            "access": "private",
+            "role": "user"
+        },
+        {
+            "site": "ayuda",
+            "access": "private",
+            "role": "admin"
         },
         {
             "site": "nuevo",

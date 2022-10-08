@@ -114,7 +114,7 @@
             $url = '';
             for($i = 0; $i < sizeof($this->sites); $i++){
                 if($this->sites[$i]['role'] === $role){
-                    $url = '/expense-app/'.$this->sites[$i]['site'];
+                    $url = '/expense-app/' . $this->sites[$i]['site'];
                 break;
                 }
             }
