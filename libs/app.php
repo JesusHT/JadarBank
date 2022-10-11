@@ -48,9 +48,7 @@
                     }else{
                         $controller = new Errores();
                     }
-                }else{
-                    $controller->render();
-                }
+                } 
             }else{
                 $controller = new Errores();
             }

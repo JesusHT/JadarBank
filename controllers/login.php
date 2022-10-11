@@ -19,17 +19,20 @@
 
                 $user = $this->model->login($email, $pass);
 
-                if ($user !== NULL) {
+                
+                if ($user != NULL) {
                     if ($user -> getRole() === 'user') {
-                        $this -> redirect('home',[]);
+                        $this -> redirect('home');
+                        return true;
                     } else if($user -> getRole() === 'admin'){
-                        $this -> redirect('perfil',[]);
+                        $this -> redirect('perfil');
+                        return true;
                     }
                 } 
 
                 $this->redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN_DATA]);
 
-            } else{
+            } else {
                 $this->redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN]);
             }
         }
