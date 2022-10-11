@@ -7,7 +7,6 @@
         }
 
         public function insert(){
-            // Ingresar datos en la BD
             echo 'Insertar Datos';
         }
 

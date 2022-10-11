@@ -15,7 +15,6 @@
                 require_once $archivoController;
                 $controller = new Login();
                 $controller->loadModel('login');
-                $controller->render();
                 return false;
             }
 
@@ -47,7 +46,7 @@
                             $controller->{$url[1]}();    
                         }
                     }else{
-                        $controller = new Errores(); 
+                        $controller = new Errores();
                     }
                 }else{
                     $controller->render();

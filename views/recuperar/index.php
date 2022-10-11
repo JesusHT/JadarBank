@@ -16,7 +16,7 @@
         <input type="submit" value="Recuperar Contraseñas">
     </p>
     <p>
-        <a href="<?php echo constant('URL'); ?>login">Regresar al login </a>
+        <a href="<?php echo constant('URL'); ?>">Regresar al login </a>
     </p>
 </body>
 </html>

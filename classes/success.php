@@ -1,6 +1,6 @@
 <?php
 
-    class Success{
+    class Success {
         
         const SUCCESS_ADMIN_NEWCATEGORY     = "f52228665c4f14c8695b194f670b0ef1";
         const SUCCESS_EXPENSES_DELETE       = "fcd919285d5759328b143801573ec47d";
