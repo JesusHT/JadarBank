@@ -1,6 +1,6 @@
 <?php
 
-    class Session {
+    class SessionController {
         
         private $sessionName = 'user';
         
@@ -21,11 +21,11 @@
         public function closeSession(){
             session_unset();
             session_destroy();
+            header("Location:" . constant('URL'));
         }
     
         public function exists(){
             return isset($_SESSION[$this->sessionName]);
         }
     }
-
 ?>

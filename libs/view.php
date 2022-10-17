@@ -10,6 +10,10 @@
             $this->d = $data;
             $this->handleMessages();
             
+            if (!empty($_GET['url'])) {
+                require_once 'config/session.php';
+            }
+
             require 'views/' . $nombre . '.php';
         }
         

@@ -11,7 +11,7 @@
     <nav class="main-menu">
             <ul>
                 <li>
-                    <a href="<?php echo constant('URL');?>home">
+                    <a href="<?php echo constant('URL');?>admin">
                         <i class="fa fa-home fa-2x"></i>
                         <span class="nav-text">
                             Inicio
@@ -70,7 +70,7 @@
 
             <ul class="logout">
                 <li>
-                   <a href="<?php echo constant('URL');?>">
+                   <a href="<?php echo constant('URL');?>/login/logout">
                          <i class="fa fa-power-off fa-2x"></i>
                         <span class="nav-text">
                             Logout

@@ -135,4 +135,10 @@ nav ul,nav li {
 
 .error {
     background-color: #be1616;
+    color: #fff;
+}
+
+.success {
+    background-color: green;
+    color: white;
 }

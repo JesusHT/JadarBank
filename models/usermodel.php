@@ -6,7 +6,7 @@
         private $edad;
         private $fena;
         private $curp;
-        private $img_cliet;
+        private $img_client;
         private $domicilio;
         private $codPostal;
         private $municipio;
@@ -25,7 +25,7 @@
             $this -> edad       = ''; 
             $this -> fena       = ''; 
             $this -> curp       = ''; 
-            $this -> img_cliet  = ''; 
+            $this -> img_client = ''; 
             $this -> domicilio  = ''; 
             $this -> codPostal  = ''; 
             $this -> estado     = ''; 
@@ -47,7 +47,7 @@
                     'edad'       => $this -> edad,
                     'fena'       => $this -> fena,
                     'curp'       => $this -> curp,
-                    'img_client' => $this -> img_cliet,
+                    'img_client' => $this -> img_client,
                     'domicilio'  => $this -> domicilio,
                     'codPostal'  => $this -> codPostal,
                     'estado'     => $this -> estado,
@@ -79,7 +79,7 @@
                     $item -> setEdad($p['edad']);
                     $item -> setFena($p['fena']);
                     $item -> setCurp($p['curp']);
-                    $item -> setImg_cliet($p['img_client']);
+                    $item -> setimg_client($p['img_client']);
                     $item -> setDomicilio($p['domicilio']);
                     $item -> setCodPostal($p['codPostal']);
                     $item -> setEstado($p['estado']);
@@ -111,7 +111,7 @@
                 $this -> setEdad($user['edad']);
                 $this -> setCurp($user['curp']);
                 $this -> setFena($user['fena']);
-                $this -> setImg_cliet($user['img_client']);
+                $this -> setimg_client($user['img_client']);
                 $this -> setDomicilio($user['domicilio']);
                 $this -> setEstado($user['estado']);
                 $this -> setmunicipio($user['municipio']);
@@ -153,7 +153,7 @@
                     'edad'       => $this -> edad,
                     'fena'       => $this -> fena,
                     'curp'       => $this -> curp,
-                    'img_client' => $this -> img_cliet,
+                    'img_client' => $this -> img_client,
                     'domicilio'  => $this -> domicilio,
                     'codPostal'  => $this -> codPostal,
                     'estado'     => $this -> estado,
@@ -172,6 +172,22 @@
                 return false;
             }
         }
+        
+        function getUsers($id){
+            try{
+                $query = $this->prepare('SELECT * FROM users WHERE id = :id');
+                $query->execute(['id' => $id]);
+                
+                if($query->rowCount() == 1){
+                    $item = $query->fetch(PDO::FETCH_ASSOC); 
+                    $user = $this -> from($item);
+
+                    return $user;
+                }
+            }catch(PDOException $e){
+                return NULL;
+            }
+        }
 
         public function from($array){
             $this -> id         = $array['id'];
@@ -179,7 +195,7 @@
             $this -> edad       = $array['edad'];
             $this -> fena       = $array['fena'];
             $this -> curp       = $array['curp'];
-            $this -> img_cliet  = $array['img_client'];
+            $this -> img_client  = $array['img_client'];
             $this -> domicilio  = $array['domicilio'];
             $this -> codPostal  = $array['codPostal'];
             $this -> estado     = $array['estado'];
@@ -195,13 +211,13 @@
         public function exists($email){
             try{
                 $query = $this->prepare('SELECT email FROM users WHERE email = :email');
-                $query->execute( ['email' => $email]);
+                $query->execute(['email' => $email]);
                 
                 if($query->rowCount() > 0){
                     return true;
-                }else{
-                    return false;
                 }
+                
+                return false;
             }catch(PDOException $e){
                 echo $e;
                 return false;
@@ -218,24 +234,124 @@
             }
         }
 
-        private function getHashedPassword($pass){
-            return password_hash($pass, PASSWORD_DEFAULT, ['cost' => 10]);
+        function escape($value){
+            $return = '';
+            for($i = 0; $i < strlen($value); ++$i) {
+                $char = $value[$i];
+                $ord = ord($char);
+
+                if($char !== "'" && $char !== "\"" && $char !== '\\' && $ord >= 32 && $ord <= 126)
+                    $return .= $char;
+                else
+                    $return .= '\\x' . dechex($ord);
+            }
+
+            return $return;
         }
-        
-        public function setPass($pass, $hash = true){
-            if($hash){
-                $this->password = $this->getHashedPassword($pass);
-            }else{
-                $this->password = $pass;
+
+        function busqueda($busqueda, $id){
+            $q = $this -> escape($busqueda);
+            $this -> getUsers($id);
+            $num_client = $this -> getNum_Client();
+            $id_client = $num_client[0];
+            
+            try {
+                $query = $this -> prepare("SELECT * FROM users WHERE num_client LIKE '%". $id_client ."%' AND name LIKE '%". $q ."%'");
+                $query -> execute();
+
+                $results = $query -> fetchAll(PDO::FETCH_OBJ);
+
+                if (is_countable($results) > 0) {
+                    $i = 1;
+                    $data = '<thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td class="celdas">Usuario</td>
+                                    <td class="celdas">num_client</td>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                    foreach($results as $cliente){
+
+                        if($cliente -> num_client !== $num_client)
+                        $data .=
+                                '<tr>
+                                    <td>'. $i         .'</td>
+                                    <td>'. $cliente -> name       .'</td>
+                                    <td>'. $cliente -> num_client .'</td>
+                                </tr>';
+                        $i++;
+                    }
+                    return $data;
+                } 
+                
+                if (empty($results)) {
+                    return "<tr><td><td>No se encontraron coincidencias con sus criterios de búsqueda!</td></tr>";
+                }
+            } catch (PDOException $e){
+                echo $e;
             }
         }
+
+        function tableUsers($id){
+            $this -> getUsers($id);
+            $num_client = $this -> getNum_Client();
+            $id_client = $num_client[0];
+            
+            try {
+                $query = $this -> prepare("SELECT * FROM users WHERE num_client LIKE '%" . $id_client ."%' ORDER BY id");
+                $query -> execute();
+
+                $results = $query -> fetchAll(PDO::FETCH_OBJ);
+                
+                if (is_countable($results) > 0) {
+                    $data = '<thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td class="celdas">Usuario</td>
+                                    <td class="celdas">num_client</td>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                    $i = 1;
+                    foreach($results as $user){
+
+                        if($user -> num_client !== $num_client)
+                        $data .=
+                                '<tr>
+                                    <td>'. $i         .'</td>
+                                    <td>'. $user -> name       .'</td>
+                                    <td>'. $user -> num_client .'</td>
+                                </tr>';
+                        $i++;
+                    }
+                    
+                    return $data;
+                } 
+                
+                if (empty($results)) {
+                    return "<tr><td><td>No se encontraron coincidencias con sus criterios de búsqueda!</td></tr>";
+                }
+            } catch (PDOException $e){
+                echo $e;
+            }
+        }
+
 
         public function setId($id){                 $this -> id         = $id;         }
         public function setName($name){             $this -> name       = $name;       }
         public function setEdad($edad){             $this -> edad       = $edad;       }
         public function setFena($fena){             $this -> fena       = $fena;       }
         public function setCurp($curp){             $this -> curp       = $curp;       }
-        public function setImg_cliet($img_cliet){   $this -> img_cliet  = $img_cliet;  }
+        public function setimg_client($img_client){   
+            $directorio = "/var/www/JadarBank/public/img/";
+
+            $archivo =  $directorio . basename($img_client["name"]);
+            
+            if(move_uploaded_file($img_client["tmp_name"], $archivo)){
+                $this -> img_client = $img_client['name'];
+            }
+        }
         public function setDomicilio($domicilio){   $this -> domicilio  = $domicilio;  }
         public function setCodPostal($codPostal){   $this -> codPostal  = $codPostal;  }
         public function setEstado($estado){         $this -> estado     = $estado;     }
@@ -243,15 +359,33 @@
         public function setPais($pais){             $this -> pais       = $pais;       }
         public function setTel($tel){               $this -> tel        = $tel;        }
         public function setEmail($email){           $this -> email      = $email;      }
-        public function setNum_client($num_client){ $this -> num_client = $num_client; }
+        public function setNum_client($id){ 
+            $num_executive = $this -> getNumExecutive($id);
+
+            try {
+                $query = $this -> db -> connect() -> prepare('SELECT * FROM users ORDER by id DESC LIMIT 1');
+                $query -> execute(); 
+                $id = $query -> fetch(PDO::FETCH_ASSOC);
+
+            } catch (PDOException $e){
+                echo $e;
+            }
+
+            $num_client = $num_executive[0] . 'C' . $id['id'] + 1;
+
+            $this -> num_client = $num_client; 
+        }
         public function setRole($role){             $this -> role       = $role;       }
+        public function setPass($pass){
+            $this -> pass = password_hash($pass, PASSWORD_BCRYPT);
+        }
         
         public function getId(){         return $this -> id         ;}
         public function getName(){       return $this -> name       ;}
         public function getEdad(){       return $this -> edad       ;}
         public function getFena(){       return $this -> fena       ;}
         public function getCurp(){       return $this -> curp       ;}
-        public function getImg_cliet(){  return $this -> img_cliet  ;}
+        public function getimg_client(){ return $this -> img_client ;}
         public function getDomicilio(){  return $this -> domicilio  ;}
         public function getCodPostal(){  return $this -> codPostal  ;}
         public function getEstado(){     return $this -> estado     ;}
@@ -262,5 +396,16 @@
         public function getPass(){       return $this -> pass       ;}
         public function getNum_client(){ return $this -> num_client ;}
         public function getRole(){       return $this -> role       ;}
+
+        public function getNumExecutive($id){
+            $query = $this -> prepare('SELECT * FROM users WHERE id = :id');
+            $query -> execute([$id]); 
+
+            $results = $query -> fetch(PDO::FETCH_ASSOC);
+
+            if (is_countable($results) > 0) {
+                return $results['num_client'];
+            }
+        }
     }
 ?>

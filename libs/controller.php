@@ -13,7 +13,7 @@
                 require $url;
     
                 $modelName = $model.'Model';
-                $this->model = new $modelName();
+                $this -> model = new $modelName();
             }
         }
 
@@ -39,16 +39,29 @@
             $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_#@. ";
 
             foreach ($params as $param) {
-                if(empty($_POST[$param])){
+                if(empty($_POST[$param]))
                     return true;
-                }
                 for ($j=0; $j < strlen($_POST[$param]); $j++){
-                    if (strpos($characters, substr($_POST[$param],$j,1)) === false){
-                       return true;
-                    }
+                    if (strpos($characters, substr($_POST[$param],$j,1)) === false)
+                        return true;
                 }
             }
-            
+
+            return false;
+        }
+
+        function validateImg($img){
+            $archivo = basename($img["name"]);
+            $tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+
+            $checarSiImagen = getimagesize($img["tmp_name"]);
+
+            if($checarSiImagen === true){ return true; }
+
+            if ($img["size"] > 500000) { return true; }
+
+            if($tipoArchivo != "jpg"){ return true; }
+
             return false;
         }
 
@@ -64,6 +77,7 @@
             if($params != ''){
                 $params = '?' . $params;
             }
+            
             header('location: ' . constant('URL') . $route . $params);
         }
     }

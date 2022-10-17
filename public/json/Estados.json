@@ -1,0 +1,130 @@
+[
+    {
+        "Estado": "Aguascalientes",
+        "num_mun": "11" 
+    },
+    {
+        "Estado": "Baja California",
+        "num_mun": "5" 
+    },
+    {   
+        "Estado": "Baja California Sur",
+        "num_mun": "5" 
+    },
+    {
+        "Estado": "Campeche",   
+        "num_mun": "11" 
+    },
+    {
+        "Estado": "Coahuila",   
+        "num_mun": "38" 
+    },
+    {   
+        "Estado": "Colima",   
+        "num_mun": "10" 
+    },
+    {
+        "Estado": "Chiapas",
+        "num_mun": "122" 
+    },
+    {
+        "Estado": "Chihuahua",
+        "num_mun": "67" 
+    },
+    {
+        "Estado": "Ciudad de Mexico",
+        "num_mun": "16" 
+    },
+    {
+        "Estado": "Durango",
+        "num_mun": "39" 
+    },
+    {
+        "Estado": "Guanajuato",
+        "num_mun": "46" 
+    },
+    {
+        "Estado": "Guerrero",
+        "num_mun": "81" 
+    },
+    {
+        "Estado": "Hidalgo",
+        "num_mun": "84" 
+    },
+    {
+        "Estado": "Jalisco",
+        "num_mun": "125" 
+    },
+    {
+        "Estado": "Estado de Mexico",
+        "num_mun": "125" 
+    },
+    {
+        "Estado": "Michoacan",
+        "num_mun": "113" 
+    },
+    {
+        "Estado": "Morelos",
+        "num_mun": "33" 
+    },
+    {
+        "Estado": "Nayarit",
+        "num_mun": "20" 
+    },
+    {
+        "Estado": "Nuevo Leon",
+        "num_mun": "51" 
+    },
+    {
+        "Estado": "Oaxaca",
+        "num_mun": "570" 
+    },
+    {
+        "Estado": "Puebla",
+        "num_mun": "217" 
+    },
+    {
+        "Estado": "Queretaro",
+        "num_mun": "18" 
+    },
+    {
+        "Estado": "Quintana Roo",
+        "num_mun": "11" 
+    },
+    {
+        "Estado": "San Luis Potosi",
+        "num_mun": "58" 
+    },
+    {
+        "Estado": "Sinaloa",
+        "num_mun": "18" 
+    },
+    {
+        "Estado": "Sonora",
+        "num_mun": "72" 
+    },
+    {
+        "Estado": "Tabasco",
+        "num_mun": "17" 
+    },
+    {
+        "Estado": "Tamaulipas",
+        "num_mun": "43" 
+    },
+    {
+        "Estado": "Tlaxcala",
+        "num_mun": "60" 
+    },
+    {
+        "Estado": "Veracruz",
+        "num_mun": "212" 
+    },
+    {
+        "Estado": "Yucatan",
+        "num_mun": "106" 
+    },
+    {
+        "Estado": "Zacatecas",
+        "num_mun": "58" 
+    }
+]

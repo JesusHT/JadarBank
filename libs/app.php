@@ -8,7 +8,7 @@
             $url = isset($_GET['url']) ? $_GET['url']: null;
             $url = rtrim($url, '/');
             $url = explode('/', $url);
-    
+            
             // cuando se ingresa sin definir controlador
             if(empty($url[0])){
                 $archivoController = 'controllers/login.php';
@@ -19,6 +19,7 @@
             }
 
             $archivoController = 'controllers/' . $url[0] . '.php';
+            
     
             if(file_exists($archivoController)){
                 require_once $archivoController;
@@ -52,6 +53,8 @@
             }else{
                 $controller = new Errores();
             }
+
+            
         }
     }
 ?>
