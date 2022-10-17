@@ -4,12 +4,15 @@
         
         function __construct(){
             parent::__construct();
-            $this -> view -> render('nuevo/index');
+            $this -> view -> render('nuevo/index', []);
         }
 
-        function registrarCliente(){
-            echo 'Alumno Creado';
-            $this -> model -> insert();
+        function render(){
+            
+        }
+
+        function newUser(){
+            echo 'Nevo usuario';
         }
     }
 

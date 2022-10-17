@@ -1,7 +1,7 @@
 <?php
 
     
-    class View{
+    class View {
 
         function __construct(){
         }

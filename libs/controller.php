@@ -35,6 +35,23 @@
             return $_POST[$name];
         }
 
+        function validateData($params){
+            $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_#@. ";
+
+            foreach ($params as $param) {
+                if(empty($_POST[$param])){
+                    return true;
+                }
+                for ($j=0; $j < strlen($_POST[$param]); $j++){
+                    if (strpos($characters, substr($_POST[$param],$j,1)) === false){
+                       return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+
         function redirect($route, $mensajes = []){
             $data = [];
             $params = '';

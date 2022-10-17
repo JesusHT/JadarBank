@@ -9,13 +9,14 @@
         private $img_cliet;
         private $domicilio;
         private $codPostal;
-        private $muncipio;
+        private $municipio;
         private $pais;
         private $tel;
         private $email;
         private $pass;
         private $num_client;
         private $role;
+        private $estado;
 
         function __construct(){
             parent::__construct();
@@ -27,7 +28,8 @@
             $this -> img_cliet  = ''; 
             $this -> domicilio  = ''; 
             $this -> codPostal  = ''; 
-            $this -> muncipio   = ''; 
+            $this -> estado     = ''; 
+            $this -> municipio  = ''; 
             $this -> pais       = ''; 
             $this -> tel        = ''; 
             $this -> email      = ''; 
@@ -39,8 +41,8 @@
 
         public function save(){
             try {
-                $query = $this -> prepare('INSERT INTO users(name, edad, fena, curp, img_client, domicilio, codPostal, municipio, pais, tel, email, pass, num_client, role) VALUES (:name, :edad, :fena, :curp, :img_client, :domicilio, :codPostal, :municipio, :pais, :tel, :email, :pass, :num_client, :role)');
-                $query -> excute([
+                $query = $this -> prepare('INSERT INTO users(name, edad, fena, curp, img_client, domicilio, codPostal, estado, municipio, pais, tel, email, pass, num_client, role) VALUES (:name, :edad, :fena, :curp, :img_client, :domicilio, :codPostal, :estado, :municipio, :pais, :tel, :email, :pass, :num_client, :role)');
+                $query -> execute([
                     'name'       => $this -> name,
                     'edad'       => $this -> edad,
                     'fena'       => $this -> fena,
@@ -48,7 +50,8 @@
                     'img_client' => $this -> img_cliet,
                     'domicilio'  => $this -> domicilio,
                     'codPostal'  => $this -> codPostal,
-                    'municipio'  => $this -> muncipio,
+                    'estado'     => $this -> estado,
+                    'municipio'  => $this -> municipio,
                     'pais'       => $this -> pais,
                     'tel'        => $this -> tel,
                     'email'      => $this -> email,
@@ -79,7 +82,8 @@
                     $item -> setImg_cliet($p['img_client']);
                     $item -> setDomicilio($p['domicilio']);
                     $item -> setCodPostal($p['codPostal']);
-                    $item -> setMuncipio($p['municipio']);
+                    $item -> setEstado($p['estado']);
+                    $item -> setmunicipio($p['municipio']);
                     $item -> setPais($p['pais']);
                     $item -> setTel($p['tel']);
                     $item -> setEmail($p['email']);
@@ -101,7 +105,7 @@
                 $query = $this->prepare('SELECT * FROM users WHERE id = :id');
                 $query->execute([ 'id' => $id]);
                 $user = $query->fetch(PDO::FETCH_ASSOC);
-                    
+                      
                 $this -> setId($user['id']);
                 $this -> setName($user['name']);
                 $this -> setEdad($user['edad']);
@@ -109,7 +113,8 @@
                 $this -> setFena($user['fena']);
                 $this -> setImg_cliet($user['img_client']);
                 $this -> setDomicilio($user['domicilio']);
-                $this -> setMuncipio($user['municipio']);
+                $this -> setEstado($user['estado']);
+                $this -> setmunicipio($user['municipio']);
                 $this -> setCodPostal($user['codPostal']);
                 $this -> setTel($user['tel']);
                 $this -> setPais($user['pais']);
@@ -140,10 +145,10 @@
 
         public function update(){
             try {
-                $query = $this->prepare('UPDATE users SET name = :name, edad = :edad, fena = :fena, curp = :curp, img_client = :img_client, domicilio = :domicilio, codPostal = :codPostal, municipio = :municipio, pais = :pais, tel = :tel, email = :email, pass = :pass, :role = :role  WHERE id = :id');
+                $query = $this->prepare('UPDATE users SET name = :name, edad = :edad, fena = :fena, curp = :curp, img_client = :img_client, domicilio = :domicilio, codPostal = :codPostal, estado = :estado, municipio = :municipio, pais = :pais, tel = :tel, email = :email, pass = :pass, :role = :role  WHERE id = :id');
                 $query->execute([ 'id' => $this -> id]);
                     
-                $query -> excute([
+                $query -> execute([
                     'name'       => $this -> name,
                     'edad'       => $this -> edad,
                     'fena'       => $this -> fena,
@@ -151,7 +156,8 @@
                     'img_client' => $this -> img_cliet,
                     'domicilio'  => $this -> domicilio,
                     'codPostal'  => $this -> codPostal,
-                    'municipio'  => $this -> muncipio,
+                    'estado'     => $this -> estado,
+                    'municipio'  => $this -> municipio,
                     'pais'       => $this -> pais,
                     'tel'        => $this -> tel,
                     'email'      => $this -> email,
@@ -176,13 +182,14 @@
             $this -> img_cliet  = $array['img_client'];
             $this -> domicilio  = $array['domicilio'];
             $this -> codPostal  = $array['codPostal'];
-            $this -> muncipio   = $array['muncipio'];
+            $this -> estado     = $array['estado'];
+            $this -> municipio  = $array['municipio'];
             $this -> pais       = $array['pais'];
             $this -> tel        = $array['tel'];
             $this -> email      = $array['email'];
             $this -> pass       = $array['pass'];
             $this -> num_client = $array['num_client']; 
-            $this -> role = $array['role']; 
+            $this -> role       = $array['role']; 
         }
 
         public function exists($email){
@@ -231,7 +238,8 @@
         public function setImg_cliet($img_cliet){   $this -> img_cliet  = $img_cliet;  }
         public function setDomicilio($domicilio){   $this -> domicilio  = $domicilio;  }
         public function setCodPostal($codPostal){   $this -> codPostal  = $codPostal;  }
-        public function setMuncipio($muncipio){     $this -> muncipio   = $muncipio;   }
+        public function setEstado($estado){         $this -> estado     = $estado;     }
+        public function setmunicipio($municipio){   $this -> municipio  = $municipio;  }
         public function setPais($pais){             $this -> pais       = $pais;       }
         public function setTel($tel){               $this -> tel        = $tel;        }
         public function setEmail($email){           $this -> email      = $email;      }
@@ -246,7 +254,8 @@
         public function getImg_cliet(){  return $this -> img_cliet  ;}
         public function getDomicilio(){  return $this -> domicilio  ;}
         public function getCodPostal(){  return $this -> codPostal  ;}
-        public function getMuncipio(){   return $this -> muncipio   ;}
+        public function getEstado(){     return $this -> estado     ;}
+        public function getmunicipio(){  return $this -> municipio  ;}
         public function getPais(){       return $this -> pais       ;}
         public function getTel(){        return $this -> tel        ;}
         public function getEmail(){      return $this -> email      ;}
