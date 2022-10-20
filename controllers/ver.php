@@ -1,10 +1,11 @@
 <?php
 
-    class Recuperar extends Controller {
+    class Ver extends Controller {
         
         function __construct(){
             parent::__construct();
-            $this -> view -> render('recuperar/index');
+            $this -> view -> render('ver/index');
         }
     }
+
 ?>

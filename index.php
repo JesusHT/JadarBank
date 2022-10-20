@@ -1,4 +1,5 @@
 <?php
+
     require_once 'libs/database.php';
     require_once 'classes/errors.php';
     require_once 'classes/success.php';

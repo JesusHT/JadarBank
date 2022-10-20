@@ -20,14 +20,6 @@ let menu = `
         </a>
     </li>
     <li class="has-subnav">
-        <a href="` + rute +`consulta">
-           <i class="fa fa-table fa-2x"></i>
-            <span class="nav-text">
-                Tablas de amortización
-            </span>
-        </a>
-    </li>
-    <li class="has-subnav">
         <a href="` + rute +`nuevo">
            <i class="fa fa-user-plus fa-2x"></i>
             <span class="nav-text">

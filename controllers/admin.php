@@ -20,6 +20,18 @@
 
             return $query -> tableUsers($_SESSION['user']);
         }
+
+        function delete(){
+
+        }
+
+        function update(){
+
+        }
+
+        function ver(){
+            
+        }
     }
 
 ?>

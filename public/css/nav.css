@@ -142,3 +142,7 @@ body {
 #curp {
     text-transform: uppercase;
 }
+
+i .fa-eye {
+  color: blue!important;
+}

@@ -11,7 +11,7 @@
 <body>
     <?php require 'views/nav.php'; ?>
     <div class="area">
-        <h1>Hola ejectutivo <?php echo $cliente['name'];?>!</h1><br>
+        <br><h1>Cartera De Clientes</h1><br>
         <form action="<?php echo constant('URL'); ?>admin/tableUsers" method="POST">
             <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." class="bg-dark text-white">
             <input type="submit" value="Buscar">

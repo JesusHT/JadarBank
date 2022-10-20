@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="<?php echo constant('URL'); ?>public/img/favicon.ico" type="image/x-icon">
         <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/global.css">
-        <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/default.css">
-        <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/nav.css">
+        <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/default.css">
+        <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/nav.css">
         <title>Registro</title>
     </head>
     <body>
@@ -26,7 +26,6 @@
                 <h2 class="fs-title">Registro De Clientes</h2>
                 <h3 class="fs-subtitle">Campos Obligatorios!</h3>
                 <input type="text"   name="name" id="name" class="form-control"  placeholder="Nombre Completo">
-                <input type="number" name="edad" id="edad" class="form-control"  placeholder="Edad">
                 <input type="date"   name="fena" id="fena" class="form-control"  placeholder="Fecha de nacimiento">
                 <input type="text"   name="curp" id="curp" class="form-control"  placeholder="CURP">
                 <label for="">Foto del Cliente</label>

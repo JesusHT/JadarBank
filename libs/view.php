@@ -10,7 +10,7 @@
             $this->d = $data;
             $this->handleMessages();
             
-            if (!empty($_GET['url'])) {
+            if (!empty($_GET['url']) && $_GET['url'] !== 'recuperar') {
                 require_once 'config/session.php';
             }
 
@@ -19,7 +19,7 @@
         
         private function handleMessages(){
             if(isset($_GET['success']) && isset($_GET['error'])){
-                // no se muestra nada porque no puede haber un error y success al mismo tiempo
+            // no se muestra nada porque no puede haber un error y success al mismo tiempo
             }else if(isset($_GET['success'])){
                 $this->handleSuccess();
             }else if(isset($_GET['error'])){
