@@ -28,10 +28,6 @@
         function update(){
 
         }
-
-        function ver(){
-            
-        }
     }
 
 ?>

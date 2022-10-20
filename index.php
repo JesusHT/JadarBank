@@ -3,6 +3,8 @@
     require_once 'libs/database.php';
     require_once 'classes/errors.php';
     require_once 'classes/success.php';
+    require_once 'classes/info.php';
+    require_once 'classes/warning.php';
     require_once 'classes/sessionController.php';
     require_once 'libs/controller.php';
     require_once 'libs/model.php';

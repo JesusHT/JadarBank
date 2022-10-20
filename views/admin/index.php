@@ -17,9 +17,7 @@
             <input type="submit" value="Buscar">
         </form><br>
 	    <table class="table table-dark mt-3">
-                <?php
-                    echo $this -> d['tabla'];
-                ?>
+                <?php echo $this -> d['tabla'];?>
             </tbody>
 	    </table>
     </div>

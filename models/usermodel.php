@@ -68,7 +68,7 @@
             $items = [];
 
             try {
-                $query = $this -> query('SELECT * FROM clinets');
+                $query = $this -> query('SELECT * FROM clients');
                 while ($p = $query ->fetch(PDO::FETCH_ASSOC)) {
                     $item = new UserModel();
                     
@@ -103,24 +103,7 @@
                 $query->execute([ 'id' => $id]);
                 $user = $query->fetch(PDO::FETCH_ASSOC);
 
-                      
-                $this -> setId($user['id']);
-                $this -> setName($user['name']);
-                $this -> setCurp($user['curp']);
-                $this -> setFena($user['fena']);
-                $this -> setimg_client($user['img_client']);
-                $this -> setDomicilio($user['domicilio']);
-                $this -> setEstado($user['estado']);
-                $this -> setmunicipio($user['municipio']);
-                $this -> setCodPostal($user['codPostal']);
-                $this -> setTel($user['tel']);
-                $this -> setPais($user['pais']);
-                $this -> setEmail($user['email']);
-                $this -> setPass($user['pass'], false);
-                $this -> setNum_client($user['num_client']);
-                $this -> setRole($user['role']);
-
-                return $this;
+                return $user;
 
             } catch (PDOException $e) {
                 echo $e;
@@ -280,20 +263,20 @@
                                     <td>'. $cliente -> num_client .'</td>
                                     <td>
                                         <form action="'. constant('URL') .'admin/delete" method="POST">
-                                            <input type="hidden" name="eliminar-user" value="'.  $cliente -> id .'">
-                                            <button type="submit"><i class="fa-solid fa-trash-can"></i></button>	
+                                            <input type="hidden" name="eliminar" value="'.  $user -> id .'">
+                                            <button type="submit" class="btn"><i class="fa-solid fa-trash-can"></i></button>	
                                         </form>
                                     </td>
                                     <td>
                                         <form action="'. constant('URL') .'admin/update" method="POST">
-                                            <input type="hidden" name="eliminar-user" value="'.  $cliente -> id .'">
-                                            <button type="submit"><i class="fa-solid fa-pencil"></i></button>	
+                                            <input type="hidden" name="actualizar" value="'.  $user -> id .'">
+                                            <button type="submit" class="btn"><i class="fa-solid fa-pencil"></i></button>	
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="'. constant('URL') .'admin/view" method="POST">
-                                            <input type="hidden" name="eliminar-user" value="'.  $cliente -> id .'">
-                                            <button type="submit"><i class="fa-solid fa-eye"></i></button>	
+                                        <form action="'. constant('URL') .'ver" method="POST">
+                                            <input type="hidden" name="ver" value="'.  $user -> id .'">
+                                            <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>	
                                         </form>
                                     </td>
                                 </tr>';
@@ -344,20 +327,20 @@
                                     <td>'. $user -> num_client .'</td>
                                     <td>
                                         <form action="'. constant('URL') .'admin/delete" method="POST">
-                                            <input type="hidden" name="eliminar-user" value="'.  $cliente -> id .'">
-                                            <button type="submit"><i class="fa-solid fa-trash-can"></i></button>	
+                                            <input type="hidden" name="eliminar" value="'.  $user -> id .'">
+                                            <button type="submit" class="btn"><i class="fa-solid fa-trash-can"></i></button>	
                                         </form>
                                     </td>
                                     <td>
                                         <form action="'. constant('URL') .'admin/update" method="POST">
-                                            <input type="hidden" name="eliminar-user" value="'.  $cliente -> id .'">
-                                            <button type="submit"><i class="fa-solid fa-pencil"></i></button>	
+                                            <input type="hidden" name="actualizar" value="'.  $user -> id .'">
+                                            <button type="submit" class="btn"><i class="fa-solid fa-pencil"></i></button>	
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="'. constant('URL') .'admin/ver" method="POST">
-                                            <input type="hidden" name="eliminar-user" value="'.  $cliente -> id .'">
-                                            <button type="submit"><i class="fa-solid fa-eye"></i></button>	
+                                        <form action="'. constant('URL') .'ver" method="POST">
+                                            <input type="hidden" name="ver" value="'.  $user -> id .'">
+                                            <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>	
                                         </form>
                                     </td>
                                 </tr>';
@@ -406,7 +389,7 @@
         public function setPass($pass){             $this -> pass       = password_hash($pass, PASSWORD_BCRYPT);}
         public function setId($id){                 $this -> id         = $id;         }
         public function setName($name){             $this -> name       = $name;       }
-        public function setEdad($edad){             $this -> edad       = $edad;       }
+        public function setFena($fena){             $this -> fena       = $fena;       }
         public function setCurp($curp){             $this -> curp       = $curp;       }
         public function setDomicilio($domicilio){   $this -> domicilio  = $domicilio;  }
         public function setCodPostal($codPostal){   $this -> codPostal  = $codPostal;  }

@@ -22,6 +22,7 @@
     $success_color:#00a135;
     $error_color:  #cc0605;
     $info_color:   #0096d2;
+    $Warning_color:#e5be01;
     
 // Color-fonts
 
@@ -35,18 +36,27 @@
     margin: 0;
 }
 
-// Class messages
+// Background-color message
+$message-color: (
+    "Error": $error_color,
+    "Info": $info_color,
+    "Success": $success_color,
+    "Warning": $Warning_color
+);
 
-.Error {
-    background-color: $error_color;
-    color: $white_color;
+@each $k, $v in $message-color {
+    .Messeges-#{$k}{
+        background-color: $v;
+        color: $white_color;
+        padding: 15px;
+    }
 }
 
-.Succes {
-    background-color: $success_color;
-    color: $white_color;
-}
-
-.Info {
-    background-color: $info_color;
+.btn {
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
 }

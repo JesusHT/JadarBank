@@ -3,15 +3,32 @@
   padding: 0;
   margin: 0; }
 
-.Error {
+.Messeges-Error {
   background-color: #cc0605;
-  color: #fff; }
+  color: #fff;
+  padding: 15px; }
 
-.Succes {
+.Messeges-Info {
+  background-color: #0096d2;
+  color: #fff;
+  padding: 15px; }
+
+.Messeges-Success {
   background-color: #00a135;
-  color: #fff; }
+  color: #fff;
+  padding: 15px; }
 
-.Info {
-  background-color: #0096d2; }
+.Messeges-Warning {
+  background-color: #e5be01;
+  color: #fff;
+  padding: 15px; }
+
+.btn {
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer; }
 
 /*# sourceMappingURL=global.css.map */

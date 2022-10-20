@@ -18,12 +18,15 @@
         }
         
         private function handleMessages(){
-            if(isset($_GET['success']) && isset($_GET['error'])){
-            // no se muestra nada porque no puede haber un error y success al mismo tiempo
-            }else if(isset($_GET['success'])){
+            //if(isset($_GET['success']) && isset($_GET['error'])){}       
+            if(isset($_GET['success'])){
                 $this->handleSuccess();
-            }else if(isset($_GET['error'])){
+            } else if(isset($_GET['error'])){
                 $this->handleError();
+            } else if(isset($_GET['info'])){
+                $this->handleInfo();
+            } else if(isset($_GET['warning'])){
+                $this->handleWarning();
             }
         }
 
@@ -53,20 +56,60 @@
             }
         }
 
+        private function handleWarning(){
+            if(isset($_GET['warning'])){
+                $hash = $_GET['warning'];
+                $warnings = new Warnings();
+
+                if($warnings->existsKey($hash)){
+                    $this->d['warning'] = $warnings->get($hash);
+                }else{
+                    $this->d['warning'] = NULL;
+                }
+            }
+        }
+
+        private function handleInfo(){
+            if(isset($_GET['info'])){
+                $hash = $_GET['info'];
+                $info = new Info();
+
+                if($info->existsKey($hash)){
+                    $this->d['info'] = $info->get($hash);
+                }else{
+                    $this->d['info'] = NULL;
+                }
+            }
+        }
+
         public function showMessages(){
             $this->showError();
             $this->showSuccess();
+            $this->showInfo();
+            $this->showWarning();
         }
 
         public function showError(){
             if(array_key_exists('error', $this->d)){
-                echo '<div class="Error">'.$this->d['error'].'</div>';
+                echo '<div class="Messeges-Error">'.$this->d['error'].'</div>';
             }
         }
 
         public function showSuccess(){
             if(array_key_exists('success', $this->d)){
-                echo '<div class="Success">'.$this->d['success'].'</div>';
+                echo '<div class="Messeges-Success">'.$this->d['success'].'</div>';
+            }
+        }
+
+        public function showInfo(){
+            if(array_key_exists('info', $this->d)){
+                echo '<div class="Messeges-Info">'.$this->d['info'].'</div>';
+            }
+        }
+
+        public function showWarning(){
+            if(array_key_exists('warning', $this->d)){
+                echo '<div class="Messeges-Warning">'.$this->d['warning'].'</div>';
             }
         }
     }
