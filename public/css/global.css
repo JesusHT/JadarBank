@@ -1,0 +1,17 @@
+@import url(https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css);
+* {
+  padding: 0;
+  margin: 0; }
+
+.Error {
+  background-color: #cc0605;
+  color: #fff; }
+
+.Succes {
+  background-color: #00a135;
+  color: #fff; }
+
+.Info {
+  background-color: #0096d2; }
+
+/*# sourceMappingURL=global.css.map */

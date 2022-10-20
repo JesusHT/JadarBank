@@ -1,0 +1,52 @@
+// Import css-icons (https://fontawesome.com/icons)
+
+@import url(https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css);
+
+// Import fonts
+
+
+
+//Global background-colors
+    
+    //Color palette
+    
+    $primary_color:  #c18700;
+    $secondary_color:#0d4755;
+    $lightblue_color:#3e8692;
+    $brown_color:    #8e4b05;
+    $green_color:    #102117;
+    
+    
+    //Messages
+
+    $success_color:#00a135;
+    $error_color:  #cc0605;
+    $info_color:   #0096d2;
+    
+// Color-fonts
+
+    $white_color: #fff;
+    $black_color: #000;
+
+// Global style
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+// Class messages
+
+.Error {
+    background-color: $error_color;
+    color: $white_color;
+}
+
+.Succes {
+    background-color: $success_color;
+    color: $white_color;
+}
+
+.Info {
+    background-color: $info_color;
+}
