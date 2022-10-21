@@ -1,6 +1,7 @@
 <?php 
 
     define('URL', 'http://JadarBank.com/');
+    define('URL-IMG', '/var/www/JadarBank/public/img/');
 
     define('HOST','localhost');
     define('DB','database');

@@ -1,148 +1,78 @@
-/*custom font*/
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+.fa-2x {
+  font-size: 2em; }
 
-body {
-  font-family: montserrat, arial, verdana;
-}
-/*form styles*/
-#msform {
-  width: 400px;
-  margin: 50px auto;
+.fa {
+  position: relative;
+  display: table-cell;
+  width: 60px;
+  height: 36px;
   text-align: center;
-  position: relative;
-}
-#msform fieldset {
-  background-color: #fff;
-  border: 0 none;
-  border-radius: 3px;
-  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-  padding: 20px 30px;
-  box-sizing: border-box;
-  width: 80%;
-  margin: 0 10%;
-  position: relative;
-}
-/*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
-  display: none;
-}
-/*inputs*/
-#msform input, #msform textarea {
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: montserrat;
-  color: #2C3E50;
-  font-size: 13px;
-}
-/*buttons*/
-#msform .action-button {
-  width: 100px;
-  background-color: #27AE60;
-  font-weight: bold;
-  color: #fff;
-  border: 0 none;
-  border-radius: 1px;
-  cursor: pointer;
-  padding: 10px 5px;
-  margin: 10px 5px;
-}
-#msform .action-button:hover, #msform .action-button:focus {
-  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #27AE60;
-}
-/*headings*/
-.fs-title {
-  font-size: 15px;
-  text-transform: uppercase;
-  color: #2C3E50;
-  margin-bottom: 10px;
-}
-.fs-subtitle {
-  font-weight: normal;
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 20px;
-}
-/*progressbar*/
-#progressbar {
-  margin-bottom: 30px;
-  overflow: hidden;
-  /*CSS counters to number the steps*/
-  counter-reset: step;
-}
-#progressbar li {
-  list-style-type: none;
-  color: black;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 9px;
-  width: 33.33%;
-  float: left;
-  position: relative;
-}
-#progressbar li:before {
-  content: counter(step);
-  counter-increment: step;
-  width: 20px;
-  line-height: 20px;
-  display: block;
-  font-size: 10px;
-  color: #333;
-  background-color:#fff;
-  border-radius: 3px;
-  margin: 0 auto 5px auto;
-}
-/*progressbar connectors*/
-#progressbar li:after {
-  content: '';
-  width: 100%;
-  height: 2px;
-  background-color: #fff;
+  vertical-align: middle;
+  font-size: 20px; }
+
+.main-menu {
+  background: #212121;
+  border-right: 1px solid #e5e5e5;
   position: absolute;
-  left: -50%;
-  top: 9px;
-  z-index: -1; /*put it behind the numbers*/
-}
-#progressbar li:first-child:after {
-  /*connector not needed before the first step*/
-  content: none; 
-}
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-#progressbar li.active:before,  #progressbar li.active:after{
-  background-color: #27AE60;
-  color: black;
-}
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  width: 60px;
+  overflow: hidden;
+  -webkit-transition: width .05s linear;
+  transition: width .05s linear;
+  z-index: 1000; }
+  .main-menu:hover, .main-menu.expanded {
+    width: 250px;
+    overflow: visible; }
+  .main-menu > ul {
+    margin: 7px 0; }
+  .main-menu li {
+    position: relative;
+    display: block;
+    width: 250px; }
+    .main-menu li > a {
+      position: relative;
+      display: table;
+      border-collapse: collapse;
+      border-spacing: 0;
+      color: #999;
+      font-family: arial;
+      font-size: 14px;
+      text-decoration: none;
+      -webkit-transition: all .1s linear;
+      transition: all .1s linear; }
+      .main-menu li > a:hover {
+        color: #fff;
+        background-color: #5fa2db; }
+  .main-menu .nav-text {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    width: 190px;
+    font-family: 'Titillium Web', sans-serif; }
+  .main-menu > ul.logout {
+    position: absolute;
+    left: 0;
+    bottom: 0; }
 
-.form-select  {
-  display: block;
-  width: 100%;
-  padding: .375rem 2.25rem .375rem .75rem;
-  -moz-padding-start: calc(0.75rem - 3px);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right .75rem center;
-  background-size: 16px 12px;
-  border: 1px solid #ced4da;
-  border-radius: .375rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
+a:hover, a:focus {
+  text-decoration: none; }
 
-#curp {
-    text-transform: uppercase;
-}
+nav {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
+  nav ul, nav li {
+    outline: 0;
+    margin: 0;
+    padding: 0; }
 
-i .fa-eye {
-  color: blue!important;
-}
+.area {
+  background-color: #e5e5e5;
+  padding-left: 75px; }
+
+/*# sourceMappingURL=nav.css.map */

@@ -1,22 +1,21 @@
-.button {
-    --color: #c18700;
-    padding: 0.8em 1.7em;
-    background-color: transparent;
-    border-radius: .3em;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: .5s;
-    font-weight: 400;
-    font-size: 17px;
-    border: 1px solid;
-    font-family: inherit;
-    text-transform: uppercase;
-    color: var(--color);
-    z-index: 1;
-   }
-   
-   .button::before, .button::after {
+@import url(../css/global.css);
+.btn-login {
+  --color: #c18700;
+  padding: 0.8em 1.7em;
+  background-color: transparent;
+  border-radius: .3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .5s;
+  font-weight: 400;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1; }
+  .btn-login::before, .btn-login::after {
     content: '';
     display: block;
     width: 50px;
@@ -26,51 +25,31 @@
     border-radius: 50%;
     z-index: -1;
     background-color: var(--color);
-    transition: 1s ease;
-   }
-   
-   .button::before {
+    transition: 1s ease; }
+  .btn-login::before {
     top: -1em;
-    left: -1em;
-   }
-   
-   .button::after {
+    left: -1em; }
+  .btn-login::after {
     left: calc(100% + 1em);
-    top: calc(100% + 1em);
-   }
-   
-   .button:hover::before, .button:hover::after {
+    top: calc(100% + 1em); }
+  .btn-login:hover::before, .btn-login:hover::after {
     height: 410px;
-    width: 410px;
-   }
-   
-   .button:hover {
-    color: white;
-   }
-   
-   .button:active {
-    filter: brightness(.8);
-   }
+    width: 410px; }
+  .btn-login:hover {
+    color: #fff; }
+  .btn-login:active {
+    filter: brightness(0.8); }
 
-.login-main{
-    background-color: white;
-    border-radius: 5px;
-    padding: 20px;
-    width: 300px;
-    margin: calc((100vh - 500px)/2) auto 0 auto;
-    border: solid black 2px;
-}
+.login-main {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  width: 300px;
+  margin: calc((100vh - 500px)/2) auto 0 auto;
+  border: solid #000 2px; }
+  .login-main input {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 20px; }
 
-    .login-main p{
-        padding: 10px 0;
-    }
-
-    .login-main input{
-        width: 100%;
-        height: 30px;
-        margin-bottom: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
+/*# sourceMappingURL=login.css.map */

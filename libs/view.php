@@ -10,9 +10,7 @@
             $this->d = $data;
             $this->handleMessages();
             
-            if (!empty($_GET['url']) && $_GET['url'] !== 'recuperar') {
-                require_once 'config/session.php';
-            }
+            
 
             require 'views/' . $nombre . '.php';
         }
@@ -91,25 +89,25 @@
 
         public function showError(){
             if(array_key_exists('error', $this->d)){
-                echo '<div class="Messeges-Error">'.$this->d['error'].'</div>';
+                echo '<div class="bg-Error">'.$this->d['error'].'</div>';
             }
         }
 
         public function showSuccess(){
             if(array_key_exists('success', $this->d)){
-                echo '<div class="Messeges-Success">'.$this->d['success'].'</div>';
+                echo '<div class="bg-Success">'.$this->d['success'].'</div>';
             }
         }
 
         public function showInfo(){
             if(array_key_exists('info', $this->d)){
-                echo '<div class="Messeges-Info">'.$this->d['info'].'</div>';
+                echo '<div class="bg-Info">'.$this->d['info'].'</div>';
             }
         }
 
         public function showWarning(){
             if(array_key_exists('warning', $this->d)){
-                echo '<div class="Messeges-Warning">'.$this->d['warning'].'</div>';
+                echo '<div class="bg-Warning">'.$this->d['warning'].'</div>';
             }
         }
     }

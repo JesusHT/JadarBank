@@ -17,6 +17,17 @@
             <input type="submit" value="Buscar">
         </form><br>
 	    <table class="table table-dark mt-3">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td class="celdas">Nombre</td>
+                    <td class="celdas">numero_cliente</td>
+                    <td class="celdas">Eliminar</td>
+                    <td class="celdas">Editar</td>
+                    <td class="celdas">ver</td>
+                </tr>
+            </thead>
+            <tbody>
                 <?php echo $this -> d['tabla'];?>
             </tbody>
 	    </table>

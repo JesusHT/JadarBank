@@ -55,7 +55,7 @@ let menu = `
 
 <ul class="logout">
     <li>
-       <a href="` + rute +`/login/logout">
+       <a href="` + rute +`login/logout">
              <i class="fa fa-power-off fa-2x"></i>
             <span class="nav-text">
                 Logout

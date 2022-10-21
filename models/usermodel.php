@@ -63,39 +63,6 @@
                 return false;
             }
         }
-
-        public function getAll(){
-            $items = [];
-
-            try {
-                $query = $this -> query('SELECT * FROM clients');
-                while ($p = $query ->fetch(PDO::FETCH_ASSOC)) {
-                    $item = new UserModel();
-                    
-                    $item -> setId($p['id']);
-                    $item -> setName($p['name']);
-                    $item -> setFena($p['fena']);
-                    $item -> setCurp($p['curp']);
-                    $item -> setimg_client($p['img_client']);
-                    $item -> setDomicilio($p['domicilio']);
-                    $item -> setCodPostal($p['codPostal']);
-                    $item -> setEstado($p['estado']);
-                    $item -> setmunicipio($p['municipio']);
-                    $item -> setPais($p['pais']);
-                    $item -> setTel($p['tel']);
-                    $item -> setEmail($p['email']);
-                    $item -> setPass($p['pass'], false);
-                    $item -> setNum_client($p['num_client']);
-                    $item -> setRole($p['role']);
-                    
-                    array_push($items, $item);
-                }
-                return $items;
-
-            } catch (PDOException $e) {
-                echo $e;
-            }
-        }
         
         public function get($id){
             try {
@@ -242,17 +209,7 @@
 
                 if (is_countable($results) > 0) {
                     $i = 1;
-                    $data = '<thead>
-                                <tr>
-                                    <td>#</td>
-                                    <td class="celdas">Usuario</td>
-                                    <td class="celdas">Num_client</td>
-                                    <td class="celdas">Eliminar</td>
-                                    <td class="celdas">Editar</td>
-                                    <td class="celdas">ver</td>
-                                </tr>
-                            </thead>
-                            <tbody>';
+                    $data = '';
                     foreach($results as $cliente){
 
                         if($cliente -> num_client !== $num_client)
@@ -282,6 +239,7 @@
                                 </tr>';
                         $i++;
                     }
+
                     return $data;
                 } 
                 
@@ -305,17 +263,7 @@
                 $results = $query -> fetchAll(PDO::FETCH_OBJ);
                 
                 if (is_countable($results) > 0) {
-                    $data = '<thead>
-                                <tr>
-                                    <td>#</td>
-                                    <td class="celdas">Nombre</td>
-                                    <td class="celdas">numero_cliente</td>
-                                    <td class="celdas">Eliminar</td>
-                                    <td class="celdas">Editar</td>
-                                    <td class="celdas">ver</td>
-                                </tr>
-                            </thead>
-                            <tbody>';
+                    $data = '';
                     $i = 1;
                     foreach($results as $user){
 
@@ -360,13 +308,10 @@
 
         // Establecer el valor de las variables 
         public function setimg_client($img_client){   
-            $directorio = "/var/www/JadarBank/public/img/";
-
-            $archivo =  $directorio . basename($img_client["name"]);
+            $archivo = constant('URL-IMG') . basename($img_client["name"]);
             
-            if(move_uploaded_file($img_client["tmp_name"], $archivo)){
+            if(move_uploaded_file($img_client["tmp_name"], $archivo))
                 $this -> img_client = $img_client['name'];
-            }
         }
         
         public function setNum_client($id){ 

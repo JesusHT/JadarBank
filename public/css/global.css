@@ -3,6 +3,9 @@
   padding: 0;
   margin: 0; }
 
+body {
+  background-color: #e5e5e5; }
+
 .Messeges-Error {
   background-color: #cc0605;
   color: #fff;
@@ -23,6 +26,26 @@
   color: #fff;
   padding: 15px; }
 
+.bg-Error {
+  background-color: #cc0605;
+  color: #fff;
+  padding: 15px; }
+
+.bg-Info {
+  background-color: #0096d2;
+  color: #fff;
+  padding: 15px; }
+
+.bg-Success {
+  background-color: #00a135;
+  color: #fff;
+  padding: 15px; }
+
+.bg-Warning {
+  background-color: #e5be01;
+  color: #fff;
+  padding: 15px; }
+
 .btn {
   padding: 5px 32px;
   text-align: center;
@@ -30,5 +53,11 @@
   display: inline-block;
   font-size: 16px;
   cursor: pointer; }
+
+.center {
+  margin: 0 auto; }
+
+.text-center {
+  text-align: center; }
 
 /*# sourceMappingURL=global.css.map */
