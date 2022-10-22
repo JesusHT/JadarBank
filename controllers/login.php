@@ -38,7 +38,7 @@
 
 
             } else {
-                $this->redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN]);
+                $this-redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN]);
             }
         }
 

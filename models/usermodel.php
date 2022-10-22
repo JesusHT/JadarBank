@@ -194,77 +194,30 @@
 
             return $return;
         }
-
-        function busqueda($busqueda, $id){
-            $q = $this -> escape($busqueda);
+        
+        function tableUsers($busqueda, $id){
+            
             $this -> getUsers($id);
             $num_client = $this -> getNum_Client();
             $id_client = $num_client[0];
+            $status = "activo";
             
-            try {
-                $query = $this -> prepare("SELECT * FROM users WHERE num_client LIKE '%". $id_client ."%' AND name LIKE '%". $q ."%'");
-                $query -> execute();
+            $sql = "SELECT * FROM users WHERE num_client LIKE '%" . $id_client ."%' AND status LIKE '%". $status ."%' ORDER BY id";
 
-                $results = $query -> fetchAll(PDO::FETCH_OBJ);
-
-                if (is_countable($results) > 0) {
-                    $i = 1;
-                    $data = '';
-                    foreach($results as $cliente){
-
-                        if($cliente -> num_client !== $num_client)
-                        $data .=
-                                '<tr>
-                                    <td>'. $i                     .'</td>
-                                    <td>'. $cliente -> name       .'</td>
-                                    <td>'. $cliente -> num_client .'</td>
-                                    <td>
-                                        <form action="'. constant('URL') .'admin/delete" method="POST">
-                                            <input type="hidden" name="eliminar" value="'.  $user -> id .'">
-                                            <button type="submit" class="btn"><i class="fa-solid fa-trash-can"></i></button>	
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="'. constant('URL') .'admin/update" method="POST">
-                                            <input type="hidden" name="actualizar" value="'.  $user -> id .'">
-                                            <button type="submit" class="btn"><i class="fa-solid fa-pencil"></i></button>	
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="'. constant('URL') .'ver" method="POST">
-                                            <input type="hidden" name="ver" value="'.  $user -> id .'">
-                                            <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>	
-                                        </form>
-                                    </td>
-                                </tr>';
-                        $i++;
-                    }
-
-                    return $data;
-                } 
-                
-                if (empty($results)) {
-                    return "<tr><td><td>No se encontraron coincidencias con sus criterios de búsqueda!</td></tr>";
-                }
-            } catch (PDOException $e){
-                echo $e;
+            if ($busqueda !== NULL) {
+                $q = $this -> escape($busqueda);
+                $sql = "SELECT * FROM users WHERE num_client LIKE '%". $id_client ."%' AND name LIKE '%". $q ."%' AND status LIKE '%". $status ."%'";
             }
-        }
-
-        function tableUsers($id){
-            $this -> getUsers($id);
-            $num_client = $this -> getNum_Client();
-            $id_client = $num_client[0];
             
             try {
-                $query = $this -> prepare("SELECT * FROM users WHERE num_client LIKE '%" . $id_client ."%' ORDER BY id");
+                $query = $this -> prepare($sql);
                 $query -> execute();
 
                 $results = $query -> fetchAll(PDO::FETCH_OBJ);
+                $data = '';
                 
-                if (is_countable($results) > 0) {
-                    $data = '';
-                    $i = 1;
+                if (count($results) > 0) {  
+                    $i = 0;
                     foreach($results as $user){
 
                         if($user -> num_client !== $num_client)
@@ -273,11 +226,8 @@
                                     <td>'. $i         .'</td>
                                     <td>'. $user -> name       .'</td>
                                     <td>'. $user -> num_client .'</td>
-                                    <td>
-                                        <form action="'. constant('URL') .'admin/delete" method="POST">
-                                            <input type="hidden" name="eliminar" value="'.  $user -> id .'">
-                                            <button type="submit" class="btn"><i class="fa-solid fa-trash-can"></i></button>	
-                                        </form>
+                                    <td>                                            
+                                        <button type="button" class="btn" onclick="openModal('.$user -> id.')"><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
                                     <td>
                                         <form action="'. constant('URL') .'admin/update" method="POST">
@@ -287,7 +237,7 @@
                                     </td>
                                     <td>
                                         <form action="'. constant('URL') .'ver" method="POST">
-                                            <input type="hidden" name="ver" value="'.  $user -> id .'">
+                                            <input type="hidden" id="" name="ver" value="'.  $user -> id .'">
                                             <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>	
                                         </form>
                                     </td>
@@ -298,9 +248,9 @@
                     return $data;
                 } 
                 
-                if (empty($results)) {
-                    return "<tr><td><td>No se encontraron coincidencias con sus criterios de búsqueda!</td></tr>";
-                }
+                return '<p class="bg-Error">No se encontraron coincidencias con sus criterios de búsqueda</p><br>';
+                
+
             } catch (PDOException $e){
                 echo $e;
             }

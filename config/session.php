@@ -2,7 +2,9 @@
 
     // Valida si existe una session de no existir te envia al login y si sirve extrae los datos del usuario para poder usarlos déspues
 
-    session_start();
+    if (session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
 
     $db = new Database();
 

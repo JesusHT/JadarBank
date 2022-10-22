@@ -1,0 +1,35 @@
+// Importamos el css global
+
+@import url(../css/global.css);
+
+//Background-color
+
+$bg-content-modal:#fefefe;
+$bg-body-modal:rgba(0,0,0,0.4);
+$bg-secondary-modal:rgb(0,0,0);
+
+// Classes 
+.modal {
+    display: none; 
+    position: fixed; 
+    margin:auto 0;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: $bg-secondary-modal;
+    background-color: $bg-body-modal;
+
+    .modal-content {
+        position: relative;
+        background-color: $bg-content-modal;
+        margin: auto;
+        padding: 0;
+        width: 40%;
+    }
+      
+    .modal-header {padding: 2px 16px;} 
+    .modal-body {padding: 5px 15px;}
+}

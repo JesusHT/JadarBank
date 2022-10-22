@@ -4,7 +4,7 @@
 
         function __construct(){
             parent::__construct();
-            if (session_status() == PHP_SESSION_NONE) {
+            if (session_status() == PHP_SESSION_NONE){
                 session_start();
             }
             $tabla = $this -> tableUsers();
@@ -13,16 +13,23 @@
 
         function tableUsers(){
             $query = new UserModel();
+
             if ($this -> existPOST(['busqueda'])) {
                 $busqueda = $this -> getPost('busqueda');
-                return $query -> busqueda($busqueda, $_SESSION['user']);
+                return $query -> tableUsers($busqueda, $_SESSION['user']);
             }
 
-            return $query -> tableUsers($_SESSION['user']);
+            return $query -> tableUsers(NULL,$_SESSION['user']);
         }
 
         function delete(){
-
+            
+            header('Content-Type: application/json');
+            
+            if ($this -> existPOST(['passEjecutivo','eliminar'])) {
+                $data = "Hola!";
+                echo json_encode($data);
+            }
         }
 
         function update(){

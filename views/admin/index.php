@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?php echo constant('URL'); ?>public/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/global.css">
+    <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/admin.css">
     <title>JADAR BANK</title>
 </head>
 <body>
@@ -32,5 +32,44 @@
             </tbody>
 	    </table>
     </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header bg-Warning">
+                <h2>Dar debaja a un cliente</h2>
+            </div>
+            <div class="modal-body">
+                <div id="respustaCrear">
+
+                </div>
+                <p>Esta acción es irreversible. ¿Estás seguro que quieres dar debaja a este cliente?</p><br>
+                <form id="FormDelete" method="POST">
+                    <input type="hidden" name="eliminar" id="eliminar" value="">
+                    <label for="passEjecutivo">Ingrese su contraseña</label><br>
+                    <input type="text" id="passEjecutivo" name="passEjecutivo" required> <br>
+                    <br>
+                    <div style="text-align: right;">
+                        <button type="button" onclick="crearPost()" class="btn">Eliminar</button>
+                        <button type="button" onclick="closedModal()" class="btn">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="<?php echo constant('URL'); ?>public/js/admin.js"></script>
+    <script>
+        function crearPost(){
+            
+            let datos = new FormData(document.getElementById("FormDelete"));
+
+            fetch('admin/delete', {
+                 method: "post",
+                 body: datos
+            }).then((response) => {
+                 return response.json();
+            }).then((data) => {
+                document.getElementById("respustaCrear").innerHTML = data
+            }).catch(err => console.error(err));
+        }
+    </script>
 </body>
 </html>
