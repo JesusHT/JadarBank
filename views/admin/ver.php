@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?php echo constant('URL'); ?>public/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/global.css">
-    <title>JADAR BANK</title>
+    <title>Ver - <?php echo $user['num_client']; ?></title>
     <style>
-        span {
+        .area span {
             color:blue; 
         }
 

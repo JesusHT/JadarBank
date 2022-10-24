@@ -6,14 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="<?php echo constant('URL'); ?>public/img/favicon.ico" type="image/x-icon">
         <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/sign_up.css">
-        <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/nav.css">
         <title>Registro</title>
     </head>
     <body>
-    <div id="menu">
-        
-    </div>
-    <div class="">
+    <?php require 'views/nav.php'; ?>
+    <div class="area">
         <form  method="POST" action="nuevo/newUser" id="msform" enctype="multipart/form-data">
             <ul id="progressbar">
                 <li class="active">Datos personales</li>
@@ -62,6 +59,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script type="text/javascript" src="<?php echo constant('URL'); ?>public/js/sign_up.js"></script>
-    <script type="text/javascript" src="<?php echo constant('URL'); ?>public/js/menu.js"></script>
 </body>
 </html>

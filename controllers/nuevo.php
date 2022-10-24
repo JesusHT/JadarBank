@@ -10,7 +10,6 @@
         function newUser(){
             if ($this -> existPOST([
                 'name',
-                'edad',
                 'fena',
                 'curp',
                 'pais',
@@ -25,7 +24,6 @@
             ]) && isset($_FILES['img_client'])){
                 if ($this -> validateData([
                     'name',
-                    'edad',
                     'fena',
                     'curp',
                     'pais',
@@ -43,7 +41,6 @@
                 }
 
                 $name       = $this -> getPost('name');
-                $edad       = $this -> getPost('edad');
                 $fena       = $this -> getPost('fena');
                 $curp       = $this -> getPost('curp');
                 $img_client = $_FILES['img_client'];
@@ -76,7 +73,6 @@
                 }
 
                 $query -> setName($name);
-                $query -> setEdad($edad);
                 $query -> setFena($fena);
                 $query -> setCurp($curp);
                 $query -> setImg_Client($img_client);

@@ -7,30 +7,61 @@
     <link rel="shortcut icon" href="<?php echo constant('URL'); ?>public/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/admin.css">
     <title>JADAR BANK</title>
+    <style>
+        #paginas ul{
+            margin: 10px 0;
+            padding: 0;
+        }
+        #paginas li{
+            display: inline-block;
+            margin: 0;
+            padding: 10px;
+        }
+        
+        #paginas li a{
+            background: rgb(228, 228, 228);
+            border:solid black 1px;
+            border-radius: 3px;
+            color: rgb(50, 50, 50);
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+        
+        .actual{
+            background: rgb(20, 69, 124) !important;
+            color: rgb(255, 255, 255) !important;
+        }
+    </style>
+
 </head>
 <body>
     <?php require 'views/nav.php'; ?>
     <div class="area">
+        <?php $this -> showMessages(); ?>
         <br><h1>Cartera De Clientes</h1><br>
         <form action="<?php echo constant('URL'); ?>admin/tableUsers" method="POST">
-            <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." class="bg-dark text-white">
-            <input type="submit" value="Buscar">
+            <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." class="">
+            <input type="submit" value="Buscar"  class="btn">
         </form><br>
+        
 	    <table class="table table-dark mt-3">
             <thead>
                 <tr>
                     <td>#</td>
-                    <td class="celdas">Nombre</td>
-                    <td class="celdas">numero_cliente</td>
-                    <td class="celdas">Eliminar</td>
-                    <td class="celdas">Editar</td>
-                    <td class="celdas">ver</td>
+                    <td class="">Nombre</td>
+                    <td class="text-center">Número cliente</td>
+                    <td class="text-center">Eliminar</td>
+                    <td class="text-center">Editar</td>
+                    <td class="text-center">Ver</td>
                 </tr>
             </thead>
             <tbody>
                 <?php echo $this -> d['tabla'];?>
             </tbody>
 	    </table>
+        <div id="paginas">
+            <?php echo $this -> d['page'];?>
+        </div>
     </div>
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -38,17 +69,14 @@
                 <h2>Dar debaja a un cliente</h2>
             </div>
             <div class="modal-body">
-                <div id="respustaCrear">
-
-                </div>
                 <p>Esta acción es irreversible. ¿Estás seguro que quieres dar debaja a este cliente?</p><br>
-                <form id="FormDelete" method="POST">
+                <form action="<?php constant('URL');?>admin/delete" method="POST">
                     <input type="hidden" name="eliminar" id="eliminar" value="">
                     <label for="passEjecutivo">Ingrese su contraseña</label><br>
                     <input type="text" id="passEjecutivo" name="passEjecutivo" required> <br>
                     <br>
-                    <div style="text-align: right;">
-                        <button type="button" onclick="crearPost()" class="btn">Eliminar</button>
+                    <div>
+                        <button type="submit" class="btn">Confirmar</button>
                         <button type="button" onclick="closedModal()" class="btn">Cancelar</button>
                     </div>
                 </form>
@@ -56,20 +84,5 @@
         </div>
     </div>
     <script src="<?php echo constant('URL'); ?>public/js/admin.js"></script>
-    <script>
-        function crearPost(){
-            
-            let datos = new FormData(document.getElementById("FormDelete"));
-
-            fetch('admin/delete', {
-                 method: "post",
-                 body: datos
-            }).then((response) => {
-                 return response.json();
-            }).then((data) => {
-                document.getElementById("respustaCrear").innerHTML = data
-            }).catch(err => console.error(err));
-        }
-    </script>
 </body>
 </html>

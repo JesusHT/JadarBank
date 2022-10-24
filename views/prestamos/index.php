@@ -13,6 +13,12 @@
 
     <div class="area">
         <h1 class="center">Prestamos</h1>
+        <form action="<?php echo constant('URL'); ?>prestamos/calcular" method="POST">
+            <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad en pesos">
+            <input type="number" name="plazo"    id="plazo"    placeholder="Plazo en meses">
+            
+            <button type="submit" class="btn">Simular Prestamo</button>
+        </form>
     </div>
 </body>
 </html>

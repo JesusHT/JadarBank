@@ -85,7 +85,7 @@
 
                 return true;
 
-            }catch(PDOException $e){
+            } catch(PDOException $e){
                 echo $e;
                 return false;
             }
@@ -178,83 +178,7 @@
             }catch(PDOException $e){
                 return NULL;
             }
-        }
-
-        function escape($value){
-            $return = '';
-            for($i = 0; $i < strlen($value); ++$i) {
-                $char = $value[$i];
-                $ord = ord($char);
-
-                if($char !== "'" && $char !== "\"" && $char !== '\\' && $ord >= 32 && $ord <= 126)
-                    $return .= $char;
-                else
-                    $return .= '\\x' . dechex($ord);
-            }
-
-            return $return;
-        }
-        
-        function tableUsers($busqueda, $id){
-            
-            $this -> getUsers($id);
-            $num_client = $this -> getNum_Client();
-            $id_client = $num_client[0];
-            $status = "activo";
-            
-            $sql = "SELECT * FROM users WHERE num_client LIKE '%" . $id_client ."%' AND status LIKE '%". $status ."%' ORDER BY id";
-
-            if ($busqueda !== NULL) {
-                $q = $this -> escape($busqueda);
-                $sql = "SELECT * FROM users WHERE num_client LIKE '%". $id_client ."%' AND name LIKE '%". $q ."%' AND status LIKE '%". $status ."%'";
-            }
-            
-            try {
-                $query = $this -> prepare($sql);
-                $query -> execute();
-
-                $results = $query -> fetchAll(PDO::FETCH_OBJ);
-                $data = '';
-                
-                if (count($results) > 0) {  
-                    $i = 0;
-                    foreach($results as $user){
-
-                        if($user -> num_client !== $num_client)
-                        $data .=
-                                '<tr>
-                                    <td>'. $i         .'</td>
-                                    <td>'. $user -> name       .'</td>
-                                    <td>'. $user -> num_client .'</td>
-                                    <td>                                            
-                                        <button type="button" class="btn" onclick="openModal('.$user -> id.')"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
-                                    <td>
-                                        <form action="'. constant('URL') .'admin/update" method="POST">
-                                            <input type="hidden" name="actualizar" value="'.  $user -> id .'">
-                                            <button type="submit" class="btn"><i class="fa-solid fa-pencil"></i></button>	
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="'. constant('URL') .'ver" method="POST">
-                                            <input type="hidden" id="" name="ver" value="'.  $user -> id .'">
-                                            <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>	
-                                        </form>
-                                    </td>
-                                </tr>';
-                        $i++;
-                    }
-                    
-                    return $data;
-                } 
-                
-                return '<p class="bg-Error">No se encontraron coincidencias con sus criterios de búsqueda</p><br>';
-                
-
-            } catch (PDOException $e){
-                echo $e;
-            }
-        }
+        }        
 
         // Establecer el valor de las variables 
         public function setimg_client($img_client){   

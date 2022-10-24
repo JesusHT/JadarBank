@@ -59,7 +59,7 @@
         private function handleWarning(){
             if(isset($_GET['warning'])){
                 $hash = $_GET['warning'];
-                $warnings = new Warnings();
+                $warnings = new Warning();
 
                 if($warnings->existsKey($hash)){
                     $this->d['warning'] = $warnings->get($hash);

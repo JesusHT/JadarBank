@@ -1,5 +1,4 @@
 <?php
-
     class Admin extends Controller {
 
         function __construct(){
@@ -7,33 +6,50 @@
             if (session_status() == PHP_SESSION_NONE){
                 session_start();
             }
-            $tabla = $this -> tableUsers();
-            $this -> view -> render('admin/index', ['tabla' => $tabla]);
+            
+            $tabla   = $this -> tableUsers();
+            $paginas = $this -> getPages();
+
+            $this -> view -> render('admin/index', [
+                'tabla' => $tabla,
+                'page' => $paginas
+            ]);
         }
 
         function tableUsers(){
-            $query = new UserModel();
+            $query = new TableUsersModel();
 
             if ($this -> existPOST(['busqueda'])) {
                 $busqueda = $this -> getPost('busqueda');
-                return $query -> tableUsers($busqueda, $_SESSION['user']);
+                return $query -> getTableUsers($busqueda, $_SESSION['user']);
             }
 
-            return $query -> tableUsers(NULL,$_SESSION['user']);
+            return $query -> getTableUsers(NULL,$_SESSION['user']);
+        }
+
+        function getPages(){
+            $query = new TableUsersModel();
+
+            if ($this -> existPOST(['busqueda']) && !empty($_POST['busqueda'])) {
+                return NULL;
+            }
+
+            return $query -> mostrarPaginas();
         }
 
         function delete(){
             
-            header('Content-Type: application/json');
-            
             if ($this -> existPOST(['passEjecutivo','eliminar'])) {
-                $data = "Hola!";
-                echo json_encode($data);
+                
+                if ($this -> validateData(['passEjecutivo','eliminar'])) {
+                    $this->redirect('', ['error' => Errors::RROR_ADMIN_DELETEUSER_DATA ]);
+                    return;
+                }
             }
         }
 
         function update(){
-
+            
         }
     }
 
