@@ -15,15 +15,14 @@
         #paginas li{
             display: inline-block;
             margin: 0;
-            padding: 10px;
+            padding: 5px;
         }
         
         #paginas li a{
             background: rgb(228, 228, 228);
             border:solid black 1px;
-            border-radius: 3px;
             color: rgb(50, 50, 50);
-            padding: 10px 15px;
+            padding: 5px 15px;
             text-decoration: none;
         }
         
