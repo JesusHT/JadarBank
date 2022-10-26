@@ -23,9 +23,7 @@
 
         function calcularPaginas($id){
             $query = new UserModel();
-            $query -> getUsers($id);
-
-            $num_client = $query -> getNum_Client();
+            $num_client = $query -> getNumExecutive($id);
             $id_client = $num_client[0];
 
             $query = $this -> prepare("SELECT COUNT(*) AS total FROM cliente WHERE num_client LIKE '". $id_client ."%'");
@@ -105,6 +103,8 @@
                 
                 if (count($results) > 0) {  
                     $i = $this -> indice;
+
+                    if ($this -> indice == 0) {$i = $this -> indice + 1;}
                     foreach($results as $user){
 
                         if($user -> num_client !== $num_client)
