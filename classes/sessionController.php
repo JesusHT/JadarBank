@@ -3,6 +3,7 @@
     class SessionController {
         
         private $sessionName = 'user';
+        private $sessionRole = 'role';
         
         function __construct(){
             if (session_status() == PHP_SESSION_NONE) {
@@ -10,8 +11,9 @@
             }
         }
 
-        public function setCurrentUser($user){
+        public function setCurrentUser($user,$role){
             $_SESSION[$this->sessionName] = $user;
+            $_SESSION[$this->sessionRole] = $role;
         }
     
         public function getCurrentUser(){

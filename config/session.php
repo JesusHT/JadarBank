@@ -8,12 +8,14 @@
 
     $db = new Database();
 
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['user']) && isset($_SESSION['role'])) {
 
-        $records = $db -> connect() -> prepare('SELECT * FROM users WHERE id = :id');
-        $records -> bindParam(':id', $_SESSION['user']);
-        $records -> execute();
-        $results = $records->fetch(PDO::FETCH_ASSOC);
+        $sql = $_SESSION['role'] === 'admin' ? 'SELECT * FROM ejecutivo WHERE id = :id' : 'SELECT * FROM cliente   WHERE id = :id';
+
+        $query = $db -> connect() -> prepare($sql);
+        $query -> execute(['id' => $_SESSION['user']]);
+        
+        $results  = $query  -> fetch(PDO::FETCH_ASSOC);
 
         $cliente = null;
 

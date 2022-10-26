@@ -28,7 +28,7 @@
             $num_client = $query -> getNum_Client();
             $id_client = $num_client[0];
 
-            $query = $this -> prepare("SELECT COUNT(*) AS total FROM users WHERE num_client LIKE '". $id_client ."%'");
+            $query = $this -> prepare("SELECT COUNT(*) AS total FROM cliente WHERE num_client LIKE '". $id_client ."%'");
             $query -> execute();
 
             $this->nResultados = $query->fetch(PDO::FETCH_OBJ)->total; 
@@ -83,18 +83,17 @@
         }
 
         function getTableUsers($busqueda, $id){
+            $error = '<p class="bg-Info">No se encontraro ningun cliente</p><br>';
             $query = new UserModel();
-            $query -> getUsers($id);
-
-            $num_client = $query -> getNum_Client();
+            $num_client = $query -> getNumExecutive($id);
             $id_client = $num_client[0];
-            $status = "activo";
             
-            $sql = "SELECT * FROM users WHERE num_client LIKE '%" . $id_client ."%' AND status LIKE '%". $status ."%' ORDER BY id LIMIT :pos, :n";
+            $sql = "SELECT * FROM cliente WHERE num_client LIKE '" . $id_client ."%' AND status = 'activo' ORDER BY id LIMIT :pos, :n";
 
             if ($busqueda !== NULL) {
+                $error = '<p class="bg-Error">No se encontraron coincidencias con sus criterios de búsqueda</p><br>';
                 $q = $this -> escape($busqueda);
-                $sql = "SELECT * FROM users WHERE num_client LIKE '%". $id_client ."%' AND name LIKE '%". $q ."%' AND status LIKE '%". $status ."%' LIMIT :pos, :n";
+                $sql = "SELECT * FROM cliente WHERE num_client LIKE '". $id_client ."%' AND name LIKE '%". $q ."%' AND status = 'activo' LIMIT :pos, :n";
             }
             
             try {
@@ -118,7 +117,7 @@
                                         <button type="button" class="btn" onclick="openModal('.$user -> id.')"><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
                                     <td>
-                                        <form action="'. constant('URL') .'admin/update" method="POST">
+                                        <form action="'. constant('URL') .'editar" method="POST">
                                             <input type="hidden" name="actualizar" value="'.  $user -> id .'">
                                             <button type="submit" class="btn"><i class="fa-solid fa-pencil"></i></button>	
                                         </form>
@@ -136,7 +135,7 @@
                     return $data;
                 } 
                 
-                return '<p class="bg-Error">No se encontraron coincidencias con sus criterios de búsqueda</p><br>';
+                return $error;
                 
 
             } catch (PDOException $e){

@@ -11,7 +11,8 @@
         const ERROR_SIGNUP_NEWUSER_EXISTS            = "a74accfd26e06d012266810952678cf3";
         const ERROR_SIGNUP_NEWUSER_PASS              = "ajshwcfd26e06d0122668109526734h8";
         const ERROR_SESSION                          = "123dccfd26e06d0122668123dwdas234";
-        const ERROR_ADMIN_DELETEUSER_DATA            = "b00d498123307f75bfcfd26ec06497d6";
+        const ERROR_ADMIN_DELETEUSER_PASS            = "bibf47d6b26a97f75bfcfd2e63e6497d";
+        const ERROR_ADMIN_DELETEUSER_DATA            = "d7089d83k2ddasibf4f75bfcd3e6497d";
         const ERROR_ADMIN_TABLEUSERS_FAILED          = "6d01221233076b26acfd207f75bfa9cd";
 
         private $errorsList = [];
@@ -29,7 +30,8 @@
                 Errors::ERROR_SIGNUP_NEWUSER_PASS               => 'Ambas contraseñas deben coicidir',
                 Errors::ERROR_SESSION                           => 'NO HAS INICIADO SESIÓN!',
                 Errors::ERROR_ADMIN_DELETEUSER_DATA             => 'Formato incorrecto de los datos',
-                Errors::ERROR_ADMIN_TABLEUSERS_FAILED           => 'La petición no puede contener strings'
+                Errors::ERROR_ADMIN_TABLEUSERS_FAILED           => 'La petición no puede contener strings',
+                Errors::ERROR_ADMIN_DELETEUSER_PASS             => 'Contraseña incorrecta!'
             ];
         }
 

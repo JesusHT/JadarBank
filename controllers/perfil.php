@@ -4,11 +4,11 @@
         
         function __construct(){
             parent::__construct();
-            if (session_status() == PHP_SESSION_NONE){
-                session_start();
-            }
+            if (session_status() == PHP_SESSION_NONE) session_start();
             $query = new UserModel();
-            $this -> cliente = $query -> get($_SESSION['user']);
+            
+            $this -> cliente = $_SESSION['role'] !== 'admin' ? $query -> get($_SESSION['user'],NULL) : $query -> get($_SESSION['user'],TRUE);
+
             $this -> view -> render('perfil/index', ['client' => $this -> cliente]);
         }
     }

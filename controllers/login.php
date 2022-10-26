@@ -26,7 +26,7 @@
                 } 
                 
                 $session = new SessionController();
-                $session -> setCurrentUser($user -> getId());
+                $session -> setCurrentUser($user -> getId(), $user -> getRole());
 
                 if ($user -> getRole() === 'user') {
                     $this -> redirect('main');

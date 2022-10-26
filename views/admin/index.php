@@ -34,7 +34,8 @@
 
 </head>
 <body>
-    <?php require 'views/nav.php'; ?>
+    <?php require_once 'views/nav.php'; ?>
+    
     <div class="area">
         <?php $this -> showMessages(); ?>
         <br><h1>Cartera De Clientes</h1><br>

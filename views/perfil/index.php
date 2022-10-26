@@ -37,6 +37,9 @@
             echo '<span> Pais: '                . '</span>' . $user['pais']       . '<br>';
             echo '<span> Teléfono: '            . '</span>' . $user['tel']        . '<br>';
             echo '<span> Correo: '              . '</span>' . $user['email']      . '<br>';
+            if ($_SESSION['role'] === 'admin') {
+                echo '<span> Número De Cliente: '   . '</span>' . $user['num_empleado'] . '<br>';
+            }
             echo '<span> Número De Cliente: '   . '</span>' . $user['num_client'] . '<br>';
             echo '<span> Rol: '                 . '</span>' . $user['role']       . '<br>';
             echo '<span> Estatus: '             . '</span>' . $user['status']     . '<br>';        

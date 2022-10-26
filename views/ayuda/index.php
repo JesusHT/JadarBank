@@ -9,12 +9,9 @@
     <title>JADAR BANK</title>
 </head>
 <body>
-    <?php require 'views/nav.php'; ?>
-
+    <?php require_once 'views/nav.php'; ?>
     <div class="area">
         <h1 class="center">Ayuda</h1>
-    </div>
-
-    
+    </div>    
 </body>
 </html>

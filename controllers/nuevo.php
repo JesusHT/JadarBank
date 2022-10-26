@@ -92,11 +92,11 @@
                     return;
                 }
 
-                $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_NEWUSER]);
+                $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_IMG]);
     
             }
 
-            $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_NEWUSER]);
+            $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_IMG]);
             return;
         }
     }

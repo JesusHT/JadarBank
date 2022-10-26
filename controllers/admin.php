@@ -42,14 +42,23 @@
             if ($this -> existPOST(['passEjecutivo','eliminar'])) {
                 
                 if ($this -> validateData(['passEjecutivo','eliminar'])) {
-                    $this->redirect('', ['error' => Errors::RROR_ADMIN_DELETEUSER_DATA ]);
+                    $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_DELETEUSER_DATA ]);
                     return;
                 }
-            }
-        }
 
-        function update(){
-            
+                $pass = $this -> getPost('passEjecutivo');
+                $id   = $this -> getPost('eliminar');
+
+                $query = new UserModel();
+
+                if ($query->comparePasswords($pass,$_SESSION['user'])) {
+                    $query->delete($id);
+                    $this->redirect('admin', ['success' =>  Success::SUCCESS_ADMIN_DELETEUSER ]);
+                    return;
+                }
+
+                $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_DELETEUSER_PASS]);
+            }
         }
     }
 

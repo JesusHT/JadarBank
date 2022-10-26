@@ -40,7 +40,7 @@
 
         public function save(){
             try {
-                $query = $this -> prepare('INSERT INTO users (name, fena, curp, img_client, domicilio, codPostal, estado, municipio, pais, tel, email, pass, num_client, role) VALUES (:name, :fena, :curp, :img_client, :domicilio, :codPostal, :estado, :municipio, :pais, :tel, :email, :pass, :num_client, :role)');
+                $query = $this -> prepare('INSERT INTO cliente (name, fena, curp, img_client, domicilio, codPostal, estado, municipio, pais, tel, email, pass, num_client, role) VALUES (:name, :fena, :curp, :img_client, :domicilio, :codPostal, :estado, :municipio, :pais, :tel, :email, :pass, :num_client, :role)');
                 $query -> execute([
                     'name'       => $this -> name,
                     'fena'       => $this -> fena,
@@ -57,6 +57,7 @@
                     'num_client' => $this -> num_client,
                     'role'       => $this -> role
                 ]);
+
                 return true;
             } catch (PDOException $e){
                 echo $e;
@@ -64,9 +65,11 @@
             }
         }
         
-        public function get($id){
+        public function get($id, $tabla){
+            $sql = $tabla ? 'SELECT * FROM ejecutivo WHERE id = :id' : 'SELECT * FROM cliente WHERE id = :id';
+
             try {
-                $query = $this->prepare('SELECT * FROM users WHERE id = :id');
+                $query = $this->prepare($sql);
                 $query->execute([ 'id' => $id]);
                 $user = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -80,7 +83,7 @@
         public function delete($id){
             try{
                 $status = "inactivo";
-                $query = $this->prepare('UPDATE users SET status = :status WHERE id = :id');
+                $query = $this->prepare('UPDATE cliente SET status = :status WHERE id = :id');
                 $query -> execute([ 'id' => $id, 'status' => $status]);
 
                 return true;
@@ -93,7 +96,7 @@
 
         public function update(){
             try {
-                $query = $this->prepare('UPDATE users SET name = :name, fena = :fena, curp = :curp, img_client = :img_client, domicilio = :domicilio, codPostal = :codPostal, estado = :estado, municipio = :municipio, pais = :pais, tel = :tel, email = :email, pass = :pass  WHERE id = :id');
+                $query = $this->prepare('UPDATE cliente SET name = :name, fena = :fena, curp = :curp, img_client = :img_client, domicilio = :domicilio, codPostal = :codPostal, estado = :estado, municipio = :municipio, pais = :pais, tel = :tel, email = :email, pass = :pass  WHERE id = :id');
                 $query->execute([ 'id' => $this -> id]);
                     
                 $query -> execute([
@@ -121,7 +124,7 @@
         
         function getUsers($id){
             try{
-                $query = $this -> prepare('SELECT * FROM users WHERE id = :id');
+                $query = $this -> prepare('SELECT * FROM cliente WHERE id = :id');
                 $query->execute(['id' => $id]);
                 
                 if($query->rowCount() == 1){
@@ -156,7 +159,7 @@
 
         public function exists($email){
             try{
-                $query = $this -> prepare('SELECT email FROM users WHERE email = :email');
+                $query = $this -> prepare('SELECT email FROM cliente WHERE email = :email');
                 $query->execute(['email' => $email]);
                 
                 if($query->rowCount() > 0){
@@ -172,9 +175,9 @@
 
         function comparePasswords($pass, $userid){
             try{
-                $user = $this -> get($userid);
+                $user = $this -> get($userid,TRUE);
                 
-                return password_verify($pass, $user->getPass());
+                return password_verify($pass, $user['pass']);
             }catch(PDOException $e){
                 return NULL;
             }
@@ -192,7 +195,7 @@
             $num_executive = $this -> getNumExecutive($id);
 
             try {
-                $query = $this -> db -> connect() -> prepare('SELECT * FROM users ORDER by id DESC LIMIT 1');
+                $query = $this -> db -> connect() -> prepare('SELECT * FROM cliente ORDER by id DESC LIMIT 1');
                 $query -> execute(); 
                 $id = $query -> fetch(PDO::FETCH_ASSOC);
 
@@ -238,13 +241,13 @@
         public function getRole(){       return $this -> role       ;}
         public function getStatus(){     return $this -> status     ;}
         public function getNumExecutive($id){
-            $query = $this -> prepare('SELECT * FROM users WHERE id = :id');
+            $query = $this -> prepare('SELECT * FROM ejecutivo WHERE id = :id');
             $query -> execute([$id]); 
 
             $results = $query -> fetch(PDO::FETCH_ASSOC);
 
             if (is_countable($results) > 0) {
-                return $results['num_client'];
+                return $results['num_empleado'];
             }
         }
     }

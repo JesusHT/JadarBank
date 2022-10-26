@@ -1,6 +1,7 @@
 // Import css-icons (https://fontawesome.com/icons)
 
 @import url(https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css);
+@import url(../css/nav.css);
 
 // Import fonts
 
@@ -80,4 +81,9 @@ $message-color: (
 
 .text-center {
     text-align: center;
+}
+
+.area {
+    background-color: #e5e5e5;
+    padding-left: 4%;
 }
