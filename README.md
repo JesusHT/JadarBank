@@ -4,7 +4,7 @@
 Debes primero crear una base de datos con el nombre jadarbank
 
 ```sql
-  CREATE DATABASE jadarbank CHARACTER SET utf8 COLLATE utf8_general_ci;
+  CREATE DATABASE jadarbank CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ```
 Después debes importar la base de datos que esta dentro de `database/jadarbank.sql` ya sea con mysql, phpmyadmin, etc.
 
