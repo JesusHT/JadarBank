@@ -9,7 +9,8 @@
     <title>JADAR BANK</title>
 </head>
 <body>
-    <?php require_once 'views/nav.php'; ?>
+    <?php require_once 'views/nav.php';  ?>
+   
     <div class="area">
         <h1 class="center">Prestamos</h1>
         <form action="<?php echo constant('URL'); ?>prestamos/calcular" method="POST">
@@ -17,6 +18,7 @@
             <input type="number" name="plazo"    id="plazo"    placeholder="Plazo en meses">
             
             <button type="submit" class="btn">Simular Prestamo</button>
+           
         </form>
     </div>
 </body>

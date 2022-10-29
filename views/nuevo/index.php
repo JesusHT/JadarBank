@@ -11,6 +11,7 @@
     <body>
     <?php require_once 'views/nav.php'; ?>
     <div class="area">
+        <?php $this -> showMessages(); ?><br>
         <form  method="POST" action="nuevo/newUser" id="msform" enctype="multipart/form-data">
             <ul id="progressbar">
                 <li class="active">Datos personales</li>
@@ -18,39 +19,38 @@
                 <li>Contacto</li>
             </ul>
             <fieldset>
-                <?php $this -> showMessages(); ?><br>
                 <h4 class="fs-title text-center">Alta de clientes</h2>
                 <h5 class="fs-subtitle text-center">Campos Obligatorios</h5>
-                <input type="text"   name="name" id="name" class=""  placeholder="Nombre Completo">
-                <input type="text"   name="curp" id="curp" class=""  placeholder="CURP">
+                <input type="text"   name="name" id="name"   placeholder="Nombre Completo">
+                <input type="text"   name="curp" id="curp"   placeholder="CURP">
                 <label for="fena">Fecha De Nacimiento</label>
-                <input type="date"   name="fena" id="fena" class=""  placeholder="Fecha de nacimiento">
+                <input type="date"   name="fena" id="fena"   placeholder="Fecha de nacimiento">
                 <label for="img_client">Foto del Cliente</label>
-                <input type="file"   name="img_client" id="img_client" class="" class="" >
+                <input type="file"   name="img_client" id="img_client"   >
                 <button type="button" name="next" class="next btn-signup">Siguiente</button>
             </fieldset>
             <fieldset>
                 <h4 class="fs-title text-center">Domicilio</h2>
                 <h5 class="fs-subtitle text-center">Campos Obligatorios</h3>
-                <input type="text" name="pais" id="pais" class=""  placeholder="Pais">
-                <input type="text" name="codPostal" id="codPostal" class="" placeholder="Codigo postal" >
+                <input type="text" name="pais" id="pais"   placeholder="Pais">
+                <input type="text" name="codPostal" id="codPostal"  placeholder="Codigo postal" >
                 <select name="estado" id="estado" class="form-select" require>
                     
                 </select><br>
                 <select name="municipio" id="municipio" class="form-select" require>
                     <option value="" selected hidden>Seleccione un municipio</option>
                 </select><br>
-                <input type="text"   name="domicilio" class="" id="domicilio" placeholder="Domicilio">
-                <button type="button" name="previous" class="previous btn-Success btn-signup" >Anterior</button>
+                <input type="text"   name="domicilio"  id="domicilio" placeholder="Domicilio">
                 <button type="button" name="next"     class="next  btn-signup" >Siguiente</button>
+                <button type="button" name="previous" class="previous btn-Success btn-signup" >Anterior</button>
             </fieldset>
             <fieldset>
                 <h4 class="fs-title text-center">Contacto</h2>
                 <h5 class="fs-subtitle text-center">Campos Obligatorios</h3>
-                <input type="tel"    name="tel"   id="tel"   class=""  placeholder="000-000-0000"  pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
-                <input type="text"   name="email" id="email" class=""  placeholder="Correo electronico">
-                <input type="text"   name="pass"  id="pass"  class=""  placeholder="Contraseña">
-                <input type="text"   name="pass2" id="pass2" class=""  placeholder="Confirmar Contraseña">
+                <input type="tel"    name="tel"   id="tel"     placeholder="000-000-0000"  pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
+                <input type="text"   name="email" id="email"   placeholder="Correo electronico">
+                <input type="text"   name="pass"  id="pass"    placeholder="Contraseña">
+                <input type="text"   name="pass2" id="pass2"   placeholder="Confirmar Contraseña">
                 <button type="button" name="previous btn-Success" class="previous btn-signup">Anterior</button>
                 <button type="submit" class="btn-signup">Registrar</button>
             </fieldset>

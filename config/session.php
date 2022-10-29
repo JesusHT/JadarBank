@@ -10,7 +10,7 @@
 
     if (isset($_SESSION['user']) && isset($_SESSION['role'])) {
 
-        $sql = $_SESSION['role'] === 'admin' ? 'SELECT * FROM ejecutivo WHERE id = :id' : 'SELECT * FROM cliente   WHERE id = :id';
+        $sql = $_SESSION['role'] === 'admin' ? 'SELECT * FROM ejecutivo WHERE id = :id' : 'SELECT * FROM cliente WHERE id = :id';
 
         $query = $db -> connect() -> prepare($sql);
         $query -> execute(['id' => $_SESSION['user']]);

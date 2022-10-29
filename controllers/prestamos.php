@@ -1,4 +1,6 @@
 <?php
+    include_once './Includes/Dompdf/vendor/autoload.php';
+    use Dompdf\Dompdf;
 
     class Prestamos extends Controller {
         
@@ -29,15 +31,7 @@
                 $this -> plazo        = $this -> getPost('plazo');
 
                 $this -> cuotaFija();
-                
-                $this -> view -> render('prestamos/tabla',[
-                    'tabla'          => $this -> getTabla(),
-                    'pago'           => $this -> Decimales($this -> cuota),
-                    'termino'        => $this -> plazo,
-                    'cantidad'       => $this -> cantPrestamo,
-                    'total'          => $this -> Decimales(round($this -> cantPrestamo + $this -> totalIntereses,1)),
-                    'totalIntereses' => $this -> Decimales(round($this -> totalIntereses, 1))
-                ]);
+                $this -> getTable('prestamos');
             }
 
 
@@ -92,8 +86,39 @@
         public function Decimales($value){
             return number_format($value, 2, '.', '');
         }
+
+        public function descargarpdf(){
+            
+            $this -> cantPrestamo = $this -> getPost('cantidad');
+            $this -> plazo        = $this -> getPost('plazo');
+            
+            $dompdf = new Dompdf();
+            ob_start();
+
+            $this -> cuotaFija();
+            $this -> getTable('templates');
+            
+            $html = ob_get_clean();
+            $dompdf->loadHtml($html);
+            $dompdf->render();
+            header("Content-type: application/pdf");
+            header("Content-Disposition: inline; filename=Tabla De Amortización.pdf");
+            echo $dompdf->output();
+        }
+
+        public function getTable($directory){
+            $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents(constant('URL-IMG') . "logo.jpg"));
+
+            $this -> view -> render($directory.'/tabla',[
+                'imagen'         => $imagenBase64,
+                'tabla'          => $this -> getTabla(),
+                'pago'           => $this -> Decimales($this -> cuota),
+                'termino'        => $this -> plazo,
+                'cantidad'       => $this -> cantPrestamo,
+                'total'          => $this -> Decimales(round($this -> cantPrestamo + $this -> totalIntereses,1)),
+                'totalIntereses' => $this -> Decimales(round($this -> totalIntereses, 1))
+            ]);
+        }
     
     }
-
-    
 ?>
