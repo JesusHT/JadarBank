@@ -1,11 +1,10 @@
 # JadarBank
+
+Para utilizar la base de datos debes entrar al directorio config dentro estar el archivo config.php dentro deberas cambiar las variables segun corresponda tu caso
+
 ```php
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'path/to/PHPMailer/src/Exception.php';
-require 'path/to/PHPMailer/src/PHPMailer.php';
-require 'path/to/PHPMailer/src/SMTP.php';
+    define('PASSWORD','Your password');
+    define('USER','Your user');
 ?>
 ```
