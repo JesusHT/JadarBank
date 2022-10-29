@@ -1,4 +1,5 @@
 # JadarBank
+Aplicación web de gestión bancaria
 
 ## Requisitos
 - PHP 8.1.2
