@@ -13,4 +13,11 @@
     define('USER','root');
     define('CHARSET','utf8mb4');
 
+    # PHPMailer
+    define('ADRESS', '');
+    define('NAME', 'JadarBank');
+    define('HOST-MAIL', '');
+    define('PASSWORD-MAIL', '');
+
+
 ?> 
