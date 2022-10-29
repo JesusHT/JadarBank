@@ -1,6 +1,6 @@
 # JadarBank
 
-## Crear Base de datos
+## Crear base de datos
 Debes primero crear una base de datos con el nombre jadarbank
 
 ```sql
