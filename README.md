@@ -1,5 +1,10 @@
 # JadarBank
 
+## Requisitos
+- PHP 8.1.2
+- MySql o MariaDB
+- Configuración .htacces activada
+
 ## Crear base de datos
 Debes primero crear una base de datos con el nombre jadarbank
 
