@@ -14,9 +14,9 @@
                 session_start();
             }
 
-            $this->resultadosPorPagina = 10;
-            $this->indice = 0;
-            $this->paginaActual = 1;
+            $this -> resultadosPorPagina = 10;
+            $this -> indice = 0;
+            $this -> paginaActual = 1;
 
             $this -> calcularPaginas($_SESSION['user']);
         }
@@ -117,7 +117,7 @@
                                         <button type="button" class="btn" onclick="openModal('.$user -> id.')"><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
                                     <td>
-                                        <form action="'. constant('URL') .'editar" method="POST">
+                                        <form action="'. constant('URL') .'admin/update" method="POST">
                                             <input type="hidden" name="actualizar" value="'.  $user -> id .'">
                                             <button type="submit" class="btn"><i class="fa-solid fa-pencil"></i></button>	
                                         </form>

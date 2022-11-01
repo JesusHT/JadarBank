@@ -12,7 +12,7 @@
                 
                 if ($this -> validateData(['email','pass'])) {
                     $this->redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN_EMPTY]);
-                    return false;
+                    return;
                 }
                 
                 $email = $this -> getPost('email');
@@ -23,6 +23,7 @@
                 
                 if ($user === NULL) {
                     $this->redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN_DATA]);
+                    return;
                 } 
                 
                 $session = new SessionController();
@@ -30,12 +31,11 @@
 
                 if ($user -> getRole() === 'user') {
                     $this -> redirect('main');
-                    return true;
+                    return;
                 } else if($user -> getRole() === 'admin'){
                     $this -> redirect('admin');
-                    return true;
+                    return;
                 }
-
 
             } else {
                 $this->redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN]);

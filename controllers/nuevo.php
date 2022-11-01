@@ -15,7 +15,7 @@
                 'pais',
                 'codPostal',
                 'estado',
-                'municipio',
+                'ciudad',
                 'domicilio',
                 'tel',
                 'email',
@@ -29,14 +29,14 @@
                     'pais',
                     'codPostal',
                     'estado',
-                    'municipio',
+                    'ciudad',
                     'domicilio',
                     'tel',
                     'email',
                     'pass',
                     'pass2'
                 ])) {
-                    $this->redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_NEWUSER_EMPTY]);
+                    $this->redirect('nuevo', ['error' => Errors::ERROR_DATA_EMPTY ]);
                     return;
                 }
 
@@ -46,14 +46,14 @@
                 $img_client = $_FILES['img_client'];
 
                 if ($this -> validateImg($img_client)) {
-                    $this->redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_NEWUSER_IMG]);
+                    $this->redirect('nuevo', ['error' => Errors::ERROR_IMG]);
                     return;
                 }
 
                 $pais       = $this -> getPost('pais');
                 $codPostal  = $this -> getPost('codPostal');
                 $estado     = $this -> getPost('estado');
-                $municipio  = $this -> getPost('municipio');
+                $ciudad     = $this -> getPost('ciudad');
                 $domicilio  = $this -> getPost('domicilio');
                 $tel        = $this -> getPost('tel');
                 $email      = $this -> getPost('email');
@@ -79,7 +79,7 @@
                 $query -> setPais($pais);
                 $query -> setCodPostal($codPostal);
                 $query -> setEstado($estado);
-                $query -> setMunicipio($municipio);
+                $query -> setCiudad($ciudad);
                 $query -> setDomicilio($domicilio);
                 $query -> setTel($tel);
                 $query -> setEmail($email);
@@ -92,11 +92,11 @@
                     return;
                 }
 
-                $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_IMG]);
+                $this -> redirect('nuevo', ['error' => Errors::ERROR_IMG]);
     
             }
 
-            $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_IMG]);
+            $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_NEWUSER]);
             return;
         }
     }

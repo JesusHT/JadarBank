@@ -42,7 +42,6 @@ body {
     background-color: $body-color;
 }
 
-
 // Background-color message
 $message-color: (
     "Error": $error_color,
@@ -63,7 +62,9 @@ $message-color: (
     .bg-#{$k}{
         background-color: $v;
         color: $white_color;
-        padding: 15px;
+        padding: 12px;
+        z-index: 0;
+        text-align: center;
     }
 }
 

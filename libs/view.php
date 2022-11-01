@@ -14,6 +14,12 @@
                 require_once 'config/session.php';
             }
 
+            if (!empty($_GET['url'])) {
+                if ($_GET['url'] !== 'editar' && strpos($_GET['url'], 'editar') !== 0) {
+                    unset($_SESSION['actualizar']);
+                }
+            }
+
             require 'views/' . $nombre . '.php';
         }
         

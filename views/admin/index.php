@@ -7,37 +7,11 @@
     <link rel="shortcut icon" href="<?php echo constant('URL'); ?>public/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/admin.css">
     <title>JADAR BANK</title>
-    <style>
-        #paginas ul{
-            margin: 10px 0;
-            padding: 0;
-        }
-        #paginas li{
-            display: inline-block;
-            margin: 0;
-            padding: 5px;
-        }
-        
-        #paginas li a{
-            background: rgb(228, 228, 228);
-            border:solid black 1px;
-            color: rgb(50, 50, 50);
-            padding: 5px 15px;
-            text-decoration: none;
-        }
-        
-        .actual{
-            background: rgb(20, 69, 124) !important;
-            color: rgb(255, 255, 255) !important;
-        }
-    </style>
-
 </head>
 <body>
     <?php require_once 'views/nav.php'; ?>
-    
+    <?php $this -> showMessages(); ?>
     <div class="area">
-        <?php $this -> showMessages(); ?>
         <br><h1>Cartera De Clientes</h1><br>
         <form action="<?php echo constant('URL'); ?>admin/tableUsers" method="POST">
             <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." class="">
@@ -65,7 +39,7 @@
     </div>
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header bg-Warning">
+            <div class="modal-header bg-Warning text-center">
                 <h2>Dar debaja a un cliente</h2>
             </div>
             <div class="modal-body">

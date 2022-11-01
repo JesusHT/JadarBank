@@ -1,0 +1,47 @@
+@import url(https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css);
+@import url(../css/nav.css);
+@import url(../css/global.css);
+form input[type=text], form input[type=password], form input[type=date], form select {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 15px 10px;
+  border: 1px solid;
+  border-color: #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fff; }
+form input[type=file] {
+  display: none; }
+form label {
+  display: block;
+  margin-bottom: 10px; }
+
+img {
+  width: 250px;
+  height: auto; }
+
+.btn-a {
+  border: solid 1px;
+  border-color: #8f8f9d;
+  background-color: #e9e9ed;
+  margin-top: 10px;
+  color: #000; }
+  .btn-a:hover {
+    background-color: #d0d1d6; }
+
+.content {
+  border: solid 1px;
+  border-color: black;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 15px;
+  max-width: 400px;
+  position: relative;
+  margin: 35px auto; }
+
+.margin {
+  margin-bottom: 10px;
+  display: block; }
+
+/*# sourceMappingURL=editar.css.map */

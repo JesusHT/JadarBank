@@ -36,7 +36,7 @@
         }
 
         function validateData($params){
-            $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_#@. ";
+            $characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_#@.áéíóú ";
 
             foreach ($params as $param) {
                 if(empty($_POST[$param]))
@@ -53,6 +53,8 @@
         function validateImg($img){
             $archivo = basename($img["name"]);
             $tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+            
+            if($tipoArchivo != "jpg"){ return true; }
 
             $checarSiImagen = getimagesize($img["tmp_name"]);
 
@@ -60,7 +62,6 @@
 
             if ($img["size"] > 500000) { return true; }
 
-            if($tipoArchivo != "jpg"){ return true; }
 
             return false;
         }

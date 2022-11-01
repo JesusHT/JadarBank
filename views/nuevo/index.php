@@ -10,9 +10,9 @@
     </head>
     <body>
     <?php require_once 'views/nav.php'; ?>
+    <?php $this -> showMessages(); ?><br>
     <div class="area">
-        <?php $this -> showMessages(); ?><br>
-        <form  method="POST" action="nuevo/newUser" id="msform" enctype="multipart/form-data">
+        <form  method="POST" action="<?php constant('URL'); ?>nuevo/newUser" id="msform" enctype="multipart/form-data">
             <ul id="progressbar">
                 <li class="active">Datos personales</li>
                 <li>Domicilio</li>
@@ -32,17 +32,19 @@
             <fieldset>
                 <h4 class="fs-title text-center">Domicilio</h2>
                 <h5 class="fs-subtitle text-center">Campos Obligatorios</h3>
-                <input type="text" name="pais" id="pais"   placeholder="Pais">
                 <input type="text" name="codPostal" id="codPostal"  placeholder="Codigo postal" >
-                <select name="estado" id="estado" class="form-select" require>
+                <select name="pais" id="pais" class="form-select" require>
                     
                 </select><br>
-                <select name="municipio" id="municipio" class="form-select" require>
-                    <option value="" selected hidden>Seleccione un municipio</option>
+                <select name="estado" id="estado" class="form-select" require>
+                    <option value="" selected hidden>Seleccione un estado</option>
                 </select><br>
-                <input type="text"   name="domicilio"  id="domicilio" placeholder="Domicilio">
-                <button type="button" name="next"     class="next  btn-signup" >Siguiente</button>
-                <button type="button" name="previous" class="previous btn-Success btn-signup" >Anterior</button>
+                <select name="ciudad" id="ciudad" class="form-select" require>
+                    <option value="" selected hidden>Seleccione un ciudad</option>
+                </select><br>
+                <input type="text"    name="domicilio"  id="domicilio" placeholder="Domicilio">
+                <button type="button" name="next"       class="next  btn-signup" >Siguiente</button>
+                <button type="button" name="previous"   class="previous btn-Success btn-signup" >Anterior</button>
             </fieldset>
             <fieldset>
                 <h4 class="fs-title text-center">Contacto</h2>

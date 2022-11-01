@@ -36,7 +36,7 @@ CREATE TABLE `cliente` (
   `domicilio` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `codPostal` int NOT NULL,
   `estado` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `municipio` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ciudad` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `pais` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `tel` bigint NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`, `codPostal`, `estado`, `municipio`, `pais`, `tel`, `email`, `pass`, `num_client`, `role`, `status`) VALUES
+INSERT INTO `cliente` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`, `codPostal`, `estado`, `ciudad`, `pais`, `tel`, `email`, `pass`, `num_client`, `role`, `status`) VALUES
 (1, 'Fatima Marin Meza', '2003-05-08', 'MAMF030508MJCrzta6', 'aaaa.jpg', 'Mi casa', 28865, 'Colima', 'Manzanillo', 'Mexico', 3143991293, 'fmarin0@gmail.com', '$2y$10$TLhVZTyFJ6LVlDxziG22z.zo/KJMML5tBfhKkpFuMXsSFNtbR2FhO', 'AC1', 'user', 'activo');
 
 -- --------------------------------------------------------
@@ -80,7 +80,7 @@ CREATE TABLE `ejecutivo` (
   `domicilio` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `codPostal` int NOT NULL,
   `estado` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `municipio` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ciudad` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `pais` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `tel` bigint NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE `ejecutivo` (
 -- Volcado de datos para la tabla `ejecutivo`
 --
 
-INSERT INTO `ejecutivo` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`, `codPostal`, `estado`, `municipio`, `pais`, `tel`, `email`, `pass`, `num_empleado`, `role`) VALUES
+INSERT INTO `ejecutivo` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`, `codPostal`, `estado`, `ciudad`, `pais`, `tel`, `email`, `pass`, `num_empleado`, `role`) VALUES
 (1, 'Jesus Emmanuel Hernandez Torres', '2003-08-15', 'HETJ030815HDFRRSA3', 'pardo.jpg', 'Fraccionamiento valle paraiso valle de las granadas #279', 28865, 'Colima', 'Manzanillo', 'Mexico', 3143767148, 'jesus@gmail.com', '$2y$10$jKpxz88KkRtHq.xjrCxQ6u9D7vmR6JdKLWVY5pUVRJ0YmtPyDUBWO', 'AEJ1', 'admin'),
 (2, 'Mitzi Fabiola R. Don Juan Ramos', '2003-10-10', 'RXRM031010MCMXMTA9', 'mitzi.jpg', 'Ancillas #506', 28869, 'Sinaloa', 'Mazatlan', 'Mexico', 3141249293, 'mrdonjuan@ucol.mx', '$2y$10$.fZBfjIwMi7PezMye7PLAOrZz2XfLHEi2xlrcRdOqrFf5LmVUFG3K', 'BEF2', 'admin');
 

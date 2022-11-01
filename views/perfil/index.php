@@ -33,14 +33,15 @@
             echo '<span> Domicilio: '           . '</span>' . $user['domicilio']  . '<br>';
             echo '<span> CodPostal: '           . '</span>' . $user['codPostal']  . '<br>';
             echo '<span> Estado: '              . '</span>' . $user['estado']     . '<br>';
-            echo '<span> Municipio: '           . '</span>' . $user['municipio']  . '<br>';
+            echo '<span> ciudad: '           . '</span>' . $user['ciudad']  . '<br>';
             echo '<span> Pais: '                . '</span>' . $user['pais']       . '<br>';
             echo '<span> Teléfono: '            . '</span>' . $user['tel']        . '<br>';
             echo '<span> Correo: '              . '</span>' . $user['email']      . '<br>';
             if ($_SESSION['role'] === 'admin') {
                 echo '<span> Número De Cliente: '   . '</span>' . $user['num_empleado'] . '<br>';
+            } else {
+                echo '<span> Número De Cliente: '   . '</span>' . $user['num_client'] . '<br>';
             }
-            echo '<span> Número De Cliente: '   . '</span>' . $user['num_client'] . '<br>';
             echo '<span> Rol: '                 . '</span>' . $user['role']       . '<br>';
             echo '<span> Estatus: '             . '</span>' . $user['status']     . '<br>';        
         ?>

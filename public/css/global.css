@@ -30,22 +30,30 @@ body {
 .bg-Error {
   background-color: #cc0605;
   color: #fff;
-  padding: 15px; }
+  padding: 12px;
+  z-index: 0;
+  text-align: center; }
 
 .bg-Info {
   background-color: #0096d2;
   color: #fff;
-  padding: 15px; }
+  padding: 12px;
+  z-index: 0;
+  text-align: center; }
 
 .bg-Success {
   background-color: #00a135;
   color: #fff;
-  padding: 15px; }
+  padding: 12px;
+  z-index: 0;
+  text-align: center; }
 
 .bg-Warning {
   background-color: #e5be01;
   color: #fff;
-  padding: 15px; }
+  padding: 12px;
+  z-index: 0;
+  text-align: center; }
 
 .btn {
   padding: 5px 32px;

@@ -25,4 +25,22 @@
 td {
   padding: 5px; }
 
+#paginas ul {
+  margin: 10px 0;
+  padding: 0; }
+#paginas li {
+  display: inline-block;
+  margin: 0;
+  padding: 5px; }
+  #paginas li a {
+    background: #e4e4e4;
+    border: solid black 1px;
+    color: #323232;
+    padding: 5px 15px;
+    text-decoration: none; }
+
+.actual {
+  background: #14457c !important;
+  color: white !important; }
+
 /*# sourceMappingURL=admin.css.map */

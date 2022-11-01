@@ -9,7 +9,7 @@
         private $domicilio;
         private $codPostal;
         private $estado;
-        private $municipio;
+        private $ciudad;
         private $pais;
         private $tel;
         private $email;
@@ -21,26 +21,26 @@
         function __construct(){
             parent::__construct();
 
-            $this -> name       = ''; 
-            $this -> fena       = ''; 
-            $this -> curp       = ''; 
-            $this -> img_client = ''; 
-            $this -> domicilio  = ''; 
-            $this -> codPostal  = ''; 
-            $this -> estado     = ''; 
-            $this -> municipio  = ''; 
-            $this -> pais       = ''; 
-            $this -> tel        = ''; 
-            $this -> email      = ''; 
-            $this -> pass       = ''; 
-            $this -> num_client = ''; 
-            $this -> role       = '';
-            $this -> status     = '';
+            $this -> name          = ''; 
+            $this -> fena          = ''; 
+            $this -> curp          = ''; 
+            $this -> img_client    = ''; 
+            $this -> domicilio     = ''; 
+            $this -> codPostal     = ''; 
+            $this -> estado        = ''; 
+            $this -> ciudad        = ''; 
+            $this -> pais          = ''; 
+            $this -> tel           = ''; 
+            $this -> email         = ''; 
+            $this -> pass          = ''; 
+            $this -> num_client    = ''; 
+            $this -> role          = '';
+            $this -> status        = '';
         }
 
         public function save(){
             try {
-                $query = $this -> prepare('INSERT INTO cliente (name, fena, curp, img_client, domicilio, codPostal, estado, municipio, pais, tel, email, pass, num_client, role) VALUES (:name, :fena, :curp, :img_client, :domicilio, :codPostal, :estado, :municipio, :pais, :tel, :email, :pass, :num_client, :role)');
+                $query = $this -> prepare('INSERT INTO cliente (name, fena, curp, img_client, domicilio, codPostal, estado, ciudad, pais, tel, email, pass, num_client, role) VALUES (:name, :fena, :curp, :img_client, :domicilio, :codPostal, :estado, :ciudad, :pais, :tel, :email, :pass, :num_client, :role)');
                 $query -> execute([
                     'name'       => $this -> name,
                     'fena'       => $this -> fena,
@@ -49,7 +49,7 @@
                     'domicilio'  => $this -> domicilio,
                     'codPostal'  => $this -> codPostal,
                     'estado'     => $this -> estado,
-                    'municipio'  => $this -> municipio,
+                    'ciudad'     => $this -> ciudad,
                     'pais'       => $this -> pais,
                     'tel'        => $this -> tel,
                     'email'      => $this -> email,
@@ -94,7 +94,7 @@
             }
         }
 
-        public function update(){
+        public function update($id){
             try {
                 $query = $this->prepare('UPDATE cliente SET name = :name, fena = :fena, curp = :curp, img_client = :img_client, domicilio = :domicilio, codPostal = :codPostal, estado = :estado, municipio = :municipio, pais = :pais, tel = :tel, email = :email, pass = :pass  WHERE id = :id');
                 $query->execute([ 'id' => $this -> id]);
@@ -147,14 +147,14 @@
             $this -> domicilio  = $array['domicilio'];
             $this -> codPostal  = $array['codPostal'];
             $this -> estado     = $array['estado'];
-            $this -> municipio  = $array['municipio'];
+            $this -> ciudad     = $array['ciudad'];
             $this -> pais       = $array['pais'];
             $this -> tel        = $array['tel'];
             $this -> email      = $array['email'];
             $this -> pass       = $array['pass'];
-            $this -> num_client = $array['num_client']; 
             $this -> role       = $array['role']; 
             $this -> status     = $array['status']; 
+            $this -> num_client = $array['role'] === 'admin' ? $array['num_empleado'] : $array['num_client'];
         }
 
         public function exists($email){
@@ -187,15 +187,20 @@
         public function setimg_client($img_client){   
             $archivo = constant('URL-IMG') . basename($img_client["name"]);
             
-            if(move_uploaded_file($img_client["tmp_name"], $archivo))
+            if(move_uploaded_file($img_client["tmp_name"], $archivo)){
                 $this -> img_client = $img_client['name'];
+                return true;
+            }
+
+            return false;
+            
         }
         
         public function setNum_client($id){ 
             $num_executive = $this -> getNumExecutive($id);
 
             try {
-                $query = $this -> db -> connect() -> prepare('SELECT * FROM cliente ORDER by id DESC LIMIT 1');
+                $query = $this -> prepare('SELECT * FROM cliente ORDER by id DESC LIMIT 1');
                 $query -> execute(); 
                 $id = $query -> fetch(PDO::FETCH_ASSOC);
 
@@ -207,6 +212,19 @@
 
             $this -> num_client = $num_client; 
         }
+
+        public function getImg($id){
+            try {
+                $query = $this -> prepare('SELECT img_client FROM cliente WHERE id = :id');
+                $query -> execute(['id' => $id]); 
+                $img_client = $query -> fetch(PDO::FETCH_ASSOC);
+
+            } catch (PDOException $e){
+                echo $e;
+            }
+            
+            return $img_client;
+        }
         
         public function setPass($pass){             $this -> pass       = password_hash($pass, PASSWORD_BCRYPT);}
         public function setId($id){                 $this -> id         = $id;         }
@@ -216,7 +234,7 @@
         public function setDomicilio($domicilio){   $this -> domicilio  = $domicilio;  }
         public function setCodPostal($codPostal){   $this -> codPostal  = $codPostal;  }
         public function setEstado($estado){         $this -> estado     = $estado;     }
-        public function setmunicipio($municipio){   $this -> municipio  = $municipio;  }
+        public function setCiudad($ciudad){         $this -> ciudad     = $ciudad;     }
         public function setPais($pais){             $this -> pais       = $pais;       }
         public function setTel($tel){               $this -> tel        = $tel;        }
         public function setEmail($email){           $this -> email      = $email;      }
@@ -232,7 +250,7 @@
         public function getDomicilio(){  return $this -> domicilio  ;}
         public function getCodPostal(){  return $this -> codPostal  ;}
         public function getEstado(){     return $this -> estado     ;}
-        public function getmunicipio(){  return $this -> municipio  ;}
+        public function getCiudad(){     return $this -> ciudad     ;}
         public function getPais(){       return $this -> pais       ;}
         public function getTel(){        return $this -> tel        ;}
         public function getEmail(){      return $this -> email      ;}

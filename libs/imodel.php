@@ -5,7 +5,7 @@
         public function getUsers($id);
         public function get($id, $tabla);
         public function delete($id);
-        public function update();
+        public function update($id);
         public function from($array);
     }
 

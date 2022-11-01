@@ -57,7 +57,22 @@
                     return;
                 }
 
-                $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_DELETEUSER_PASS]);
+                $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_PASS]);
+            }
+        }
+
+        function update(){
+            if ($this -> existPOST(['actualizar'])) {
+                $actualizar = $this -> getPost('actualizar');
+                
+                if (!is_numeric($actualizar)) {
+                    $this->redirect('admin');
+                    return;
+                }
+
+                $_SESSION['actualizar'] = $actualizar;
+                $this -> redirect('editar');
+                
             }
         }
     }

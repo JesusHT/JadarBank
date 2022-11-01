@@ -10,21 +10,19 @@
 </head>
 <body>
     <div class="content">
-        <div class="formContent ">
-            <div class="login-main">
-                <?php $this -> showMessages(); ?>
-                <h2 class="text-center">Inicio de sesión</h2>
-                <form action="<?php echo constant('URL'); ?>login/authenticate" method="POST">
-                    
-                    <label for="email">Correo</label><br>
-                    <input type="email" name="email" id="email" placeholder="nombre@ejemplo.com" require>
-                    <label for="password">Contraseña</label><br>
-                    <input type="password" name="pass" id="password" placeholder="*******" require>
-                    <div class="text-center"><button type="submit" class="btn-login">Iniciar Sesión</button></div>                
-                    <br><span>¿Olvidaste tu contraseña?</span><a href="<?php echo constant('URL'); ?>recuperar">Recuperar</a>
-                    
-                </form>
-            </div>
+        <?php $this -> showMessages(); ?>
+        <div class="login-main">
+            <h2>Inicio de sesión</h2>
+            <form action="<?php echo constant('URL'); ?>login/authenticate" method="POST">
+                
+                <label for="email">Correo</label>
+                <input type="email" name="email" id="email" placeholder="nombre@ejemplo.com" require>
+                <label for="password">Contraseña</label>
+                <input type="password" name="pass" id="password" placeholder="*******" require>
+                <button type="submit" class="btn-login">Iniciar Sesión</button>                
+                
+            </form>
+            <span>¿Olvidaste tu contraseña? <a href="<?php echo constant('URL'); ?>recuperar">Recuperar</a></span>
         </div>
     </div>
 </body>

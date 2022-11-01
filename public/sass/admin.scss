@@ -37,3 +37,30 @@ $bg-secondary-modal:rgb(0,0,0);
 td {
     padding: 5px;
 }
+
+#paginas {
+
+    ul {
+        margin: 10px 0;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0;
+        padding: 5px;
+
+        a {
+            background: rgb(228, 228, 228);
+            border:solid black 1px;
+            color: rgb(50, 50, 50);
+            padding: 5px 15px;
+            text-decoration: none;
+        }
+    }
+}
+
+.actual{
+    background: rgb(20, 69, 124) !important;
+    color: rgb(255, 255, 255) !important;
+}
