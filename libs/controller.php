@@ -50,6 +50,19 @@
             return false;
         }
 
+        function validateNumeric($params){
+            foreach($params as $param){
+                if (empty($_POST[$param])) {
+                    return true;
+                }
+                if (!is_numeric($_POST[$param])) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         function validateImg($img){
             $archivo = basename($img["name"]);
             $tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));

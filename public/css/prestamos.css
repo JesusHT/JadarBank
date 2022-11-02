@@ -1,0 +1,33 @@
+@import url(https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css);
+@import url(../css/global.css);
+.danger {
+  border-color: red !important; }
+
+select, input {
+  display: inline-block;
+  width: 100%;
+  max-width: 250px;
+  padding: 8px 10px;
+  border: 1px;
+  border-style: solid;
+  border-color: #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fff; }
+
+table {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-width: 1px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-collapse: separate;
+  background-color: #fff; }
+  table tr, table td {
+    border-width: 1px;
+    padding: 5px;
+    border-style: solid;
+    border-color: black;
+    background-color: fff; }
+
+/*# sourceMappingURL=prestamos.css.map */

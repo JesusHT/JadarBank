@@ -34,8 +34,23 @@ $bg-secondary-modal:rgb(0,0,0);
     .modal-body {padding: 5px 15px;}
 }
 
-td {
-    padding: 5px;
+table {
+    margin-top: 15px;
+    margin-bottom: 15px;
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-collapse: separate;
+    background-color: #fff;
+
+    tr, td {
+        border-width: 1px;
+        padding: 5px;
+        border-style: solid;
+        border-color: black;
+        background-color: fff;
+
+    }
 }
 
 #paginas {
@@ -60,7 +75,7 @@ td {
     }
 }
 
-.actual{
+.actual {
     background: rgb(20, 69, 124) !important;
-    color: rgb(255, 255, 255) !important;
+    color:#fff!important;
 }

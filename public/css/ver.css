@@ -1,0 +1,29 @@
+@import url(https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css);
+@import url(../css/global.css);
+.content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-area: repeat(4, 1fr);
+  grid-template-areas: "img info info info info" "img info info info info" "prestamos prestamos prestamos prestamos prestamos" "prestamos prestamos prestamos prestamos prestamos"; }
+  .content .img {
+    grid-area: img;
+    border: solid 1px;
+    border-color: #000; }
+    .content .img img {
+      width: 100%;
+      height: auto; }
+  .content .info {
+    grid-area: info;
+    padding: 10px;
+    border: solid 1px;
+    border-color: #000; }
+    .content .info p {
+      display: block; }
+      .content .info p span {
+        font-weight: bold; }
+  .content .prestamos {
+    grid-area: prestamos;
+    border: solid 1px;
+    border-color: #000; }
+
+/*# sourceMappingURL=ver.css.map */

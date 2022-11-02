@@ -9,32 +9,36 @@
         private $interes;
         private $cuota;
         private $totalIntereses;
+        private $tableHtml;
 
         function __construct(){
             parent::__construct();
             $this -> view -> render('prestamos/index');
-            $this -> cuota = 0;
-            $this -> interes = 0.075/12;
+            $this -> cuota          = 0;
+            $this -> interes        = 0.075/12;
             $this -> totalIntereses = 0;
-
+            $this -> tableHtml      = '';
         }
 
         public function calcular(){
             if ($this -> existPOST(['cantidad', 'plazo'])) {
                 
-                if(empty($this -> getPost('cantidad')) && empty($this -> getPost('cantidad'))){
-                    $this -> redirect('prestamos');
+                if ($this -> validateNumeric(['cantidad','plazo'])) {
+                    $this -> redirect('prestamos', ['error' => Errors::ERROR_DATA]);
                     return;
                 }
 
                 $this -> cantPrestamo = $this -> getPost('cantidad');
-                $this -> plazo        = $this -> getPost('plazo');
+                $this -> plazo        = $this -> getPost('plazo');   
+
+                if ($this -> cantPrestamo < 99) {
+                    $this -> redirect('prestamos', ['error' => Errors::ERROR_PRESTAMOS_CANT ]);
+                    return;
+                }
 
                 $this -> cuotaFija();
                 $this -> getTable('prestamos');
             }
-
-
         }
 
         public function cuotaFija(){
@@ -42,15 +46,15 @@
         }
 
         public function getTabla(){
-            $data = '';
             $temp = 0;
             $interesPoMes = 0;
             $abonoCapital = 0; 
             $total = $this -> cantPrestamo;
+
             for ($i=0; $i <= $this-> plazo; $i++) { 
 
                 if ($i === 0){
-                    $data .= '
+                    $this -> tableHtml .= '
                                 <tr>
                                     <td>'. $i .'</td>
                                     <td>--</td>
@@ -65,7 +69,7 @@
                     $this -> totalIntereses += $interesPoMes;
                     $abonoCapital = $this -> cuota - $interesPoMes; 
                     $temp = $abonoCapital - $total;
-                    $data .= '
+                    $this -> tableHtml .= '
                             <tr>
                                 <td class="celdas"> '  . $i                                 . '</td>
                                 <td class="celdas"> $' . $this -> Decimales($total)         . '</td>
@@ -80,7 +84,7 @@
                 }
             }
 
-            return strval($data);
+            return strval($this -> tableHtml);
         }
 
         public function Decimales($value){
@@ -119,6 +123,5 @@
                 'totalIntereses' => $this -> Decimales(round($this -> totalIntereses, 1))
             ]);
         }
-    
     }
 ?>

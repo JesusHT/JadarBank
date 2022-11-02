@@ -9,15 +9,17 @@
     <title>JADAR BANK</title>
 </head>
 <body>
-    <?php require_once 'views/nav.php'; ?>
-    <?php $this -> showMessages(); ?>
+    <?php 
+        require_once 'views/nav.php';
+        $this -> showMessages(); 
+    ?>
     <div class="area">
         <br><h1>Cartera De Clientes</h1><br>
         <form action="<?php echo constant('URL'); ?>admin/tableUsers" method="POST">
             <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." class="">
             <input type="submit" value="Buscar"  class="btn">
-        </form><br>
-        
+        </form>
+            
 	    <table class="table table-dark mt-3">
             <thead>
                 <tr>

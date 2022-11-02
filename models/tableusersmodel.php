@@ -123,7 +123,7 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <form action="'. constant('URL') .'ver" method="POST">
+                                        <form action="'. constant('URL') .'admin/ver" method="POST">
                                             <input type="hidden" id="" name="ver" value="'.  $user -> id .'">
                                             <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>	
                                         </form>

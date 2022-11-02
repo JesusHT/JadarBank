@@ -2,6 +2,7 @@
 
     class Errors {
         // ERROR_CONTROLLER_METHOD_ACTION
+        const ERROR_DATA                             = "alknds81slh23hkjbn26a9g5b5cwdj42";
         const ERROR_DATA_EMPTY                       = "a5bcd7089d83f45e17e989fbc86003ed";
         const ERROR_LOGIN_LOGIN                      = "11c37cfab311fbe28652f4947a9523c4";
         const ERROR_LOGIN_LOGIN_EMPTY                = "2194ac064912be67fc164539dc435a42";
@@ -15,12 +16,14 @@
         const ERROR_ADMIN_DELETEUSER_DATA            = "d7089d83k2ddasibf4f75bfcd3e6497d";
         const ERROR_ADMIN_TABLEUSERS_FAILED          = "6d01221233076b26acfd207f75bfa9cd";
         const ERROR_ADMIN_UPDATE                     = "bibf47d6b20123dccf2234d7cd3e647d";
+        const ERROR_PRESTAMOS_CANT                   = "hj3gsigd8ssahjdg2f38dsga87d8bg82";
 
         private $errorsList = [];
 
         public function __construct(){
             
             $this->errorsList = [
+                Errors::ERROR_DATA                              => 'El formato de los datos es incorrecto.',
                 Errors::ERROR_LOGIN_LOGIN                       => 'Hubo un problema al autenticarse',
                 Errors::ERROR_LOGIN_LOGIN_EMPTY                 => 'Asegurese de a ver ingresado correctamente los datos!',
                 Errors::ERROR_LOGIN_LOGIN_DATA                  => 'Nombre de usuario y/o password incorrectos',
@@ -33,7 +36,8 @@
                 Errors::ERROR_ADMIN_DELETEUSER_DATA             => 'Formato incorrecto de los datos',
                 Errors::ERROR_ADMIN_TABLEUSERS_FAILED           => 'La petición no puede contener strings',
                 Errors::ERROR_ADMIN_PASS                        => 'Contraseña incorrecta!',
-                Errors::ERROR_ADMIN_UPDATE                      => 'Hubo un error al actualizar el cliente'
+                Errors::ERROR_ADMIN_UPDATE                      => 'Hubo un error al actualizar el cliente',
+                Errors::ERROR_PRESTAMOS_CANT                    => 'La cantidad del prestamo debe ser minimo 100 pesos'
             ];
         }
 

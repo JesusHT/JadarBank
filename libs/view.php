@@ -1,10 +1,5 @@
 <?php
-
-    
     class View {
-
-        function __construct(){
-        }
 
         function render($nombre, $data = []){
             $this->d = $data;
@@ -14,11 +9,7 @@
                 require_once 'config/session.php';
             }
 
-            if (!empty($_GET['url'])) {
-                if ($_GET['url'] !== 'editar' && strpos($_GET['url'], 'editar') !== 0) {
-                    unset($_SESSION['actualizar']);
-                }
-            }
+            $this -> controllerVarSession();
 
             require 'views/' . $nombre . '.php';
         }
@@ -117,6 +108,27 @@
             if(array_key_exists('warning', $this->d)){
                 echo '<div class="bg-Warning">'.$this->d['warning'].'</div>';
             }
+        }
+
+        public function controllerVarSession(){
+            if (!empty($_GET['url'])) {
+                if ($_GET['url'] !== 'editar' && strpos($_GET['url'], 'editar') !== 0) {
+                    unset($_SESSION['actualizar']);
+                }
+            }
+
+            if (!empty($_GET['url'])) {
+                if ($_GET['url'] !== 'ver' && strpos($_GET['url'], 'ver') !== 0) {
+                    unset($_SESSION['ver']);
+                }
+            }
+
+            if (!empty($_GET['url'])) {
+                if ($_GET['url'] !== 'prestamo' && strpos($_GET['url'], 'prestamo') !== 0) {
+                    unset($_SESSION['prestamo']);
+                }
+            }
+
         }
     }
     

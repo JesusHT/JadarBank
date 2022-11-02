@@ -75,6 +75,21 @@
                 
             }
         }
+
+        function ver(){
+            if ($this -> existPOST(['ver'])) {
+                $ver = $this -> getPost('ver');
+                
+                if (!is_numeric($ver)) {
+                    $this->redirect('ver');
+                    return;
+                }
+
+                $_SESSION['ver'] = $ver;
+                $this -> redirect('ver');
+                
+            }
+        }
     }
 
 ?>
