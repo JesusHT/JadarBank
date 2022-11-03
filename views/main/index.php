@@ -9,7 +9,10 @@
     <title>JADAR BANK</title>
 </head>
 <body>
-    <?php require_once 'views/nav.php'; ?>
+    <?php 
+        $this -> navController();
+        $this -> showMessages(); 
+    ?>
 
     <div class="area">
         <h1 class="center">Hola <?php echo $cliente['name'];?>!</h1>

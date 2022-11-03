@@ -22,7 +22,10 @@
     </style>
 </head>
 <body>
-    <?php require 'views/nav.php'; ?>
+    <?php 
+        $this -> navController();
+        $this -> showMessages(); 
+    ?>
     <div class="area">
         <?php 
             echo '<span> Id: '                  . '</span>' . $user['id']         . '<br>';

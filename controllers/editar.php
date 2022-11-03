@@ -103,10 +103,9 @@
                     return;
                 }
 
-                $this -> redirect('editar',['error' => Errors::ERROR_ADMIN_UPDATE]);
             }
-
-            $this -> redirect('editar',['success' => Success::SUCCESS_USER_UPDATE]);
+            
+            $this -> redirect('editar',['error' => Errors::ERROR_ADMIN_UPDATE]);
             return;
         }
 

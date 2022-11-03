@@ -10,7 +10,7 @@
 </head>
 <body>
     <?php 
-        require_once 'views/nav.php';
+        $this -> navController();
         $this -> showMessages(); 
     ?>
     <div class="area">

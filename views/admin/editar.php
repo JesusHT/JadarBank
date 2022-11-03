@@ -12,8 +12,10 @@
     <title>Editar - <?php echo $user['num_client']; ?></title>
 </head>
 <body>
-    <?php require 'views/nav.php'; ?>
-    <?php $this -> showMessages(); ?>
+    <?php 
+        $this -> navController();
+        $this -> showMessages(); 
+    ?>
     <div class="area">
         <div class="content">
             <form action="<?php echo constant('URL'); ?>editar/update"  method="POST" enctype="multipart/form-data">

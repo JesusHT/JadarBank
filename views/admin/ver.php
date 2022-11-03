@@ -12,7 +12,10 @@
     <title>Ver - <?php echo $user['num_client']; ?></title>
 </head>
 <body>
-    <?php require 'views/nav.php'; ?>
+    <?php 
+        $this -> navController();
+        $this -> showMessages(); 
+    ?>
     <div class="area">
         <div class="content">
             <div class="img">

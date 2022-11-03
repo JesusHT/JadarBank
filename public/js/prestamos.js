@@ -1,6 +1,6 @@
-const cantidad     = document.getElementById('cantidad');
-const plazo        = document.getElementById('plazo');
-const table        = document.getElementById('tabla');
+const cantidad = document.getElementById('cantidad');
+const plazo    = document.getElementById('plazo');
+const table    = document.getElementById('tabla');
 
 cantidad.addEventListener('change', function(){
     let value = cantidad.value;
@@ -8,7 +8,7 @@ cantidad.addEventListener('change', function(){
     if (value > 99) {
         cantidad.classList.remove('danger');
 
-        if (value >= 100 && value <= 10000) {
+        if (value >= 1000 && value <= 10000) {
             count = 12;
         } else if (value >= 10001) {
             count = 60;

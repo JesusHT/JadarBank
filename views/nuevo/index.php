@@ -9,8 +9,10 @@
         <title>Registro</title>
     </head>
     <body>
-    <?php require_once 'views/nav.php'; ?>
-    <?php $this -> showMessages(); ?><br>
+    <?php 
+        $this -> navController();
+        $this -> showMessages(); 
+    ?>
     <div class="area">
         <form  method="POST" action="<?php constant('URL'); ?>nuevo/newUser" id="msform" enctype="multipart/form-data">
             <ul id="progressbar">

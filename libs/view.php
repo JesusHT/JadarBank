@@ -110,10 +110,17 @@
             }
         }
 
+        public function navController(){
+            if ($_SESSION['role'] === 'admin') {
+                require_once 'views/nav.php';
+            } else {
+                require_once 'views/navClient.php';
+            }
+        }
+
         public function controllerVarSession(){
             if (!empty($_GET['url'])) {
                 if ($_GET['url'] !== 'editar' && strpos($_GET['url'], 'editar') !== 0) {
-                    unset($_SESSION['actualizar']);
                 }
             }
 
