@@ -17,6 +17,7 @@
         const ERROR_ADMIN_TABLEUSERS_FAILED          = "6d01221233076b26acfd207f75bfa9cd";
         const ERROR_ADMIN_UPDATE                     = "bibf47d6b20123dccf2234d7cd3e647d";
         const ERROR_PRESTAMOS_CANT                   = "hj3gsigd8ssahjdg2f38dsga87d8bg82";
+        const ERROR_PRESTAMOS_STATUS                 = "hj3gsibibf47ahjdasdqdg2f38daga87";
 
         private $errorsList = [];
 
@@ -37,7 +38,8 @@
                 Errors::ERROR_ADMIN_TABLEUSERS_FAILED           => 'La petición no puede contener strings',
                 Errors::ERROR_ADMIN_PASS                        => 'Contraseña incorrecta!',
                 Errors::ERROR_ADMIN_UPDATE                      => 'Hubo un error al actualizar el cliente',
-                Errors::ERROR_PRESTAMOS_CANT                    => 'La cantidad del prestamo debe ser minimo 100 pesos'
+                Errors::ERROR_PRESTAMOS_CANT                    => 'La cantidad del prestamo debe ser minimo 100 pesos',
+                Errors::ERROR_PRESTAMOS_STATUS                  => 'El cliente tiene un adeudo!'
             ];
         }
 

@@ -51,13 +51,19 @@
 
                 $query = new UserModel();
 
-                if ($query->comparePasswords($pass,$_SESSION['user'])) {
-                    $query->delete($id);
-                    $this->redirect('admin', ['success' =>  Success::SUCCESS_ADMIN_DELETEUSER ]);
+                if (!$query->comparePasswords($pass,$_SESSION['user'])) {
+                    $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_PASS]);
                     return;
                 }
 
-                $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_PASS]);
+                $user  = $query -> get($id, NULL);
+
+                if ($this->model->validateStatusPrestamos($user['num_client'])) {
+                    $this->redirect('admin', ['error' => Errors::ERROR_PRESTAMOS_STATUS]);
+                    return;
+                }
+
+                $this->redirect('admin', ['success' =>  Success::SUCCESS_ADMIN_DELETEUSER]);
             }
         }
 
@@ -72,7 +78,6 @@
 
                 $_SESSION['actualizar'] = $actualizar;
                 $this -> redirect('editar');
-                
             }
         }
 
@@ -87,7 +92,6 @@
 
                 $_SESSION['ver'] = $ver;
                 $this -> redirect('ver');
-                
             }
         }
     }
