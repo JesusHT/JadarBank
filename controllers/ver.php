@@ -5,10 +5,7 @@
 
         function __construct(){
             parent::__construct();
-
-            if (session_status() == PHP_SESSION_NONE){
-                session_start();
-            }
+            $this -> redirectRole();
 
             if (!isset($_SESSION['ver'])) {
                 $this -> redirect('admin');

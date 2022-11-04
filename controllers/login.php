@@ -4,6 +4,9 @@
 
         function __construct(){
             parent::__construct();
+
+            $this -> existSESSION();
+
             $this -> view -> render('login/index');
         }
 

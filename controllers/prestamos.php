@@ -13,6 +13,7 @@
 
         function __construct(){
             parent::__construct();
+            $this -> redirectRole();
             $this -> view -> render('prestamos/index');
             $this -> cuota          = 0;
             $this -> interes        = 0.075/12;

@@ -9,13 +9,10 @@
                 require_once 'config/session.php';
             }
 
-            $this -> controllerVarSession();
-
             require 'views/' . $nombre . '.php';
         }
         
-        private function handleMessages(){
-            //if(isset($_GET['success']) && isset($_GET['error'])){}       
+        private function handleMessages(){       
             if(isset($_GET['success'])){
                 $this->handleSuccess();
             } else if(isset($_GET['error'])){
@@ -116,26 +113,6 @@
             } else {
                 require_once 'views/navClient.php';
             }
-        }
-
-        public function controllerVarSession(){
-            if (!empty($_GET['url'])) {
-                if ($_GET['url'] !== 'editar' && strpos($_GET['url'], 'editar') !== 0) {
-                }
-            }
-
-            if (!empty($_GET['url'])) {
-                if ($_GET['url'] !== 'ver' && strpos($_GET['url'], 'ver') !== 0) {
-                    unset($_SESSION['ver']);
-                }
-            }
-
-            if (!empty($_GET['url'])) {
-                if ($_GET['url'] !== 'prestamo' && strpos($_GET['url'], 'prestamo') !== 0) {
-                    unset($_SESSION['prestamo']);
-                }
-            }
-
         }
     }
     

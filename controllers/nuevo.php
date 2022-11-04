@@ -4,6 +4,7 @@
         
         function __construct(){
             parent::__construct();
+            $this -> redirectRole();
             $this -> view -> render('nuevo/index', []);
         }
 

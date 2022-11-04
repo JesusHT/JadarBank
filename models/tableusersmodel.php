@@ -6,6 +6,7 @@
         private $nResultados;
         private $resultadosPorPagina;
         private $indice;
+        private $num_ejecutivo;
 
         function __construct(){
             parent::__construct();
@@ -17,14 +18,17 @@
             $this -> resultadosPorPagina = 10;
             $this -> indice = 0;
             $this -> paginaActual = 1;
-
-            $this -> calcularPaginas($_SESSION['user']);
+            
+            if ($_SESSION['role'] === 'admin') {
+                $query = new UserModel();
+                $this -> num_ejecutivo = $query -> getNumExecutive($_SESSION['user']);
+            }
+            
+            $this -> calcularPaginas();
         }
 
-        function calcularPaginas($id){
-            $query = new UserModel();
-            $num_client = $query -> getNumExecutive($id);
-            $id_client = $num_client[0];
+        function calcularPaginas(){
+            $id_client = $this -> num_ejecutivo[0];
 
             $query = $this -> prepare("SELECT COUNT(*) AS total FROM cliente WHERE num_client LIKE '". $id_client ."%'");
             $query -> execute();
@@ -49,7 +53,7 @@
             $actual = '';
             $data = "<ul>";
     
-            for($i=1; $i <= $this->totalPaginas; $i++){
+            for($i=1; $i <= $this -> totalPaginas; $i++){
                 
                 if($i == $this->paginaActual){
                     $actual = ' class="actual" ';
@@ -80,11 +84,9 @@
             return $res;
         }
 
-        function getTableUsers($busqueda, $id){
+        function getTableUsers($busqueda){
             $error = '<p class="bg-Info">No se encontraro ningun cliente</p><br>';
-            $query = new UserModel();
-            $num_client = $query -> getNumExecutive($id);
-            $id_client = $num_client[0];
+            $id_client = $this -> num_ejecutivo[0];
             
             $sql = "SELECT * FROM cliente WHERE num_client LIKE '" . $id_client ."%' AND status = 'activo' ORDER BY id LIMIT :pos, :n";
 
@@ -107,7 +109,7 @@
                     if ($this -> indice == 0) {$i = $this -> indice + 1;}
                     foreach($results as $user){
 
-                        if($user -> num_client !== $num_client)
+                        if($user -> num_client !== $this -> num_ejecutivo)
                         $data .=
                                 '<tr>
                                     <td>'. $i         .'</td>

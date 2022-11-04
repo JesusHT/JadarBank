@@ -5,11 +5,8 @@
 
         function __construct(){
             parent::__construct();
+            $this -> redirectRole();
         
-            if (session_status() == PHP_SESSION_NONE){
-                session_start();
-            }
-
             if (!isset($_SESSION['actualizar'])) {
                 $this -> redirect('admin');
                 return;

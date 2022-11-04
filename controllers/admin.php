@@ -3,9 +3,8 @@
 
         function __construct(){
             parent::__construct();
-            if (session_status() == PHP_SESSION_NONE){
-                session_start();
-            }
+
+            $this -> redirectRole();
             
             $tabla   = $this -> tableUsers();
             $paginas = $this -> getPages();
@@ -21,7 +20,7 @@
 
             if ($this -> existPOST(['busqueda'])) {
                 $busqueda = $this -> getPost('busqueda');
-                return $query -> getTableUsers($busqueda, $_SESSION['user']);
+                return $query -> getTableUsers($busqueda);
             }
 
             return $query -> getTableUsers(NULL,$_SESSION['user']);

@@ -2,8 +2,17 @@
 
     class Controller {
         
+        private $views;
+
         function __construct(){
+            if (session_status() == PHP_SESSION_NONE){
+                session_start();
+            }
+            $this -> controllerVarSession();
             $this -> view = new View();
+            $this -> views = [
+                "admin" => ["admin", "nuevo", "transacciones", "prestamos", "editar", "ver", "tabla", "ayuda", "perfil"], 
+                "user" =>  ["main", "acciones", "consulta", "ayuda", "perfil"]];
         }
 
         function loadModel($model){
@@ -93,6 +102,62 @@
             }
             
             header('location: ' . constant('URL') . $route . $params);
+        }
+
+
+        public function redirectRole(){
+            if (!$this -> restrictViews()) {
+                if ($_SESSION['role'] === 'admin') {
+                    $this -> redirect('admin');
+                    return;
+                }
+
+                $this -> redirect('main');
+                return;
+            }
+        }
+
+        public function existSESSION(){
+            if (isset($_SESSION['role'])) {
+                if ($_SESSION['role'] === 'admin') {
+                    $this -> redirect('admin');
+                    return;
+                }
+
+                $this -> redirect('main');
+                return;
+            }
+        }
+
+        public function restrictViews(){
+            for ($i=0; $i < count($this -> views[$_SESSION['role']]); $i++) { 
+                if ($_GET['url'] === $this -> views[$_SESSION['role']][$i] || strpos($_GET['url'], $this -> views[$_SESSION['role']][$i]) === 0) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public function controllerVarSession(){
+            if (!empty($_GET['url'])) {
+                if ($_GET['url'] !== 'editar' && strpos($_GET['url'], 'editar') !== 0) {
+                    unset($_SESSION['editar']);
+                }
+            }
+
+            if (!empty($_GET['url'])) {
+                if ($_GET['url'] !== 'ver' && strpos($_GET['url'], 'ver') !== 0) {
+                    unset($_SESSION['ver']);
+                }
+            }
+
+            if (!empty($_GET['url'])) {
+                if ($_GET['url'] !== 'prestamo' && strpos($_GET['url'], 'prestamo') !== 0) {
+                    unset($_SESSION['prestamo']);
+                }
+            }
+
         }
     }
     
