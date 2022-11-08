@@ -2,9 +2,17 @@
 
 @import url(../css/global.css);
 
+body {
+    height: 860px;
+    background-image: url("../img/background.webp");
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+
 .btn-login {
     display: block;
     margin: auto;
+    margin-bottom: 20px;
     --color: #c18700;
     padding: 0.8em 1.7em;
     background-color: transparent;
@@ -55,40 +63,69 @@
 
 }
 
-.login-main {
+.login-content {
+    width: 320px;
+    height: 430px;
     background-color: #fff;
-    border-radius: 5px;
-    padding: 25px;
-    max-width: 310px;
-    margin: calc((100vh - 500px)/2) auto 0 auto;
-    border: solid  1px;
+    border-style: solid;
+    border-width: 1px;
     border-color: #000;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 50px 30px;
 
-    input {
-        display: inline-block;
-        width: 100%;
-        margin-bottom: 15px;
-        padding: 5px 10px;
-        border: 1px solid;
-        border-color: #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        background-color: #fff;
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        left: calc(50% - 50px);
+
+    }
+
+    h1 {
+        margin: 0;
+        padding: 50px 0 20px;
+        text-align: center;
+        font-size: 22px;
     }
 
     label {
-        display: inline-block;
-        margin-bottom: 10px;
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        display: block;
     }
-}
 
-h2 {
-    text-align: center;
-    margin-bottom: 10px;
-}
+    input {
+        width: 100%;
+        margin-bottom: 20px;
+        border-style: none;
+        border-bottom: 1px solid;
+        border-color: #000;
+        background: transparent;
+        outline: none;
+        height: 40px;
+        font-size: 16px;
+    }
 
-span {
-    display: block;
-    margin-top: 15px;
-}
+    a {
+        display: block;
+        margin-top: 5px;
+        text-decoration: none;
+        font-size: 12px;
+        line-height: 20px;
+        color:#000;
+        text-align: center;
+        
+
+        &:hover {
+            color: #57585a;
+        }
+    }
+  }
 

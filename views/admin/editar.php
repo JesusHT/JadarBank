@@ -12,12 +12,10 @@
     <title>Editar - <?php echo $user['num_client']; ?></title>
 </head>
 <body>
-    <?php 
-        $this -> navController();
-        $this -> showMessages(); 
-    ?>
-    <div class="area">
-        <div class="content">
+    <?php $this -> showMessages();?>
+    <main class="main">
+        <?php $this -> navController(); ?>
+        <section class="content"  id="content-main">
             <form action="<?php echo constant('URL'); ?>editar/update"  method="POST" enctype="multipart/form-data">
                 <input type="text"   name="name" id="name"  value="<?php echo $user['name']?>" placeholder="Nombre Completo">
                 <input type="text"   name="curp" id="curp"  value="<?php echo $user['curp']?>" placeholder="CURP">           
@@ -43,8 +41,8 @@
                 <a href="<?php echo constant('URL');?>editar/volver" class="btn btn-a">Regresar</a>
                 <button type="submit" class="btn">Actualizar</button>
             </form>
-        </div>
-    </div>
+        </section>
+    </main> 
     <script src="<?php echo constant('URL');?>public/js/editar.js"></script>
 </body>
 </html>

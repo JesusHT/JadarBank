@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div class="area">
+    <div class="area"  id="content-main">
         <h1 class="center">Aviso De Privacidad JadarBank</h1>
     </div>
 

@@ -8,16 +8,9 @@
     <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/global.css">
     <title>Recuperar</title>
 </head>
-<body>
-    <p>
-        <label for="email_recuperar">Correo</label>
-        <input type="email" name="email_recuperar" id="email_recuperar">
-    </p>
-    <p>
-        <input type="submit" value="Recuperar Contraseñas">
-    </p>
-    <p>
-        <a href="<?php echo constant('URL'); ?>">Regresar al login </a>
-    </p>
+<body >
+    <div id="content-main">
+
+    </div>
 </body>
 </html>

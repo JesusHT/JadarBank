@@ -12,12 +12,10 @@
     <title>Ver - <?php echo $user['num_client']; ?></title>
 </head>
 <body>
-    <?php 
-        $this -> navController();
-        $this -> showMessages(); 
-    ?>
-    <div class="area">
-        <div class="content">
+    <?php $this -> showMessages();?>
+    <main class="main">
+        <?php $this -> navController(); ?>
+        <section class="content"  id="content-main">
             <div class="img">
                 <img src="<?php echo constant('URL');?>public/img/<?php echo $user['img_client']; ?>" alt="">
             </div>
@@ -25,6 +23,10 @@
                 <p><span>Número de cliente:</span> <?php echo $user['num_client'];?></p>
                 <p><span>Nombre:           </span> <?php echo $user['name']      ;?></p>
                 <p><span>Estatus:          </span> <?php echo $user['status']    ;?></p>
+                <form action="<?php echo constant('URL') ?>ver/generarEstadoDeCuenta" method="POST">
+                    <input type="hidden" name="num_client" value="<?php echo $user['num_client'];?>">
+                    <button type="submit" class="btn">Generar estado de cuenta</button>
+                </form>
             </div>
             <div class="prestamos">
                 <form action="<?php echo constant('URL'); ?>ver/generarprestamo" method="post">
@@ -32,8 +34,8 @@
                     <button type="submit" class="btn">Generar prestamo</button>
                 </form>
             </div>
-        </div>
-        <a href="<?php echo constant('URL');?>editar/volver" class="btn btn-a">Regresar</a>
-    </div>
+            <a href="<?php echo constant('URL');?>editar/volver" class="btn btn-back">Regresar</a>
+        </section>
+    </main>   
 </body>
 </html>

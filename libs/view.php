@@ -4,10 +4,10 @@
         function render($nombre, $data = []){
             $this->d = $data;
             $this->handleMessages();
-            
+
             if (!empty($_GET['url']) && $_GET['url'] !== 'recuperar') {
                 require_once 'config/session.php';
-            }
+            }       
 
             require 'views/' . $nombre . '.php';
         }

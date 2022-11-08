@@ -4,9 +4,10 @@
 
 #msform {
     width: 400px;
-    margin: 10px auto;
-    position: relative;
-
+    position: fixed;
+    left: 50%;
+    transform: translate(calc(-50% + 80px), 20%);
+    
     fieldset {
         background-color: #fff;
         border: 0 none;
@@ -134,4 +135,10 @@
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    #msform {
+        transform: translate(-50%, 10%);
+    }
 }

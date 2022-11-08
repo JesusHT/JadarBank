@@ -2,6 +2,7 @@
 
     class Errors {
         // ERROR_CONTROLLER_METHOD_ACTION
+        const ERROR_NOEXIST_CLIENT                   = "2194aalknd11c37cf678cf3adad3as81";
         const ERROR_DATA                             = "alknds81slh23hkjbn26a9g5b5cwdj42";
         const ERROR_DATA_EMPTY                       = "a5bcd7089d83f45e17e989fbc86003ed";
         const ERROR_LOGIN_LOGIN                      = "11c37cfab311fbe28652f4947a9523c4";
@@ -39,7 +40,8 @@
                 Errors::ERROR_ADMIN_PASS                        => 'Contraseña incorrecta!',
                 Errors::ERROR_ADMIN_UPDATE                      => 'Hubo un error al actualizar el cliente',
                 Errors::ERROR_PRESTAMOS_CANT                    => 'La cantidad del prestamo debe ser minimo 100 pesos',
-                Errors::ERROR_PRESTAMOS_STATUS                  => 'El cliente tiene un adeudo!'
+                Errors::ERROR_PRESTAMOS_STATUS                  => 'El cliente tiene un adeudo!',
+                Errors::ERROR_NOEXIST_CLIENT                    => 'No existe el cliente!'
             ];
         }
 

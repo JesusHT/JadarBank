@@ -28,31 +28,39 @@ body {
   padding: 15px; }
 
 .bg-Error {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
   background-color: #cc0605;
   color: #fff;
   padding: 12px;
-  z-index: 0;
   text-align: center; }
 
 .bg-Info {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
   background-color: #0096d2;
   color: #fff;
   padding: 12px;
-  z-index: 0;
   text-align: center; }
 
 .bg-Success {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
   background-color: #00a135;
   color: #fff;
   padding: 12px;
-  z-index: 0;
   text-align: center; }
 
 .bg-Warning {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
   background-color: #e5be01;
   color: #fff;
   padding: 12px;
-  z-index: 0;
   text-align: center; }
 
 .btn {
@@ -68,9 +76,5 @@ body {
 
 .text-center {
   text-align: center; }
-
-.area {
-  background-color: #e5e5e5;
-  padding-left: 6%; }
 
 /*# sourceMappingURL=global.css.map */

@@ -5,10 +5,10 @@
             parent::__construct();
 
             $this -> redirectRole();
-            
+
             $tabla   = $this -> tableUsers();
             $paginas = $this -> getPages();
-
+            
             $this -> view -> render('admin/index', [
                 'tabla' => $tabla,
                 'page' => $paginas

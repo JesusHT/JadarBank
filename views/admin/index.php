@@ -9,36 +9,36 @@
     <title>JADAR BANK</title>
 </head>
 <body>
-    <?php 
-        $this -> navController();
-        $this -> showMessages(); 
-    ?>
-    <div class="area">
-        <br><h1>Cartera De Clientes</h1><br>
-        <form action="<?php echo constant('URL'); ?>admin/tableUsers" method="POST">
-            <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." class="">
-            <input type="submit" value="Buscar"  class="btn">
-        </form>
-            
-	    <table class="table table-dark mt-3">
-            <thead>
-                <tr>
-                    <td>#</td>
-                    <td class="">Nombre</td>
-                    <td class="text-center">Número cliente</td>
-                    <td class="text-center">Eliminar</td>
-                    <td class="text-center">Editar</td>
-                    <td class="text-center">Ver</td>
-                </tr>
-            </thead>
-            <tbody>
-                <?php echo $this -> d['tabla'];?>
-            </tbody>
-	    </table>
-        <div id="paginas">
-            <?php echo $this -> d['page'];?>
-        </div>
-    </div>
+    <?php $this -> showMessages();?>
+    <main class="main">
+        <?php $this -> navController(); ?>
+        <section class="content" id="content-main">
+            <h1>Cartera De Clientes</h1>
+            <form action="<?php echo constant('URL'); ?>admin/tableUsers" method="POST">
+                <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." class="">
+                <button type="submit" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+
+	        <table class="table table-dark mt-3">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td class="">Nombre</td>
+                        <td class="text-center">Número cliente</td>
+                        <td class="text-center">Eliminar</td>
+                        <td class="text-center">Editar</td>
+                        <td class="text-center">Ver</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php echo $this -> d['tabla'];?>
+                </tbody>
+	        </table>
+            <div id="paginas">
+                <?php echo $this -> d['page'];?>
+            </div>
+        </section>
+    </main>
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div class="modal-header bg-Warning text-center">

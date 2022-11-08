@@ -8,46 +8,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?php echo constant('URL'); ?>public/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/global.css">
+    <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/perfil.css">
     <title>Perfil</title>
-    <style>
-        .area span {
-            color:blue; 
-        }
-
-        img {
-            width: 300px;
-            height: auto;
-        }
-    </style>
 </head>
 <body>
-    <?php 
-        $this -> navController();
-        $this -> showMessages(); 
-    ?>
-    <div class="area">
-        <?php 
-            echo '<span> Id: '                  . '</span>' . $user['id']         . '<br>';
-            echo '<span> Nombre: '              . '</span>' . $user['name']       . '<br>';
-            echo '<span> Fecha De Nacimiento: ' . '</span>' . $user['fena']       . '<br>';
-            echo '<span> CURP: '                . '</span>' . $user['curp']       . '<br>';
-            echo '<span> Imagen: '              . '</span><br><img src="'. constant('URL') . 'public/img/' . $user['img_client'] . '"></img><br>';
-            echo '<span> Domicilio: '           . '</span>' . $user['domicilio']  . '<br>';
-            echo '<span> CodPostal: '           . '</span>' . $user['codPostal']  . '<br>';
-            echo '<span> Estado: '              . '</span>' . $user['estado']     . '<br>';
-            echo '<span> ciudad: '           . '</span>' . $user['ciudad']  . '<br>';
-            echo '<span> Pais: '                . '</span>' . $user['pais']       . '<br>';
-            echo '<span> Teléfono: '            . '</span>' . $user['tel']        . '<br>';
-            echo '<span> Correo: '              . '</span>' . $user['email']      . '<br>';
-            if ($_SESSION['role'] === 'admin') {
-                echo '<span> Número De Cliente: '   . '</span>' . $user['num_empleado'] . '<br>';
-            } else {
-                echo '<span> Número De Cliente: '   . '</span>' . $user['num_client'] . '<br>';
-            }
-            echo '<span> Rol: '                 . '</span>' . $user['role']       . '<br>';
-            echo '<span> Estatus: '             . '</span>' . $user['status']     . '<br>';        
-        ?>
-    </div>
+    <?php $this -> showMessages();?>
+    <main class="main">
+        <?php $this -> navController(); ?>
+        <section class="content"  id="content-main">
+        <div class="header">
+                <div class="content-img">
+                    <img src="<?php echo constant('URL');?>public/img/<?php echo $user['img_client']; ?>" alt="Imagen de perfil">
+                    <p><?php echo $user['name'];?></p>
+                </div>
+            </div>
+            <div class="body">
+                <ul class="lista-datos">
+                    <li><i class="icono fas fa-solid fa-flag"></i> <span> Pais:             </span><?php echo $user['pais']                                                              ;?></li>
+                    <li><i class="icono fas fa-map-marker-alt"></i><span> Dirección:        </span><?php echo $user['estado'] . ', ' . $user['ciudad'] . ', ' . $user['domicilio'] . '.' ;?></li>
+                    <li><i class="icono fas fa-phone-alt"></i>     <span> Télefono:         </span><?php echo $user['tel']                                                               ;?></li>
+                    <li><i class="icono fas fa-calendar-alt"></i>  <span> Fecha nacimiento: </span><?php echo $user['fena']                                                              ;?></li>
+                </ul>
+            </div>
+            <div class="footer">
+                
+            </div>
+        </section>
+    </main>  
 </body>
 </html>

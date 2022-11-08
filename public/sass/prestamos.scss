@@ -1,8 +1,11 @@
-@import url(https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css);
 @import url(../css/global.css);
 
 .danger {
     border-color: red!important;
+}
+
+h1 {
+    margin-bottom: 10px;
 }
 
 select, input {
@@ -16,6 +19,11 @@ select, input {
     border-radius: 4px;
     box-sizing: border-box;
     background-color: #fff;
+}
+
+.btn-prestamos {
+    display: inline-block;
+    margin-top: 10px;
 }
 
 table {

@@ -5,12 +5,12 @@
 
         function __construct(){
             parent::__construct();
-            $this -> status = 'activo';
+            $this -> status = 'pendiente';
         }
 
         function validateStatusPrestamos($num_client){
             try {
-                $query = $this ->  prepare("SELECT status FROM prestamos WHERE num_client = :num_client AND status = 'activo'");
+                $query = $this ->  prepare("SELECT status FROM prestamos WHERE num_client = :num_client AND status = 'pendiente'");
                 $query -> execute(['num_client' => $num_client]); 
                 
                 if ($query->rowCount() == 1) {

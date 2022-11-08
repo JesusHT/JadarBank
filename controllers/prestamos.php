@@ -124,5 +124,38 @@
                 'totalIntereses' => $this -> Decimales(round($this -> totalIntereses, 1))
             ]);
         }
+
+        public function solicitar(){
+            if($this -> existPOST(['cant', 'termino', 'num_client'])){
+                
+                if ($this -> validateNumeric(['cant','termino'])) {
+                    $this -> redirect('prestamos', ['error' => Errors::ERROR_DATA]);
+                    return;
+                }
+                
+                $cantidad   = $this -> getPost('cant');
+                $plazo      = $this -> getPost('termino');
+                $num_client = $this -> getPost('num_client');
+
+                if ($this -> model -> clientExist($num_client)) {
+                    $this -> redirect('prestamos',['error'=>Errors::ERROR_NOEXIST_CLIENT]);
+                    return;
+                }
+
+                $this -> model -> setNum_client($num_client);
+                $this -> model -> setNum_prestamo();
+                $this -> model -> setMonto($cantidad);
+                $this -> model -> setInteres(0.075);
+                $this -> model -> setPlazo($plazo);
+                $this -> model -> setStatus('pendiente');
+
+                if($this -> model -> generarPrestamo()){
+                    $this -> redirect('prestamos',['success'=>Success::SUCCESS_LOAN_APPROVED]);
+                    return;
+                }
+
+                
+            }
+        }
     }
 ?>

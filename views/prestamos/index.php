@@ -9,21 +9,17 @@
     <title>JADAR BANK</title>
 </head>
 <body>
-    <?php 
-        $this -> navController();
-        $this -> showMessages(); 
-    ?>
-    <div class="area">
-        <h1 class="center">Prestamos</h1>
-        <form action="<?php echo constant('URL'); ?>prestamos/calcular" method="POST">
-            <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad en pesos">
-            <select name="plazo" id="plazo">
-                <option value="" selected hidden>Elija un plazo en meses</option>
-            </select>
-            
-            <button type="submit" class="btn">Simular Prestamo</button>
-        </form>
-    </div>
-    <script src="<?php echo constant('URL');?>public/js/prestamos.js"></script>
-</body>
-</html>
+    <?php $this -> showMessages();?>
+    <main class="main">
+        <?php $this -> navController(); ?>
+        <section class="content"  id="content-main">
+            <h1>Prestamos</h1>
+            <form action="<?php echo constant('URL'); ?>prestamos/calcular" method="POST">
+                <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad en pesos">
+                <select name="plazo" id="plazo">
+                    <option value="" selected hidden>Elija un plazo en meses</option>
+                </select>
+                
+                <button type="submit" class="btn btn-prestamos">Simular Prestamo</button>
+            </form>
+            <script src="<?php echo constant('URL');?>public/js/prestamos.js"></script>

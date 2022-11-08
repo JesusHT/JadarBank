@@ -8,7 +8,9 @@
             if (session_status() == PHP_SESSION_NONE){
                 session_start();
             }
+
             $this -> controllerVarSession();
+            
             $this -> view = new View();
             $this -> views = [
                 "admin" => ["admin", "nuevo", "transacciones", "prestamos", "editar", "ver", "tabla", "ayuda", "perfil"], 
@@ -106,13 +108,18 @@
 
 
         public function redirectRole(){
-            if (!$this -> restrictViews()) {
-                if ($_SESSION['role'] === 'admin') {
-                    $this -> redirect('admin');
+            if (isset($_SESSION['user'])) {
+                if (!$this -> restrictViews()) {
+                    if ($_SESSION['role'] === 'admin') {
+                        $this -> redirect('admin');
+                        return;
+                    }
+    
+                    $this -> redirect('main');
                     return;
-                }
-
-                $this -> redirect('main');
+                } 
+            } else {
+                $this -> redirect('');
                 return;
             }
         }
@@ -122,11 +129,10 @@
                 if ($_SESSION['role'] === 'admin') {
                     $this -> redirect('admin');
                     return;
-                }
-
+                } 
                 $this -> redirect('main');
-                return;
-            }
+                return;             
+            } 
         }
 
         public function restrictViews(){

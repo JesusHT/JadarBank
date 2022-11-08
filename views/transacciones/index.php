@@ -9,12 +9,12 @@
     <title>JADAR BANK</title>
 </head>
 <body>
-    <?php 
-        $this -> navController();
-        $this -> showMessages(); 
-    ?>
-    <div class="area">
-        <h1 class="center">Trasacciones</h1>
-    </div>
+    <?php $this -> showMessages();?>
+    <main class="main"  id="content-main">
+        <?php $this -> navController(); ?>
+        <section class="content">
+            <h1 class="center">Trasacciones</h1>
+        </section>
+    </main>  
 </body>
 </html>
