@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 26-10-2022 a las 09:33:14
--- Versión del servidor: 8.0.30-0ubuntu0.22.04.1
--- Versión de PHP: 8.1.2-1ubuntu2.6
+-- Tiempo de generación: 14-11-2022 a las 00:00:03
+-- Versión del servidor: 8.0.31-0ubuntu0.22.04.1
+-- Versión de PHP: 8.1.2-1ubuntu2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -15,7 +15,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `jadarbank`
@@ -29,29 +29,33 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cliente` (
   `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `fena` date NOT NULL,
-  `curp` varchar(19) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `img_client` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `domicilio` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `curp` varchar(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `img_client` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `domicilio` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `codPostal` int NOT NULL,
-  `estado` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ciudad` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `pais` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `estado` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ciudad` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pais` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `tel` bigint NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `pass` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `num_client` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `num_client` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `role` enum('user','admin') NOT NULL,
-  `status` enum('activo','inactivo') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` enum('activo','inactivo','pendiente') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
 INSERT INTO `cliente` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`, `codPostal`, `estado`, `ciudad`, `pais`, `tel`, `email`, `pass`, `num_client`, `role`, `status`) VALUES
-(1, 'Fatima Marin Meza', '2003-05-08', 'MAMF030508MJCrzta6', 'aaaa.jpg', 'Mi casa', 28865, 'Colima', 'Manzanillo', 'Mexico', 3143991293, 'fmarin0@gmail.com', '$2y$10$TLhVZTyFJ6LVlDxziG22z.zo/KJMML5tBfhKkpFuMXsSFNtbR2FhO', 'AC1', 'user', 'activo');
+(4, 'Jose Miguel Alvarado Gonzales', '2022-10-11', 'AMGJ030920HDFRRSA2', 'Asus.jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28865, 'Colima', 'Manzanillo', 'México', 3143767148, 'jose@gmail.com', '$2y$10$xfDI4hAu79C0t.pN5y1osupUmZ5D.rv5cwOtf6YFJu3aLOh8BFnii', 'AC1', 'user', 'activo'),
+(5, 'Joel Gutierrez Domiguez', '2022-10-10', 'AfaGJ030920Hdsjk21', 'Asus.jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28899, 'Afghanistan', 'Baglan', 'Afganistán', 3143767148, 'joel@gmail.com', '$2y$10$KiFxILazbNKq7.HDeaYNpe5EAIj10qpwnEubH0WxzSnhSVK905HYS', 'AC5', 'user', 'activo'),
+(6, 'Juanito El Huerfanito', '2022-11-21', 'AMGJ030920HDFRRSA2', 'Asus.jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28865, 'México', 'Albarrada', 'México', 3143767148, 'juan@gmail.com', '$2y$10$KvUMCbCHtHtsfSWAsSlnKu6KntFSljvmakzFSQsxtQAXnK1dgWRNe', 'AC7', 'user', 'inactivo'),
+(10, 'Maria Guadalupe', '2002-01-08', 'AMGJ030920HDFRRSA2', 'prueba (copia).jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28865, 'Diber', 'Ali Hanit', 'Albania', 3143767148, 'mario12@gmail.com', '$2y$10$oQT83vztZkI1UnXpku5dX.yraTFFTHkqDmynkJBvlM7CC7alUsnPq', 'AC10', 'user', 'inactivo'),
+(11, 'Jairo Preaciado Ayala', '2003-03-01', 'AMGJ030920HDFRRSA2', 'prueba (4.ª copia).jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28865, 'Berat', 'Agalli', 'Albania', 3143767148, 'jairo@gmail.com', '$2y$10$FcfuywP6r6YOhNjzz/1trepXYqccs67c5QcREli2Bxu.bb.FEDP0u', 'AC11', 'user', 'inactivo');
 
 -- --------------------------------------------------------
 
@@ -61,9 +65,22 @@ INSERT INTO `cliente` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`, 
 
 CREATE TABLE `cuenta` (
   `id` int NOT NULL,
-  `num_client` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `saldo` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `num_client` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `num_cuenta` bigint NOT NULL,
+  `saldo` double DEFAULT NULL,
+  `credito` double NOT NULL,
+  `usado` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `cuenta`
+--
+
+INSERT INTO `cuenta` (`id`, `num_client`, `num_cuenta`, `saldo`, `credito`, `usado`) VALUES
+(1, 'AC1', 111001123456789121, 10000, 2000, 0),
+(2, 'AC5', 111001321205065539, 10000, 2000, 0),
+(4, 'AC10', 111001877771473741, 0, 2000, 0),
+(5, 'AC11', 111001824828154101, 0, 2000, 0);
 
 -- --------------------------------------------------------
 
@@ -73,29 +90,30 @@ CREATE TABLE `cuenta` (
 
 CREATE TABLE `ejecutivo` (
   `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `fena` date NOT NULL,
-  `curp` varchar(19) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `img_client` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `domicilio` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `codPostal` int NOT NULL,
-  `estado` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ciudad` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `pais` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `tel` bigint NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `pass` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `num_empleado` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `role` enum('admin','user') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `name` varchar(255) DEFAULT NULL,
+  `fena` date DEFAULT NULL,
+  `curp` varchar(19) DEFAULT NULL,
+  `img_client` varchar(50) DEFAULT NULL,
+  `domicilio` varchar(255) DEFAULT NULL,
+  `codPostal` int DEFAULT NULL,
+  `estado` text,
+  `ciudad` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `pais` varchar(50) DEFAULT NULL,
+  `tel` bigint DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `pass` varchar(255) DEFAULT NULL,
+  `num_empleado` varchar(255) DEFAULT NULL,
+  `role` enum('user','admin') NOT NULL,
+  `status` enum('activo','inactivo') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `ejecutivo`
 --
 
-INSERT INTO `ejecutivo` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`, `codPostal`, `estado`, `ciudad`, `pais`, `tel`, `email`, `pass`, `num_empleado`, `role`) VALUES
-(1, 'Jesus Emmanuel Hernandez Torres', '2003-08-15', 'HETJ030815HDFRRSA3', 'pardo.jpg', 'Fraccionamiento valle paraiso valle de las granadas #279', 28865, 'Colima', 'Manzanillo', 'Mexico', 3143767148, 'jesus@gmail.com', '$2y$10$jKpxz88KkRtHq.xjrCxQ6u9D7vmR6JdKLWVY5pUVRJ0YmtPyDUBWO', 'AEJ1', 'admin'),
-(2, 'Mitzi Fabiola R. Don Juan Ramos', '2003-10-10', 'RXRM031010MCMXMTA9', 'mitzi.jpg', 'Ancillas #506', 28869, 'Sinaloa', 'Mazatlan', 'Mexico', 3141249293, 'mrdonjuan@ucol.mx', '$2y$10$.fZBfjIwMi7PezMye7PLAOrZz2XfLHEi2xlrcRdOqrFf5LmVUFG3K', 'BEF2', 'admin');
+INSERT INTO `ejecutivo` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`, `codPostal`, `estado`, `ciudad`, `pais`, `tel`, `email`, `pass`, `num_empleado`, `role`, `status`) VALUES
+(1, 'Jesus Emmanuel Hernandez Torres', '2003-08-15', 'HETJ030815HDFRRSA3', 'pardo.jpg', 'Fraccionamiento valle paraiso valle de las granadas #279', 28865, 'Colima', 'Manzanillo', 'Mexico', 3143767148, 'jesus@gmail.com', '$2y$10$jKpxz88KkRtHq.xjrCxQ6u9D7vmR6JdKLWVY5pUVRJ0YmtPyDUBWO', 'AEJ1', 'admin', 'activo'),
+(2, 'Mitzi Fabiola R. Don Juan Ramos', '2003-10-10', 'RXRM031010MCMXMTA9', 'mitzi.jpg', 'Ancillas #506', 28869, 'Sinaloa', 'Mazatlan', 'Mexico', 3141249293, 'mrdonjuan@ucol.mx', '$2y$10$.fZBfjIwMi7PezMye7PLAOrZz2XfLHEi2xlrcRdOqrFf5LmVUFG3K', 'BEF2', 'admin', 'activo');
 
 -- --------------------------------------------------------
 
@@ -105,13 +123,13 @@ INSERT INTO `ejecutivo` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`
 
 CREATE TABLE `movimientos` (
   `id` int NOT NULL,
-  `num_cliente` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `num_cliente` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `cargo` varchar(255) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   `cant` float NOT NULL,
   `fecha` date NOT NULL,
   `saldo` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -121,14 +139,14 @@ CREATE TABLE `movimientos` (
 
 CREATE TABLE `prestamos` (
   `id` int NOT NULL,
-  `num_client` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `num_client` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `num_prestamo` varchar(55) NOT NULL,
   `monto` float NOT NULL,
-  `iteres` int NOT NULL,
-  `plazo_meses` int NOT NULL,
+  `interes` float NOT NULL,
+  `plazo` int NOT NULL,
   `fe_asignado` date NOT NULL,
-  `fe_pago` date NOT NULL,
-  `saldo` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` enum('pendiente','pagado') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Índices para tablas volcadas
@@ -176,13 +194,13 @@ ALTER TABLE `prestamos`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `ejecutivo`
@@ -200,29 +218,7 @@ ALTER TABLE `movimientos`
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `cuenta`
---
-ALTER TABLE `cuenta`
-  ADD CONSTRAINT `cuenta_ibfk_1` FOREIGN KEY (`num_client`) REFERENCES `cliente` (`num_client`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `movimientos`
---
-ALTER TABLE `movimientos`
-  ADD CONSTRAINT `movimientos_ibfk_1` FOREIGN KEY (`num_cliente`) REFERENCES `cuenta` (`num_client`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `prestamos`
---
-ALTER TABLE `prestamos`
-  ADD CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`num_client`) REFERENCES `cuenta` (`num_client`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
