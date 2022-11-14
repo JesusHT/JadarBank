@@ -41,7 +41,7 @@
             if ($this -> existPOST(['passEjecutivo','eliminar'])) {
                 
                 if ($this -> validateData(['passEjecutivo','eliminar'])) {
-                    $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_DELETEUSER_DATA ]);
+                    $this->redirect('admin', ['error' => Errors::ERROR_DATA]);
                     return;
                 }
 
@@ -62,7 +62,15 @@
                     return;
                 }
 
-                $this->redirect('admin', ['success' =>  Success::SUCCESS_ADMIN_DELETEUSER]);
+                if ($this -> model -> validateAccount($user['num_client'])) {
+                    $this->redirect('admin', ['warning' => Warning::WARNING_PRESTAMOS_SALDO]);
+                    return;
+                }
+
+                if ($query -> delete($id)) {
+                    $this->redirect('admin', ['success' =>  Success::SUCCESS_ADMIN_DELETEUSER]);
+                    return;
+                }
             }
         }
 

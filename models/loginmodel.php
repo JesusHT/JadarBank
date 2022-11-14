@@ -18,7 +18,7 @@
             $user = new UserModel();
             $user -> from($item);
 
-            if (password_verify($pass, $user -> getPass())){
+            if (password_verify($pass, $user -> getPass()) && 'activo' === $user -> getStatus()){
                 return $user;
             }
 

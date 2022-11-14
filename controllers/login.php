@@ -14,7 +14,7 @@
             if ($this -> existPOST(['email','pass'])) {
                 
                 if ($this -> validateData(['email','pass'])) {
-                    $this->redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN_EMPTY]);
+                    $this->redirect('', ['error' => Errors::ERROR_DATA_EMPTY]);
                     return;
                 }
                 
@@ -25,7 +25,7 @@
 
                 
                 if ($user === NULL) {
-                    $this->redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN_DATA]);
+                    $this->redirect('', ['error' => Errors::ERROR_LOGIN_AUTHENTICATE]);
                     return;
                 } 
                 
@@ -41,7 +41,7 @@
                 }
 
             } else {
-                $this->redirect('', ['error' => Errors::ERROR_LOGIN_LOGIN]);
+                $this->redirect('', ['error' => Errors::ERROR_LOGIN]);
             }
         }
 

@@ -11,10 +11,6 @@
         function __construct(){
             parent::__construct();
 
-            if (session_status() == PHP_SESSION_NONE){
-                session_start();
-            }
-
             $this -> resultadosPorPagina = 10;
             $this -> indice = 0;
             $this -> paginaActual = 1;
@@ -39,7 +35,7 @@
             if(isset($_GET['pagina'])){
                 if(!is_numeric($_GET['pagina'])){
                     $redirect = new Controller();
-                    $redirect -> redirect('admin', ['error' => Errors::ERROR_ADMIN_TABLEUSERS_FAILED]);
+                    $redirect -> redirect('admin', ['error' => Errors::ERROR_DATA_FORMAT_STRING]);
 
                     return NULL;
                 }
@@ -53,6 +49,10 @@
             $actual = '';
             $data = "<ul>";
     
+            if ($this -> totalPaginas == 1) {
+                return '';
+            }
+
             for($i=1; $i <= $this -> totalPaginas; $i++){
                 
                 if($i == $this->paginaActual){
@@ -85,13 +85,13 @@
         }
 
         function getTableUsers($busqueda){
-            $error = '<p class="bg-Info">No se encontraro ningun cliente</p><br>';
+            $error = '<p class="Messeges-Info mt-2 tamp">No se encontraro ningun cliente</p>';
             $id_client = $this -> num_ejecutivo[0];
             
             $sql = "SELECT * FROM cliente WHERE num_client LIKE '" . $id_client ."%' AND status = 'activo' ORDER BY id LIMIT :pos, :n";
 
             if ($busqueda !== NULL) {
-                $error = '<p class="bg-Error">No se encontraron coincidencias con sus criterios de búsqueda</p><br>';
+                $error = '<p class="Messeges-Error mt-2 tamp">No se encontraron coincidencias con sus criterios de búsqueda</p>';
                 $q = $this -> escape($busqueda);
                 $sql = "SELECT * FROM cliente WHERE num_client LIKE '". $id_client ."%' AND name LIKE '%". $q ."%' AND status = 'activo' LIMIT :pos, :n";
             }
@@ -116,7 +116,7 @@
                                     <td>'. $user -> name       .'</td>
                                     <td class="text-center">'. $user -> num_client .'</td>
                                     <td>                                            
-                                        <button type="button" class="btn" onclick="openModal('.$user -> id.')"><i class="fa-solid fa-trash-can"></i></button>
+                                        <button type="button" class="btn" onclick="openModal('.$user -> id.',`'. $user -> num_client .'`)"><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
                                     <td>
                                         <form action="'. constant('URL') .'admin/update" method="POST">
@@ -126,7 +126,7 @@
                                     </td>
                                     <td>
                                         <form action="'. constant('URL') .'admin/ver" method="POST">
-                                            <input type="hidden" id="" name="ver" value="'.  $user -> id .'">
+                                            <input type="hidden" name="ver" value="'.  $user -> id .'">
                                             <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>	
                                         </form>
                                     </td>

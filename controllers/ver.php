@@ -14,10 +14,28 @@
             
             $query = new UserModel();
             $this -> cliente = $query -> get($_SESSION['ver'],NULL);
-            $this -> view -> render('admin/ver', ['client' => $this -> cliente]);
+            
+            $tabla   = $this -> setTable();
+            $paginas = $this -> setPages();
+
+            $this -> view -> render('admin/ver',[
+                'client' => $this -> cliente,
+                'tabla' => $tabla,
+                'page' => $paginas
+            ]);
         }
 
-        function generarprestamo(){
+        public function setTable(){
+            $query = new TablePrestamosModel();
+            return $query -> getTablePrestamos();
+        }
+
+        public function setPages(){
+            $query = new TablePrestamosModel();
+            return $query -> getPages();
+        }
+
+        public function generarprestamo(){
             if ($this -> existPOST(['prestamo'])) {
                 $prestamo = $this -> getPost('prestamo');
 

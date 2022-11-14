@@ -27,6 +27,7 @@ select, input {
 }
 
 table {
+    width: 100%;
     margin-top: 15px;
     margin-bottom: 15px;
 	border-width: 1px;
@@ -43,4 +44,9 @@ table {
         background-color: #fff;
 
     }
+}
+
+.span-error {
+    color: red;
+    font-size: 12px;
 }

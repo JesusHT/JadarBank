@@ -2,7 +2,11 @@
 
     class Warning {
 
-        private $warningList = [];
+        const WARNING_PRESTAMOS_SALDO = "11cdklajlksdjlajd289hidhioh411cs";
+
+        private $warningList = [
+            Warning::WARNING_PRESTAMOS_SALDO => "El cliente aún tiene saldo en su cuenta."
+        ];
 
         public function __construct(){
             $this->successList = [];

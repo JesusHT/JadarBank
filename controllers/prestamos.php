@@ -32,7 +32,7 @@
                 $this -> cantPrestamo = $this -> getPost('cantidad');
                 $this -> plazo        = $this -> getPost('plazo');   
 
-                if ($this -> cantPrestamo < 99) {
+                if ($this -> cantPrestamo < 99 || $this -> cantPrestamo > 1000000) {
                     $this -> redirect('prestamos', ['error' => Errors::ERROR_PRESTAMOS_CANT ]);
                     return;
                 }
@@ -136,6 +136,11 @@
                 $cantidad   = $this -> getPost('cant');
                 $plazo      = $this -> getPost('termino');
                 $num_client = $this -> getPost('num_client');
+
+                if ($cantidad  < 99 || $cantidad > 1000000) {
+                    $this -> redirect('prestamos', ['error' => Errors::ERROR_PRESTAMOS_CANT ]);
+                    return;
+                }
 
                 if ($this -> model -> clientExist($num_client)) {
                     $this -> redirect('prestamos',['error'=>Errors::ERROR_NOEXIST_CLIENT]);

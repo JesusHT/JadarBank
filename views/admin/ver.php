@@ -25,16 +25,22 @@
                 <p><span>Estatus:          </span> <?php echo $user['status']    ;?></p>
                 <form action="<?php echo constant('URL') ?>ver/generarEstadoDeCuenta" method="POST">
                     <input type="hidden" name="num_client" value="<?php echo $user['num_client'];?>">
-                    <button type="submit" class="btn">Generar estado de cuenta</button>
+                    <button type="submit" class="btn mt-2">Generar estado de cuenta</button>
                 </form>
             </div>
             <div class="prestamos">
+               
+                <?php echo $this -> d['tabla'];?>
+                
+                <div id="paginas">
+                    <?php echo $this -> d['page'];?>
+                </div>
                 <form action="<?php echo constant('URL'); ?>ver/generarprestamo" method="post">
                     <input type="hidden" name="prestamo" value="<?php echo $user['num_client']; ?>">
                     <button type="submit" class="btn">Generar prestamo</button>
                 </form>
             </div>
-            <a href="<?php echo constant('URL');?>editar/volver" class="btn btn-back">Regresar</a>
+            <a href="<?php echo constant('URL');?>editar/volver" class="btn btn-back mt-2">Regresar</a>
         </section>
     </main>   
 </body>

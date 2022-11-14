@@ -19,6 +19,8 @@
     
     require_once 'models/usermodel.php';
     require_once 'models/tableusersmodel.php';
+    require_once 'models/tableprestamosmodel.php';
+    require_once 'models/listasolicitudesmodel.php';
     
     $app = new App();
 ?>

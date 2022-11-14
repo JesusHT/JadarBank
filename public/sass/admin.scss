@@ -21,17 +21,76 @@ $bg-secondary-modal:rgb(0,0,0);
     overflow: auto;
     background-color: $bg-secondary-modal;
     background-color: $bg-body-modal;
-
+    
     .modal-content {
+        transform: translate(0%, 200%);
         position: relative;
         background-color: $bg-content-modal;
         margin: auto;
         padding: 0;
         width: 40%;
+        border-radius: 10px;
+        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
     }
       
-    .modal-header {padding: 2px 16px;} 
-    .modal-body {padding: 5px 15px;}
+    .modal-header {
+        padding: 2px 16px;
+        h2 {
+            padding-top: 10px;
+        }
+    } 
+    .modal-body {
+        padding: 5px 15px;
+
+        p{
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            span {
+                color: #b90505;
+                font-weight: bold;
+            }
+        }
+
+        input {
+            margin-bottom: 10px;
+            border-style: none;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-color: #c18700;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .content-buttons {
+            display: flex;
+            justify-content: end;
+        }
+
+        button {
+            color: #fff;
+            margin-left: 10px;
+            border-radius: 10px;
+            border-style: solid;
+            border-color: #000;
+            border-width: 1px;
+            font-weight: bold;
+        }
+
+        .btn-confirm {
+            &:hover {
+                background-color: #008d2f;
+            }
+        }
+        .btn-cancel {
+            &:hover {
+                background-color: #b90505;
+            }
+        }
+    }
 }
 
 table {
@@ -48,7 +107,7 @@ table {
         padding: 5px;
         border-style: solid;
         border-color: black;
-        background-color: fff;
+        background-color: #fff;
 
     }
 }
@@ -75,7 +134,54 @@ table {
     }
 }
 
-.actual {
-    background: rgb(20, 69, 124) !important;
-    color:#fff!important;
+.search {
+    width: 50%;
+    max-width: 200px;
+    height: auto;
+    max-height:40px;
+    padding: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    margin-top: 15px;   
+    box-sizing: border-box;
+    color: #2C3E50;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.btn-refresh {
+    display: inline-block;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    padding: 9px;
+    margin-left: 2px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+
+    &:hover {
+        background-color: #3e8692;
+    }
+}
+
+.btn-search {
+    max-height:40px;
+    display: inline-block;
+    border-color: #000;
+    border-width: 0px;
+    border-style: none;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+    margin-left: -10px;
+
+    &:hover {
+        background-color: #3e8692;
+    }
+}
+
+.tamp {
+    max-width:395px;
 }

@@ -25,7 +25,7 @@
                 
         </form>
         <a href="<?php echo constant('URL'); ?>recuperar">¿Olvidaste tu contraseña?</a>
-        <!-- <a href="#">Don't have An account?</a> -->
+        <a href="<?php echo constant('URL'); ?>registro">¿No tienes una cuenta?</a>
     </div>
 </body>
 </html>

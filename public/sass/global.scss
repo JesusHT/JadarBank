@@ -50,6 +50,24 @@ $message-color: (
     "Warning": $Warning_color
 );
 
+$palette-color: (
+    "primary  ":$primary_color,  
+    "secondary":$secondary_color,
+    "lightblue":$lightblue_color,
+    "brown    ":$brown_color,    
+    "green    ":$green_color,    
+    "body     ":$body-color,
+    "success  ":$success_color,
+    "error    ":$error_color
+);
+
+$margin: (
+    "1": 10px,
+    "2": 20px,
+    "3": 30px,
+    "4": 40px,
+);
+
 @each $k, $v in $message-color {
     .Messeges-#{$k}{
         background-color: $v;
@@ -70,6 +88,35 @@ $message-color: (
     }
 }
 
+@each $k, $v in $margin {
+    .mb-#{$k}{
+        display: block;
+        margin-bottom: $v;
+    }
+
+}
+
+@each $k, $v in $margin  {
+    .mt-#{$k}{
+        display: block;
+        margin-top: $v;
+    }
+}
+
+@each $k, $v in $palette-color {
+    .bg-#{$k}{
+        background-color: $v;
+    }
+}
+
+.text-white {
+    color: $white_color;
+}
+
+.text-black {
+    color: $black_color;
+}
+
 .btn {
     padding: 5px 32px;
     text-align: center;
@@ -85,4 +132,9 @@ $message-color: (
 
 .text-center {
     text-align: center;
+}
+
+.actual {
+    background: rgb(20, 69, 124) !important;
+    color:#fff!important;
 }

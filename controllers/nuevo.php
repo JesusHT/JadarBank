@@ -19,9 +19,7 @@
                 'ciudad',
                 'domicilio',
                 'tel',
-                'email',
-                'pass',
-                'pass2'
+                'email'
             ]) && isset($_FILES['img_client'])){
                 if ($this -> validateData([
                     'name',
@@ -33,45 +31,43 @@
                     'ciudad',
                     'domicilio',
                     'tel',
-                    'email',
-                    'pass',
-                    'pass2'
+                    'email'
                 ])) {
-                    $this->redirect('nuevo', ['error' => Errors::ERROR_DATA_EMPTY ]);
+                    $this->redirect('nuevo', ['error' => Errors::ERROR_DATA_EMPTY]);
                     return;
                 }
 
-                $name       = $this -> getPost('name');
-                $fena       = $this -> getPost('fena');
-                $curp       = $this -> getPost('curp');
+                $fena = $this -> getPost('fena');
+                
+                if (!$this -> calEdad($fena)) {
+                    $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_NEWUSER_AGE]);
+                    return;
+                }
+
                 $img_client = $_FILES['img_client'];
 
                 if ($this -> validateImg($img_client)) {
-                    $this->redirect('nuevo', ['error' => Errors::ERROR_IMG]);
+                    $this -> redirect('nuevo', ['error' => Errors::ERROR_IMG]);
                     return;
                 }
 
-                $pais       = $this -> getPost('pais');
-                $codPostal  = $this -> getPost('codPostal');
-                $estado     = $this -> getPost('estado');
-                $ciudad     = $this -> getPost('ciudad');
-                $domicilio  = $this -> getPost('domicilio');
-                $tel        = $this -> getPost('tel');
-                $email      = $this -> getPost('email');
-                $pass       = $this -> getPost('pass');
-                $pass2      = $this -> getPost('pass2');
-
-                
                 $query = new UserModel();
+                $email = $this -> getPost('email');
+
                 if ($query -> exists($email)) {
                     $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_NEWUSER_EXISTS]);
                     return;
                 }
 
-                if ($pass !== $pass2){
-                    $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_NEWUSER_PASS]);
-                    return;
-                }
+                $name       = $this  -> getPost('name');
+                $curp       = $this  -> getPost('curp');
+                $pais       = $this  -> getPost('pais');
+                $codPostal  = $this  -> getPost('codPostal');
+                $estado     = $this  -> getPost('estado');
+                $ciudad     = $this  -> getPost('ciudad');
+                $domicilio  = $this  -> getPost('domicilio');
+                $tel        = $this  -> getPost('tel');
+                $pass       = $query -> createPass();
 
                 $query -> setName($name);
                 $query -> setFena($fena);
@@ -85,20 +81,17 @@
                 $query -> setTel($tel);
                 $query -> setEmail($email);
                 $query -> setPass($pass);
-                $query -> setNum_client($_SESSION['user']);
+                $query -> setNum_client();
                 $query -> setRole("user");
+                $query -> setStatus("activo");
 
-                if ($query -> save()) {
+                if ($query -> save() && $query -> createAccount()) {
                     $this->redirect('nuevo', ['success' => Success::SUCCESS_SIGNUP_NEWUSER]);
                     return;
                 }
-
-                $this -> redirect('nuevo', ['error' => Errors::ERROR_IMG]);
-    
             }
 
-            $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP_NEWUSER]);
-            return;
+            $this -> redirect('nuevo', ['error' => Errors::ERROR_SIGNUP]);
         }
     }
 

@@ -9,6 +9,7 @@
         const SUCCESS_SIGNUP_NEWUSER        = "8281e04ed52ccfc13820d0f6acb0985a";
         const SUCCESS_ADMIN_DELETEUSER      = "8407f4908e4d134ccfc130f6acb0985a";
         const SUCCESS_LOAN_APPROVED         = "b0828988288407f4908e1e04407f485a";
+        const SUCCESS_REQUEST_DENIED        = "840728988f4982884lkdjslj123kljdl";
         
         private $successList = [];
 
@@ -20,7 +21,8 @@
                 Success::SUCCESS_USER_UPDATEPHOTO    => "Imagen de usuario actualizada correctamente",
                 Success::SUCCESS_SIGNUP_NEWUSER      => "Usuario registrado correctamente",
                 Success::SUCCESS_ADMIN_DELETEUSER    => "Usuario eliminado exitosamente",
-                Success::SUCCESS_LOAN_APPROVED       => "Prestamo aprobado"
+                Success::SUCCESS_LOAN_APPROVED       => "Prestamo aprobado",
+                Success::SUCCESS_REQUEST_DENIED      => "Solicitud rechazada correctamente"
             ];
         }
 

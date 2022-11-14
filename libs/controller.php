@@ -1,7 +1,12 @@
 <?php
 
     class Controller {
-        
+
+        private $fecha;
+        private $calAño;
+        private $calMes;
+        private $calDia;
+        private $edad;
         private $views;
 
         function __construct(){
@@ -13,7 +18,7 @@
             
             $this -> view = new View();
             $this -> views = [
-                "admin" => ["admin", "nuevo", "transacciones", "prestamos", "editar", "ver", "tabla", "ayuda", "perfil"], 
+                "admin" => ["admin", "nuevo", "transacciones", "prestamos", "editar", "ver", "tabla", "ayuda", "perfil", "solicitud"], 
                 "user" =>  ["main", "acciones", "consulta", "ayuda", "perfil"]];
         }
 
@@ -164,6 +169,43 @@
                 }
             }
 
+        }
+
+        public function calFecha($n){
+            $result = '';
+       
+            for ($i = $n; $i <= $n+1; $i++) {
+                $result .= $this -> fecha[$i];
+            }
+        
+            return $result;
+        }
+
+        public function calEdad($fecha){
+            $this -> fecha  = $fecha;
+            $this -> calAño = $this -> calFecha(2);
+            $this -> edad   = abs($this -> calAño - date('y'));
+            
+            if ($this -> edad > 18) {
+                return true;
+            }
+
+            $this -> calMes = $this -> calFecha(5);
+            $this -> calDia = $this -> calFecha(8);
+        
+            if ($this -> edad === 18){
+                if($this -> calMes < date('m')){
+                    return true;   
+                }
+            
+                if($this -> calMes === date('m') && $this -> calDia <= date('d')){
+                    return true;
+                }
+            
+                return false;
+            }
+        
+            return false;
         }
     }
     

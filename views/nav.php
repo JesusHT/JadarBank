@@ -50,6 +50,14 @@
               </a>
           </li>
           <li>
+                <a href="<?php echo constant('URL');?>solicitud">
+                    <i class="fa fa-solid fa-users-medical"></i>
+                    <span>
+                        Solicitud
+                    </span>
+                </a>
+            </li>
+          <li>
               <a href="<?php echo constant('URL');?>ayuda">
                   <i class="fa fa-headset fa-2x"></i>
                   <span>

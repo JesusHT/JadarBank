@@ -17,30 +17,40 @@
         private $num_client;
         private $role;
         private $status;
+        private $codigobanco;
+        private $codigosucursal;
+        private $digitodecontrol;
+        private $num_cuenta;
+        private $cuentaClave;
 
         function __construct(){
             parent::__construct();
 
-            $this -> name          = ''; 
-            $this -> fena          = ''; 
-            $this -> curp          = ''; 
-            $this -> img_client    = ''; 
-            $this -> domicilio     = ''; 
-            $this -> codPostal     = ''; 
-            $this -> estado        = ''; 
-            $this -> ciudad        = ''; 
-            $this -> pais          = ''; 
-            $this -> tel           = ''; 
-            $this -> email         = ''; 
-            $this -> pass          = ''; 
-            $this -> num_client    = ''; 
-            $this -> role          = '';
-            $this -> status        = '';
+            $this -> name            = ''; 
+            $this -> fena            = ''; 
+            $this -> curp            = ''; 
+            $this -> img_client      = ''; 
+            $this -> domicilio       = ''; 
+            $this -> codPostal       = ''; 
+            $this -> estado          = ''; 
+            $this -> ciudad          = ''; 
+            $this -> pais            = ''; 
+            $this -> tel             = ''; 
+            $this -> email           = ''; 
+            $this -> pass            = ''; 
+            $this -> num_client      = ''; 
+            $this -> role            = '';
+            $this -> status          = '';
+            $this -> codigobanco     = 111;
+            $this -> codigosucursal  = '001';
+            $this -> digitodecontrol = '';
+            $this -> num_cuenta      = '';
+            $this -> cuentaClave     = '';
         }
 
         public function save(){
             try {
-                $query = $this -> prepare('INSERT INTO cliente (name, fena, curp, img_client, domicilio, codPostal, estado, ciudad, pais, tel, email, pass, num_client, role) VALUES (:name, :fena, :curp, :img_client, :domicilio, :codPostal, :estado, :ciudad, :pais, :tel, :email, :pass, :num_client, :role)');
+                $query = $this -> prepare('INSERT INTO cliente (name, fena, curp, img_client, domicilio, codPostal, estado, ciudad, pais, tel, email, pass, num_client, role, status) VALUES (:name, :fena, :curp, :img_client, :domicilio, :codPostal, :estado, :ciudad, :pais, :tel, :email, :pass, :num_client, :role, :status)');
                 $query -> execute([
                     'name'       => $this -> name,
                     'fena'       => $this -> fena,
@@ -55,7 +65,8 @@
                     'email'      => $this -> email,
                     'pass'       => $this -> pass,
                     'num_client' => $this -> num_client,
-                    'role'       => $this -> role
+                    'role'       => $this -> role,
+                    'status'     => $this -> status
                 ]);
 
                 return true;
@@ -63,6 +74,35 @@
                 echo $e;
                 return false;
             }
+        }
+
+        public function createAccount(){
+            $this -> createNumAccount();
+
+            try {
+                $query = $this -> prepare('INSERT INTO cuenta (num_client, num_cuenta, saldo, credito) VALUES (:num_client, :num_cuenta, :saldo, :credito)');
+                $query -> execute([
+                    'num_client' => $this -> num_client,
+                    'num_cuenta' => $this -> cuentaClave,
+                    'saldo'      => 0,
+                    'credito'    => 2000
+                ]);
+                return true;
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
+
+        public function createNumAccount(){
+            $this -> digitodecontrol = $this -> num_client[2];
+
+            for ($i=1; $i <= 11; $i++) { 
+                $this -> num_cuenta .= rand(0,9);
+            }
+
+            $this -> cuentaClave = $this -> codigobanco . $this -> codigosucursal . $this -> num_cuenta . $this -> digitodecontrol;
+
         }
         
         public function get($id, $tabla){
@@ -181,7 +221,18 @@
             }catch(PDOException $e){
                 return NULL;
             }
-        }        
+        } 
+
+        function createPass(){
+            $newpass = "";
+			$pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
+			$max = strlen($pattern)-1;
+		    for($i = 0; $i < 10; $i++){ 
+		    	$newpass .= substr($pattern, mt_rand(0,$max), 1);
+		    }
+
+            return $newpass;
+        }
 
         // Establecer el valor de las variables 
         public function setimg_client($img_client){   
@@ -196,8 +247,8 @@
             
         }
         
-        public function setNum_client($id){ 
-            $num_executive = $this -> getNumExecutive($id);
+        public function setNum_client(){ 
+            $num_executive = $this -> getNumExecutive();
 
             try {
                 $query = $this -> prepare('SELECT * FROM cliente ORDER by id DESC LIMIT 1');
@@ -210,20 +261,7 @@
 
             $num_client = $num_executive[0] . 'C' . $id['id'] + 1;
 
-            $this -> num_client = $num_client; 
-        }
-
-        public function getImg($id){
-            try {
-                $query = $this -> prepare('SELECT img_client FROM cliente WHERE id = :id');
-                $query -> execute(['id' => $id]); 
-                $img_client = $query -> fetch(PDO::FETCH_ASSOC);
-
-            } catch (PDOException $e){
-                echo $e;
-            }
-            
-            return $img_client;
+            $this -> num_client = $num_client;
         }
         
         public function setPass($pass){             $this -> pass       = password_hash($pass, PASSWORD_BCRYPT);}
@@ -258,15 +296,27 @@
         public function getNum_client(){ return $this -> num_client ;}
         public function getRole(){       return $this -> role       ;}
         public function getStatus(){     return $this -> status     ;}
-        public function getNumExecutive($id){
+        public function getNumExecutive(){
             $query = $this -> prepare('SELECT * FROM ejecutivo WHERE id = :id');
-            $query -> execute([$id]); 
+            $query -> execute(['id' => $_SESSION['user']]); 
 
             $results = $query -> fetch(PDO::FETCH_ASSOC);
 
             if (is_countable($results) > 0) {
                 return $results['num_empleado'];
             }
+        }
+        public function getImg($id){
+            try {
+                $query = $this -> prepare('SELECT img_client FROM cliente WHERE id = :id');
+                $query -> execute(['id' => $id]); 
+                $img_client = $query -> fetch(PDO::FETCH_ASSOC);
+
+            } catch (PDOException $e){
+                echo $e;
+            }
+            
+            return $img_client;
         }
     }
 ?>

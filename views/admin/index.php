@@ -15,8 +15,9 @@
         <section class="content" id="content-main">
             <h1>Cartera De Clientes</h1>
             <form action="<?php echo constant('URL'); ?>admin/tableUsers" method="POST">
-                <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." class="">
-                <button type="submit" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="text" name="busqueda" id="busqueda" placeholder="Buscar..." class="search">
+                <button type="submit" class="btn bg-secondary text-white btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <a href="<?php echo constant('URL'); ?>admin" class="btn-refresh bg-secondary"><i class="fa-solid fa-rotate"></i></a>
             </form>
 
 	        <table class="table table-dark mt-3">
@@ -41,19 +42,17 @@
     </main>
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header bg-Warning text-center">
-                <h2>Dar debaja a un cliente</h2>
+            <div class="modal-header">
+                <h2>Baja del cliente <span id="num_client"></span></h2>
             </div>
             <div class="modal-body">
-                <p>Esta acción es irreversible. ¿Estás seguro que quieres dar debaja a este cliente?</p><br>
+                <p><span>Esta acción es irreversible.</span> ¿Estás seguro que quieres dar debaja a este cliente?</p>
                 <form action="<?php constant('URL');?>admin/delete" method="POST">
                     <input type="hidden" name="eliminar" id="eliminar" value="">
-                    <label for="passEjecutivo">Ingrese su contraseña</label><br>
-                    <input type="text" id="passEjecutivo" name="passEjecutivo" required> <br>
-                    <br>
-                    <div>
-                        <button type="submit" class="btn">Confirmar</button>
-                        <button type="button" onclick="closedModal()" class="btn">Cancelar</button>
+                    <input type="password" id="passEjecutivo" name="passEjecutivo" placeholder="Ingrese contraseña" required>               
+                    <div class="content-buttons">
+                        <button type="button" onclick="closedModal()" class="btn bg-error btn-cancel">Cancelar</button>
+                        <button type="submit" class="btn bg-success btn-confirm">Confirmar</button>
                     </div>
                 </form>
             </div>

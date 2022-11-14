@@ -12,6 +12,24 @@
             height: auto;
             margin:auto;
         }
+        table {
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 15px;
+	        border-width: 1px;
+	        border-spacing: 0px;
+	        border-style: solid;
+	        border-collapse: separate;
+            background-color: #fff;   
+        }
+
+        tr, td {
+            border-width: 1px;
+            padding: 5px;
+            border-style: solid;
+            border-color: black;
+            background-color: #fff;
+        }
 
     </style>
 </head>
@@ -20,17 +38,13 @@
     <table>
         <thead>
             <tr>
-                <td>Préstamo Resultados</td>
+                <td colspan="2" rowspan="2">Préstamo Resultados</td>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>
-                    Pago Mensual
-                </td>
-                <td>
-                    $<?php echo $this -> d['pago'];?>
-                </td>
+                <td>Pago Mensual</td>
+                <td>$<?php echo $this -> d['pago'];?></td>
             </tr>
             <tr>
                 <td>Cantidad del Préstamo</td>

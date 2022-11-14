@@ -1,6 +1,14 @@
-const Pais   = document.getElementById('pais');
-const Estado = document.getElementById('estado');
-const Ciudad = document.getElementById('ciudad');
+const Pais      = document.getElementById('pais');
+const Estado    = document.getElementById('estado');
+const Ciudad    = document.getElementById('ciudad');
+const Datos     = document.getElementById('datos');
+const Domicilio = document.getElementById('domicilio');
+const Contacto  = document.getElementById('contacto');
+const Li2       = document.getElementById('2');
+const Li3       = document.getElementById('3');
+const Next      = document.getElementById('next');
+const Previus   = document.getElementById('previous');
+const Submit    = document.getElementById('submit');
 
 var pais           = new Array();
 var estado         = new Array();
@@ -66,85 +74,44 @@ function getCiudades(select){
     });
 }
 
-//jQuery time
-var current_fs, next_fs, previous_fs; //fieldsets
-var left, opacity, scale; //fieldset properties which we will animate
-var animating; //flag to prevent quick multi-click glitches
+function classExist(clase){
+    let exist = clase.classList;
 
-$(".next").click(function(){
-    if(animating) return false;
-    animating = true;
-  
-    current_fs = $(this).parent();
-    next_fs = $(this).parent().next();
-  
-    //activate next step on progressbar using the index of next_fs
-    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-  
-    //show the next fieldset
-    next_fs.show(); 
-    //hide the current fieldset with style
-    current_fs.animate({opacity: 0}, {
-        step: function(now, mx) {
-        //as the opacity of current_fs reduces to 0 - stored in "now"
-        //1. scale current_fs down to 80%
-        scale = 1 - (1 - now) * 0.2;
-        //2. bring next_fs from the right(50%)
-        left = (now * 50)+"%";
-        //3. increase opacity of next_fs to 1 as it moves in
-        opacity = 1 - now;
-        current_fs.css({
-            'transform': 'scale('+scale+')',
-            'position': 'absolute'
-        });
-        next_fs.css({'left': left, 'opacity': opacity});
-        }, 
-        duration: 800, 
-        complete: function(){
-            current_fs.hide();
-            animating = false;
-        }, 
-        //this comes from the custom easing plugin
-        easing: 'easeInOutBack'
-    });
+    if (exist[0] !== 'active') {
+        return false;
+    }
+
+    return true;
+}
+
+Next.addEventListener('click',() =>{
+
+    if (classExist(Li2) && classExist(Li3) === false) {
+        Domicilio.style.display = "none";
+        Contacto.style.display = "block";
+        Next.style.display = "none";
+        Li3.classList.add('active');
+        Submit.style.display = "block";
+    } else {
+        Datos.style.display = "none";
+        Domicilio.style.display = "block";
+        Li2.classList.add('active');
+        Previus.style.display = 'inline-block';
+    }
 });
 
-$(".previous").click(function(){
-    if(animating) return false;
-    animating = true;
-  
-    current_fs = $(this).parent();
-    previous_fs = $(this).parent().prev();
-  
-    //de-activate current step on progressbar
-    $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-  
-    //show the previous fieldset
-    previous_fs.show(); 
-    
-    //hide the current fieldset with style
-    current_fs.animate({opacity: 0}, {
-        step: function(now, mx) {
-            //as the opacity of current_fs reduces to 0 - stored in "now"
-            //1. scale previous_fs from 80% to 100%
-            scale = 0.8 + (1 - now) * 0.2;
-            //2. take current_fs to the right(50%) - from 0%
-            left = ((1-now) * 50)+"%";
-            //3. increase opacity of previous_fs to 1 as it moves in
-            opacity = 1 - now;
-            current_fs.css({'left': left});
-            previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-        }, 
-        duration: 800, 
-        complete: function(){
-            current_fs.hide();
-            animating = false;
-        }, 
-        //this comes from the custom easing plugin
-        easing: 'easeInOutBack'
-    });
-});
+Previus.addEventListener('click',() =>{
 
-$(".submit").click(function(){
-    return false;
-})
+    if (classExist(Li2) && classExist(Li3)) {
+        Contacto.style.display = "none";
+        Domicilio.style.display = "block";
+        Li3.classList.remove('active');
+        Next.style.display = "inline-block";
+        Submit.style.display = "none";
+    } else {
+        Datos.style.display = "block";
+        Domicilio.style.display = "none";
+        Previus.style.display = 'none';
+        Li2.classList.remove('active');
+    }
+});

@@ -33,8 +33,13 @@
                     'fe_asignado'  => $this -> fe_asignado,
                     'status'       => $this -> status
                 ]);
+
+                if ($this -> sendMoney()) {
+                    return true;
+                }
+
+                return false;
                 
-                return true;
             } catch (PDOException $e) {
                 echo $e;
                 return false;
@@ -56,9 +61,33 @@
                 return false;
             }
         }
+
+        public function sendMoney(){
+            try {
+                $query = $this -> prepare('UPDATE cuenta SET saldo = :saldo WHERE num_client = :num_client');
+                $query -> execute([
+                    'num_client'   => $this -> num_client,
+                    'saldo'        => $this -> monto
+                ]);
+                
+                return true;
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
         
         public function setNum_prestamo(){ 
-            $this -> num_prestamo = $this -> num_client . '-'. date('y-n-d');
+            try {
+                $query = $this -> prepare('SELECT id FROM prestamos ORDER by id DESC LIMIT 1');
+                $query -> execute(); 
+                $cant = $query -> fetch(PDO::FETCH_ASSOC);
+
+            } catch (PDOException $e){
+                echo $e;
+            }
+
+            $this -> num_prestamo = $this -> num_client . '-'. date('y-n-d') . '-' . $cant['id'] + 1;
         }
         public function setNum_client   ($num_client  ){ $this -> num_client   = $num_client   ;}
         public function setMonto        ($monto       ){ $this -> monto        = $monto        ;}

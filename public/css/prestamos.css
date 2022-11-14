@@ -22,6 +22,7 @@ select, input {
   margin-top: 10px; }
 
 table {
+  width: 100%;
   margin-top: 15px;
   margin-bottom: 15px;
   border-width: 1px;
@@ -35,5 +36,9 @@ table {
     border-style: solid;
     border-color: black;
     background-color: #fff; }
+
+.span-error {
+  color: red;
+  font-size: 12px; }
 
 /*# sourceMappingURL=prestamos.css.map */

@@ -8,34 +8,45 @@
     left: 50%;
     transform: translate(calc(-50% + 80px), 20%);
     
-    fieldset {
-        background-color: #fff;
-        border: 0 none;
-        border-radius: 3px;
-        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-        padding: 20px 30px;
-        box-sizing: border-box;
-        width: 80%;
+    .form-content {
         margin: 0 10%;
+        width: 80%;
+        padding: 20px;
+        background-color: #fff;
+        border-style: none;
+        border-radius: 10px;
+        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+        box-sizing: border-box;
         position: relative;
 
-        &:not(:first-of-type){
-            display: none;
+        fieldset {
+            border-style:none;
+            margin: 0 10%;
+    
+            &:not(:first-of-type){
+                display: none;
+            }
+        }
+    
+        input {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            color: #2C3E50;
+            font-size: 13px;
+        }
+
+        #curp {
+            text-transform: uppercase;
+        }
+        
+        #email {
+            text-transform: lowercase;
         }
     }
-
-    input {
-        padding: 15px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        width: 100%;
-        box-sizing: border-box;
-        font-family: montserrat;
-        color: #2C3E50;
-        font-size: 13px;
-    }
-    
 }
 
 .fs-title {
@@ -120,25 +131,120 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-  }
-
-#curp {
-    text-transform: uppercase;
 }
 
-.btn-signup {
-    padding: 12px 40px;
-    width: 100%;
-    margin-top: 5px;
-    border:solid #000 1px;
-    border-radius: 10px;
+.align-right { 
+    display:inline-flex;
+    width: 50%;
+    justify-content: end;
+
+    .btn-next {
+        display:inline-block;
+        width: 30px;
+        height: auto;
+        background-color: #fff;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #fff;
+        border-radius: 55%;
+        margin-top: 5px;
+        font-size: 30px;
+        cursor: pointer;
+        text-align: right;
+        margin-right: 10px;
+    
+        i {
+            &:hover {
+                color: #333;
+            }
+        }
+    }
+     
+}
+
+.align-left{ 
     display: inline-block;
-    font-size: 16px;
+    width: 40%;
+    
+    .btn-previous {
+        display:none;
+        width: 30px;
+        height: auto;
+        background-color: #fff;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #fff;
+        border-radius: 55%;
+        margin-top: 5px;
+        font-size: 30px;
+        margin-right: 5px;
+        margin-left: 30px;
+        cursor: pointer;
+        
+        i {
+            &:hover {
+                color: #333;
+            }
+        }
+    }
+    
+}
+.btn-back {
+    padding: 2px 10px;
+    background-color: #3e8692;
+    border-style:solid;
+    border-width: 1px;
+    border-color: #000;
+    border-radius: 10px;
+    color: #fff;
+    margin-bottom: 10px;
     cursor: pointer;
+
+    &:hover {
+        background-color: #387984;
+    }
+}
+
+.btn-submit {
+    display: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #3e8692;
+    border-radius: 10px;
+    color: #fff;
+    margin-left: 50%;
+    font-weight: bold;
+
+    &:hover {
+        background-color: #0d4755;
+    }
 }
 
 @media screen and (max-width: 768px) {
     #msform {
         transform: translate(-50%, 10%);
     }
+}
+
+span[data-descr] {
+    position: relative;
+    text-decoration: underline;
+    color: #000;
+    cursor: help;
+    
+    &:hover::after, &:focus::after{
+        content: attr(data-descr);
+        position: absolute;
+        left: 0;
+        top: 24px;
+        min-width: 200px;
+        border: 1px #aaaaaa solid;
+        border-radius: 10px;
+        background-color: #e5e5e5;
+        padding: 12px;
+        color: #000000;
+        font-size: 14px;
+        z-index: 1;
+    }
+
 }

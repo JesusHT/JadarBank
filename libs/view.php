@@ -5,7 +5,7 @@
             $this->d = $data;
             $this->handleMessages();
 
-            if (!empty($_GET['url']) && $_GET['url'] !== 'recuperar') {
+            if (!empty($_GET['url']) && $_GET['url'] !== 'recuperar' && $_GET['url'] !== 'registro' && strpos($_GET['url'], 'registro') !== 0) {
                 require_once 'config/session.php';
             }       
 
@@ -103,7 +103,7 @@
 
         public function showWarning(){
             if(array_key_exists('warning', $this->d)){
-                echo '<div class="bg-Warning">'.$this->d['warning'].'</div>';
+                echo '<div class="bg-Warning"><b>'.$this->d['warning'].'</b></div>';
             }
         }
 
