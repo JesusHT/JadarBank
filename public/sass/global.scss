@@ -1,3 +1,6 @@
+// Import css-icons (https://fontawesome.com/icons)
+@import url(https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css);
+
 //Global background-colors
     
     //Color palette
@@ -29,18 +32,20 @@
     margin: 0;
 }
 
-body {
-    background-color: $body-color;
-}
-
-// Import css-icons (https://fontawesome.com/icons)
-
-@import url(https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css);
-@import url(../css/nav.css);
-
 // Import fonts
 
+@font-face {
+    font-family: 'Antic Didone';
+    src: url('../fonts/Antic_Didone.ttf');
+}
 
+body {
+    background-color: $body-color;
+    font-family: 'Antic Didone'!important;
+    font-weight: bold;
+}
+
+@import url(../css/nav.css);
 
 // Background-color message
 $message-color: (

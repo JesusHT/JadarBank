@@ -19,6 +19,7 @@
         <div class="header">
                 <div class="content-img">
                     <img src="<?php echo constant('URL');?>public/img/<?php echo $user['img_client']; ?>" alt="Imagen de perfil">
+                    <p>Número de cuenta: <?php echo $user['num_client']; ?></p>
                     <p><?php echo $user['name'];?></p>
                 </div>
             </div>
@@ -29,9 +30,6 @@
                     <li><i class="icono fas fa-phone-alt"></i>     <span> Télefono:         </span><?php echo $user['tel']                                                               ;?></li>
                     <li><i class="icono fas fa-calendar-alt"></i>  <span> Fecha nacimiento: </span><?php echo $user['fena']                                                              ;?></li>
                 </ul>
-            </div>
-            <div class="footer">
-                
             </div>
         </section>
     </main>  

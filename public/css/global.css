@@ -4,8 +4,13 @@
   padding: 0;
   margin: 0; }
 
+@font-face {
+  font-family: 'Antic Didone';
+  src: url("../fonts/Antic_Didone.ttf"); }
 body {
-  background-color: #e5e5e5; }
+  background-color: #e5e5e5;
+  font-family: "Antic Didone" !important;
+  font-weight: bold; }
 
 .Messeges-Error {
   background-color: #cc0605;

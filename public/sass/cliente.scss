@@ -13,7 +13,6 @@
         'header header header header header'
         'body body body body body'
         'body body body body body'
-        'footer footer footer footer footer'
     ;
 
     .massage {
@@ -57,37 +56,28 @@
     }
 
     .body {
-        margin-top: 20px;
         grid-area: body;
+        margin-top: 20px;
+        height: 60vh;
         padding: 10px;
         background-color: #D9D9D9;
         border-radius: 10px;
         box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 
-        .lista-datos {
-            width: 50%;
-            list-style: none;
+        .content-buttons {
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            span {
+            button {
+                font-family: 'Antic Didone';
                 font-weight: bold;
             }
-
-            li {
-                padding: 5px 0;
-            }
-
-            .icono {
-                margin-right: 1rem;
-                font-size: 1.2rem;
-                vertical-align: middle;
-            }
         }
-    }
 
-    .footer {
-        grid-area: footer;
-        border-style: solid;
-        border-width: 1px;
-        border-color:#000;
+        .btn span {
+            display: block;
+        }
     }
 }

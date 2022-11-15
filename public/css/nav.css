@@ -22,6 +22,7 @@
   padding: 0px 80px 40px 10px;
   z-index: 999; }
   .menu .menu-content {
+    height: 93.1vh;
     position: sticky;
     top: 0; }
   .menu .img {
@@ -48,7 +49,6 @@
         border-collapse: collapse;
         border-spacing: 0;
         color: #999;
-        font-family: arial;
         font-size: 14px;
         text-decoration: none;
         -webkit-transition: all .1s linear;
@@ -61,8 +61,7 @@
         padding-left: 10px;
         position: relative;
         display: table-cell;
-        vertical-align: middle;
-        font-family: 'Titillium Web', sans-serif; }
+        vertical-align: middle; }
   .menu ul.logout {
     position: fixed;
     left: 0;

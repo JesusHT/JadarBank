@@ -28,8 +28,7 @@
     padding: 5px 0px;
     font-size: 12px;
     text-align: left;
-    margin-left: 15px;
-    font-family: 'Roboto', sans-serif; }
+    margin-left: 15px; }
     .card p span {
       font-weight: bold; }
   .card h3 {
@@ -37,8 +36,7 @@
     word-break: break-all;
     margin-top: 10px;
     padding: 10px;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif; }
+    font-size: 16px; }
   .card .btn-solicitud {
     float: left;
     margin-left: 10px;

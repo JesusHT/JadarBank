@@ -21,7 +21,27 @@
                 </div>
             </div>
             <div class="body">
-                <p>Saldo actual: mxn</p>
+                <p class="mb-1">Clabe interbancaria: </p>
+                <p class="mb-1">Número de cuenta: <?php echo $cliente['num_client']; ?></p>
+                <p class="mb-1">Saldo actual: mxn</p>
+                <div class="content-buttons">
+                    <button class="btn">
+                        <span><i class="fa-regular fa-money-bill"></i></span>
+                        Retiros          
+                    </button>
+                    <button class="btn">
+                        <span><i class="fa-light fa-money-bill-transfer"></i></span>
+                        Depositos        
+                    </button>
+                    <button class="btn">
+                        <span><i class="fa-regular fa-memo-circle-check"></i></span>
+                        Estado de cuenta 
+                    </button>
+                    <button class="btn">
+                        <span><i class="fa-regular fa-hand-holding-dollar"></i></span>
+                        Prestamo personal
+                    </button>
+                </div>
             </div>
         </section>
     </main>  

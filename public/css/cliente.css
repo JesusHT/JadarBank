@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-area: repeat(4, 1fr);
-  grid-template-areas: "massage massage massage massage massage" "header header header header header" "body body body body body" "body body body body body" "footer footer footer footer footer"; }
+  grid-template-areas: "massage massage massage massage massage" "header header header header header" "body body body body body" "body body body body body"; }
   .content .massage {
     grid-area: massage;
     padding: 10px;
@@ -34,27 +34,22 @@
         font-size: 20px;
         font-weight: bold; }
   .content .body {
-    margin-top: 20px;
     grid-area: body;
+    margin-top: 20px;
+    height: 60vh;
     padding: 10px;
     background-color: #D9D9D9;
     border-radius: 10px;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); }
-    .content .body .lista-datos {
-      width: 50%;
-      list-style: none; }
-      .content .body .lista-datos span {
+    .content .body .content-buttons {
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .content .body .content-buttons button {
+        font-family: 'Antic Didone';
         font-weight: bold; }
-      .content .body .lista-datos li {
-        padding: 5px 0; }
-      .content .body .lista-datos .icono {
-        margin-right: 1rem;
-        font-size: 1.2rem;
-        vertical-align: middle; }
-  .content .footer {
-    grid-area: footer;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #000; }
+    .content .body .btn span {
+      display: block; }
 
 /*# sourceMappingURL=cliente.css.map */

@@ -55,7 +55,7 @@
                <a href="<?php echo constant('URL');?>login/logout">
                      <i class="fa fa-power-off fa-2x"></i>
                     <span class="nav-text">
-                        Logout
+                        Cerrar sesión 
                     </span>
                 </a>
             </li>  
@@ -65,17 +65,8 @@
 
 <script>
     const menu    = document.getElementById('menu');
-    const content = document.getElementById('menu-content');
-
-    calScreen();
-
+    
     menu.addEventListener('click', () => {
         menu.classList.toggle('menu-activo');
     });
-
-    function calScreen(){
-        if (screen.height === 1080) {
-            content.style.height = "895px";
-        }
-    }
 </script>

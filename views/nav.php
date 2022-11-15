@@ -71,7 +71,7 @@
              <a href="<?php echo constant('URL');?>login/logout">
                   <i class="fa fa-power-off fa-2x"></i> 
                   <span>
-                      Logout
+                        Cerrar sesión 
                   </span>
               </a>
           </li>  
