@@ -119,6 +119,9 @@ body {
 .bg-error {
   background-color: #cc0605; }
 
+.bg-warning {
+  background-color: #e5be01; }
+
 .text-white {
   color: #fff; }
 
