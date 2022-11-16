@@ -25,11 +25,11 @@
                 <p class="mb-1">Número de cuenta: <?php echo $cliente['num_client']; ?></p>
                 <p class="mb-1">Saldo actual: mxn</p>
                 <div class="content-buttons">
-                    <button class="btn">
+                    <button class="btn" onclick="openModal(<?php echo $cliente['id']; ?>,`<?php echo $cliente['num_client']; ?>`)">
                         <span><i class="fa-regular fa-money-bill"></i></span>
                         Retiros          
                     </button>
-                    <button class="btn">
+                    <button class="btn" onclick="openModal(<?php echo $cliente['id']; ?>,`<?php echo $cliente['num_client']; ?>`)">
                         <span><i class="fa-light fa-money-bill-transfer"></i></span>
                         Depositos        
                     </button>
@@ -37,13 +37,24 @@
                         <span><i class="fa-regular fa-memo-circle-check"></i></span>
                         Estado de cuenta 
                     </button>
-                    <button class="btn">
+                    <button class="btn" onclick="openModal(<?php echo $cliente['id']; ?>,`<?php echo $cliente['num_client']; ?>`)">
                         <span><i class="fa-regular fa-hand-holding-dollar"></i></span>
                         Prestamo personal
                     </button>
                 </div>
             </div>
         </section>
-    </main>  
+    </main> 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Baja del cliente <span id="num_client"></span></h2>
+            </div>
+            <div class="modal-body">
+               <input type="hidden" name="eliminar" id="eliminar">
+            </div>
+        </div>
+    </div>
+    <script src="<?php echo constant('URL'); ?>public/js/admin.js"></script>
 </body>
 </html>
