@@ -27,6 +27,8 @@
         const ERROR_DATA_FORMAT_STRING               = "6d01221233076b26acfd207f75bfa9cd";
         
         const ERROR_NOEXIST_CLIENT                   = "2194aalknd11c37cf678cf3adad3as81";
+        const ERROR_RETIRO                           = "6d01221233076b2611c37cf678cf3ada";
+
 
         private $errorsList = [];
 
@@ -64,7 +66,9 @@
                 Errors::ERROR_DATA_FORMAT_STRING                => 'La petición no puede contener strings',
                 
                 # Otros Errores
-                Errors::ERROR_NOEXIST_CLIENT                    => 'No existe el cliente!'
+                Errors::ERROR_NOEXIST_CLIENT                    => 'No existe el cliente!',
+
+                Errors::ERROR_RETIRO                            => 'No dispones de la cantidad suficiente para hacer esta transacción.'
 
             ];
         }

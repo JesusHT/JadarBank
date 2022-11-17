@@ -22,18 +22,20 @@ $bg-secondary-modal:rgb(0,0,0);
         margin: auto;
         padding: 0;
         width: 40%;
+        min-width: 400px;
         border-radius: 10px;
         box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+        .modal-header {
+            padding: 2px 16px;
+            h2 {
+                padding-top: 10px;
+            }
+        } 
+        .modal-body {
+            padding: 5px 15px;
+    
+        }
     }
       
-    .modal-header {
-        padding: 2px 16px;
-        h2 {
-            padding-top: 10px;
-        }
-    } 
-    .modal-body {
-        padding: 5px 15px;
-
-    }
+    
 }

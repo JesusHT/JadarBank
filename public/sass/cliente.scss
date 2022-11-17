@@ -79,5 +79,70 @@
         .btn span {
             display: block;
         }
+
+        p > span {
+            color: #0d4755;
+        }
+
+        
     }
+}
+
+.modal-body {
+    span {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    input {
+        width: 25%;
+        border-style: none;
+        border-bottom: 1px solid;
+        border-color: #000;
+        background-color: transparent;
+        outline: none;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .error {
+        color: #cc0605;
+        border-color: #cc0605;
+    }
+
+    .content-button {
+        display: flex;
+        justify-content: right;
+    }
+}
+
+.modal-header {
+    width: auto;
+    
+    
+    .title {
+        display: inline-block;   
+        width: 50%;
+    }
+
+    .closed {
+        display: inline-flex;
+        width: 48%;
+        justify-content: right;
+        
+        a {
+            cursor: pointer;
+            font-size: 20px;
+
+            &:hover {
+                color: rgba(0, 0, 0, 0.808);
+            }
+        }
+
+    }
+}
+
+.modal {
+    display: block!important;
 }

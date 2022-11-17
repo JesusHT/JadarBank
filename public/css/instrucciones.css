@@ -1,0 +1,31 @@
+@import url(../css/global.css);
+.content {
+  width: auto;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  border-style: none;
+  border-radius: 10px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); }
+  .content .content-img {
+    display: flex;
+    justify-content: center; }
+    .content .content-img img {
+      width: 300px;
+      height: auto; }
+
+.btn-back {
+  background-color: #0d4755;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000;
+  color: #fff;
+  padding: 10px;
+  min-width: 100px;
+  min-height: auto;
+  border-radius: 10px;
+  cursor: pointer; }
+  .btn-back:hover {
+    background-color: #3e8692; }
+
+/*# sourceMappingURL=instrucciones.css.map */

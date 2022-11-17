@@ -17,13 +17,14 @@
     margin: auto;
     padding: 0;
     width: 40%;
+    min-width: 400px;
     border-radius: 10px;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); }
-  .modal .modal-header {
-    padding: 2px 16px; }
-    .modal .modal-header h2 {
-      padding-top: 10px; }
-  .modal .modal-body {
-    padding: 5px 15px; }
+    .modal .modal-content .modal-header {
+      padding: 2px 16px; }
+      .modal .modal-content .modal-header h2 {
+        padding-top: 10px; }
+    .modal .modal-content .modal-body {
+      padding: 5px 15px; }
 
 /*# sourceMappingURL=modal.css.map */

@@ -51,5 +51,45 @@
         font-weight: bold; }
     .content .body .btn span {
       display: block; }
+    .content .body p > span {
+      color: #0d4755; }
+
+.modal-body span {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 10px; }
+.modal-body input {
+  width: 25%;
+  border-style: none;
+  border-bottom: 1px solid;
+  border-color: #000;
+  background-color: transparent;
+  outline: none;
+  height: 40px;
+  font-size: 16px; }
+.modal-body .error {
+  color: #cc0605;
+  border-color: #cc0605; }
+.modal-body .content-button {
+  display: flex;
+  justify-content: right; }
+
+.modal-header {
+  width: auto; }
+  .modal-header .title {
+    display: inline-block;
+    width: 50%; }
+  .modal-header .closed {
+    display: inline-flex;
+    width: 48%;
+    justify-content: right; }
+    .modal-header .closed a {
+      cursor: pointer;
+      font-size: 20px; }
+      .modal-header .closed a:hover {
+        color: rgba(0, 0, 0, 0.808); }
+
+.modal {
+  display: block !important; }
 
 /*# sourceMappingURL=cliente.css.map */

@@ -1,3 +1,6 @@
+<?php  
+    $account = $this -> d['account'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +13,7 @@
 </head>
 <body>
     <?php $this -> showMessages();?>
+
     <main class="main">
         <?php $this -> navController(); ?>
         <section class="content" id="content-main">
@@ -21,15 +25,18 @@
                 </div>
             </div>
             <div class="body">
-                <p class="mb-1">Clabe interbancaria: </p>
-                <p class="mb-1">Número de cuenta: <?php echo $cliente['num_client']; ?></p>
-                <p class="mb-1">Saldo actual: mxn</p>
+                <p class="mb-1"><span>Número de cuenta:</span> <?php echo $cliente['num_client']; ?></p>
+                <p class="mb-1"><span>Clabe interbancaria: </span><?php echo $account['num_cuenta']; ?> </p>
+                <p class="mb-1"><span>Saldo actual:</span> $<?php echo $account['saldo']; ?> mxn</p>
+                <p class="mb-1"><span>Crédito disponible:</span> $<?php echo $account['credito'] - $account['usado']; ?> mxn</p>
                 <div class="content-buttons">
-                    <button class="btn" onclick="openModal(<?php echo $cliente['id']; ?>,`<?php echo $cliente['num_client']; ?>`)">
-                        <span><i class="fa-regular fa-money-bill"></i></span>
-                        Retiros          
-                    </button>
-                    <button class="btn" onclick="openModal(<?php echo $cliente['id']; ?>,`<?php echo $cliente['num_client']; ?>`)">
+                    <form action="<?php echo constant('URL');?>main/retiros" method="POST">
+                        <button class="btn" >
+                            <span><i class="fa-regular fa-money-bill"></i></span>
+                            Retiros          
+                        </button>
+                    </form>
+                    <button class="btn" onclick="openModal(deposito)">
                         <span><i class="fa-light fa-money-bill-transfer"></i></span>
                         Depositos        
                     </button>
@@ -37,7 +44,7 @@
                         <span><i class="fa-regular fa-memo-circle-check"></i></span>
                         Estado de cuenta 
                     </button>
-                    <button class="btn" onclick="openModal(<?php echo $cliente['id']; ?>,`<?php echo $cliente['num_client']; ?>`)">
+                    <button class="btn" onclick="openModal(prestamos)">
                         <span><i class="fa-regular fa-hand-holding-dollar"></i></span>
                         Prestamo personal
                     </button>
@@ -45,16 +52,5 @@
             </div>
         </section>
     </main> 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Baja del cliente <span id="num_client"></span></h2>
-            </div>
-            <div class="modal-body">
-               <input type="hidden" name="eliminar" id="eliminar">
-            </div>
-        </div>
-    </div>
-    <script src="<?php echo constant('URL'); ?>public/js/admin.js"></script>
 </body>
 </html>

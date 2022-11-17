@@ -19,7 +19,7 @@
             $this -> view = new View();
             $this -> views = [
                 "admin" => ["admin", "nuevo", "transacciones", "prestamos", "editar", "ver", "tabla", "ayuda", "perfil", "solicitud"], 
-                "user" =>  ["main", "acciones", "consulta", "ayuda", "perfil"]];
+                "user" =>  ["main", "acciones", "consulta", "ayuda", "perfil", "instrucciones"]];
         }
 
         function loadModel($model){
@@ -155,20 +155,19 @@
                 if ($_GET['url'] !== 'editar' && strpos($_GET['url'], 'editar') !== 0) {
                     unset($_SESSION['editar']);
                 }
-            }
 
-            if (!empty($_GET['url'])) {
                 if ($_GET['url'] !== 'ver' && strpos($_GET['url'], 'ver') !== 0) {
                     unset($_SESSION['ver']);
                 }
-            }
 
-            if (!empty($_GET['url'])) {
                 if ($_GET['url'] !== 'prestamo' && strpos($_GET['url'], 'prestamo') !== 0) {
                     unset($_SESSION['prestamo']);
                 }
-            }
 
+                if($_GET['url'] !== 'instrucciones' && strpos($_GET['url'], 'instrucciones') !== 0){
+                    unset($_SESSION['accion']);
+                }
+            }
         }
 
         public function calFecha($n){
