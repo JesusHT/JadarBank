@@ -76,6 +76,14 @@
             ]);
         }
 
+        function tranferencias(){
+            $account = $this -> account();
+
+            $this -> view -> render("main/tranferencias",[
+                "cuenta" => $account
+            ]);
+        }
+
         function cerrar(){
             $this -> redirect("main");
         }

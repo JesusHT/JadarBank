@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 14-11-2022 a las 00:00:03
+-- Tiempo de generación: 18-11-2022 a las 00:39:55
 -- Versión del servidor: 8.0.31-0ubuntu0.22.04.1
 -- Versión de PHP: 8.1.2-1ubuntu2.8
 
@@ -118,6 +118,19 @@ INSERT INTO `ejecutivo` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `guardados`
+--
+
+CREATE TABLE `guardados` (
+  `id` int NOT NULL,
+  `num_client` varchar(50) NOT NULL,
+  `clabeInterbancaria` bigint NOT NULL,
+  `alias` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `movimientos`
 --
 
@@ -173,6 +186,12 @@ ALTER TABLE `ejecutivo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `guardados`
+--
+ALTER TABLE `guardados`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `movimientos`
 --
 ALTER TABLE `movimientos`
@@ -207,6 +226,12 @@ ALTER TABLE `cuenta`
 --
 ALTER TABLE `ejecutivo`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `guardados`
+--
+ALTER TABLE `guardados`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `movimientos`

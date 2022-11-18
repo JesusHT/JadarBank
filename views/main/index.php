@@ -36,10 +36,12 @@
                             Retiros          
                         </button>
                     </form>
-                    <button class="btn" onclick="openModal(deposito)">
-                        <span><i class="fa-light fa-money-bill-transfer"></i></span>
-                        Depositos        
-                    </button>
+                    <form action="<?php echo constant('URL');?>main/tranferencias" method="post">
+                        <button class="btn" onclick="openModal(deposito)">
+                            <span><i class="fa-light fa-money-bill-transfer"></i></span>
+                            Tranferencias        
+                        </button>
+                    </form>
                     <button class="btn">
                         <span><i class="fa-regular fa-memo-circle-check"></i></span>
                         Estado de cuenta 

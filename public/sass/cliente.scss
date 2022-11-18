@@ -157,3 +157,25 @@
 .modal {
     display: block!important;
 }
+
+.activo {
+    display: block!important;
+}
+
+.inactivo {
+    display: none!important;
+
+}
+
+#Importe, #Destinatario, #Motivo, #nuevo{
+    display: none;
+    padding: 10px;
+
+    h3 {
+        padding-bottom: 10px;
+    }
+}
+
+input[type=radio] {
+    display: none;
+}
