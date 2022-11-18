@@ -26,6 +26,21 @@
             $this -> usado      = $array['usado'];
         }
 
+        function updateSaldo($cant){
+            $nuevoSaldo = $this -> saldo - $cant;
+
+            try {
+                $query = $this -> prepare('UPDATE cuenta SET saldo = :saldo WHERE num_client = :num_client');
+                $query -> execute(['saldo' => $nuevoSaldo, 'num_client' => $this -> num_client]);
+
+                return true;
+
+            } catch (PDOException $e){
+                echo $e;
+                return false;
+            }
+        }
+
         function cantSuficiente($cant){
             if ($this -> saldo >= $cant) {
                 return false;

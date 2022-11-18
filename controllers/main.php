@@ -53,6 +53,7 @@
                     return;
                 }
 
+                $this -> model -> updateSaldo($cant);
                 $this -> generateQR($num_client, $cant);
 
                 $_SESSION['accion'] = 'Retiro';

@@ -96,7 +96,7 @@
     }
 
     input {
-        width: 25%;
+        width: 42%;
         border-style: none;
         border-bottom: 1px solid;
         border-color: #000;
@@ -107,6 +107,9 @@
     }
 
     .error {
+        margin-top: 10px;
+        background-color: #cc05058c;
+        border-radius: 10px;
         color: #cc0605;
         border-color: #cc0605;
     }
@@ -114,6 +117,10 @@
     .content-button {
         display: flex;
         justify-content: right;
+    }
+
+    input[type=number]{
+        -moz-appearance: textfield;
     }
 }
 
@@ -124,14 +131,18 @@
     .title {
         display: inline-block;   
         width: 50%;
+        h2 {
+            margin-left: 15px;
+        }
     }
 
     .closed {
         display: inline-flex;
-        width: 48%;
+        width: 45%;
         justify-content: right;
         
         a {
+            color: #000;
             cursor: pointer;
             font-size: 20px;
 

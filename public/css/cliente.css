@@ -59,7 +59,7 @@
   font-size: 12px;
   margin-bottom: 10px; }
 .modal-body input {
-  width: 25%;
+  width: 42%;
   border-style: none;
   border-bottom: 1px solid;
   border-color: #000;
@@ -68,22 +68,30 @@
   height: 40px;
   font-size: 16px; }
 .modal-body .error {
+  margin-top: 10px;
+  background-color: #cc05058c;
+  border-radius: 10px;
   color: #cc0605;
   border-color: #cc0605; }
 .modal-body .content-button {
   display: flex;
   justify-content: right; }
+.modal-body input[type=number] {
+  -moz-appearance: textfield; }
 
 .modal-header {
   width: auto; }
   .modal-header .title {
     display: inline-block;
     width: 50%; }
+    .modal-header .title h2 {
+      margin-left: 15px; }
   .modal-header .closed {
     display: inline-flex;
-    width: 48%;
+    width: 45%;
     justify-content: right; }
     .modal-header .closed a {
+      color: #000;
       cursor: pointer;
       font-size: 20px; }
       .modal-header .closed a:hover {

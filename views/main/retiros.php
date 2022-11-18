@@ -9,9 +9,7 @@
                 <h2>Retiros</h2>
             </div>
             <div class="closed">
-                <form action="<?php echo constant('URL');?>/main/cerrar" method="POST">
-                    <button type="submit"><i class="fa-solid fa-circle-xmark"></i></button>
-                </form>    
+                <a href="<?php echo constant('URL');?>/main/cerrar"><i class="fa-solid fa-circle-xmark"></i></a>
             </div>
             <div class="modal-body">
             <hr>
