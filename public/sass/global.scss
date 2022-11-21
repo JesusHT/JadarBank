@@ -19,6 +19,12 @@
     $error_color:  #cc0605;
     $info_color:   #0096d2;
     $Warning_color:#e5be01;
+
+    // Hover 
+    $h-error_color:   #a60504;
+    $h-info_color:    #0088be;
+    $h-success_color: #007a28;
+    $h-warning_color: #d1ae01;
     
 // Color-fonts
 
@@ -50,10 +56,17 @@ body {
 
 // Background-color message
 $message-color: (
-    "Error": $error_color,
-    "Info": $info_color,
+    "Error":   $error_color,
+    "Info":    $info_color,
     "Success": $success_color,
     "Warning": $Warning_color
+);
+
+$hover-color: (
+    "Error":   $h-error_color,
+    "Info":    $h-info_color,
+    "Success": $h-success_color,
+    "Warning": $h-warning_color
 );
 
 $palette-color: (
@@ -80,6 +93,12 @@ $margin: (
         background-color: $v;
         color: $white_color;
         padding: 15px;
+    }
+}
+
+@each $k, $v in $message-color {
+    .text-#{$k}{
+        color: $v;
     }
 }
 
@@ -116,6 +135,27 @@ $margin: (
     }
 }
 
+@each $k, $v in $message-color {
+    .btn-#{$k}{
+        display: inline-block;
+        padding: 5px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        color: $white_color;
+        background-color: $v;
+        border-style: none;
+        border-radius: 10px;
+    }
+}
+
+@each $k, $v in $hover-color{
+    .btn-#{$k}:hover{
+        background-color: $v;
+    }
+}
+
 .text-white {
     color: $white_color;
 }
@@ -125,10 +165,10 @@ $margin: (
 }
 
 .btn {
+    display: inline-block;
     padding: 5px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     cursor: pointer;
 }
@@ -141,7 +181,29 @@ $margin: (
     text-align: center;
 }
 
-.actual {
-    background: rgb(20, 69, 124) !important;
-    color:#fff!important;
+#paginas {
+
+    ul {
+        margin: 10px 0;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0;
+        padding: 5px;
+
+        a {
+            background: rgb(228, 228, 228);
+            border:solid black 1px;
+            color: rgb(50, 50, 50);
+            padding: 5px 15px;
+            text-decoration: none;
+        }
+    }
+
+    .actual {
+        background: rgb(20, 69, 124) !important;
+        color:#fff!important;
+    }
 }

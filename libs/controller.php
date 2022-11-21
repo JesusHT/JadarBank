@@ -20,6 +20,7 @@
             $this -> views = [
                 "admin" => ["admin", "nuevo", "transacciones", "prestamos", "editar", "ver", "tabla", "ayuda", "perfil", "solicitud"], 
                 "user" =>  ["main", "acciones", "consulta", "ayuda", "perfil", "instrucciones"]];
+            
         }
 
         function loadModel($model){
@@ -36,6 +37,16 @@
         function existPOST($params){
             foreach ($params as $param) {
                 if(!isset($_POST[$param])){
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function existGET($params){
+            foreach ($params as $param) {
+                if(!isset($_GET[$param])){
                     return false;
                 }
             }

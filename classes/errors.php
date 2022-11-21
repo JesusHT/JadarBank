@@ -10,6 +10,7 @@
         const ERROR_ADMIN_UPDATE                     = "bibf47d6b20123dccf2234d7cd3e647d";
         const ERROR_REQUESTS_CUSTOMERS               = "ibf47dj3gsibibf47ahjibihj3gsigjb";
         
+        const ERROR_LOAN                             = "219pjksdjoahud912iuh9ehjahd8912h";
         const ERROR_PRESTAMOS_CANT                   = "hj3gsigd8ssahjdg2f38dsga87d8bg82";
         const ERROR_PRESTAMOS_STATUS                 = "hj3gsibibf47ahjdasdqdg2f38daga87";
         
@@ -28,6 +29,8 @@
         
         const ERROR_NOEXIST_CLIENT                   = "2194aalknd11c37cf678cf3adad3as81";
         const ERROR_RETIRO                           = "6d01221233076b2611c37cf678cf3ada";
+        const ERROR_ACTION                           = "2194aal26d01221alknds81slh23hkas";
+        const ERROR_NOEXIST_NUM_ACCOUNT              = "a9cd22126d01221232194aalknd11307";
 
 
         private $errorsList = [];
@@ -47,6 +50,7 @@
 
                 # Errores de prestamos
                 Errors::ERROR_PRESTAMOS_CANT                    => 'La cantidad del prestamo debe ser minimo 100 pesos y maximo 1,000,000 pesos',
+                Errors::ERROR_LOAN                              => 'No dispones de suficiente linea de credito para relizar esta operación',
                 Errors::ERROR_PRESTAMOS_STATUS                  => 'El cliente tiene un adeudo!',
                 
                 # Errores de sesión 
@@ -67,8 +71,10 @@
                 
                 # Otros Errores
                 Errors::ERROR_NOEXIST_CLIENT                    => 'No existe el cliente!',
+                Errors::ERROR_ACTION                            => 'No se ha podido realizar el movimiento, intentelo mas tarde.',
 
-                Errors::ERROR_RETIRO                            => 'No dispones de la cantidad suficiente para hacer esta transacción.'
+                Errors::ERROR_RETIRO                            => 'No dispones de la cantidad suficiente para hacer esta transacción.',
+                Errors::ERROR_NOEXIST_NUM_ACCOUNT               => 'No existe la cuenta clabe ingresada, asegurse de haber ingresado correctamente el dato.'
 
             ];
         }

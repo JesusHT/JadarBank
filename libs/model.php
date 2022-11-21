@@ -1,7 +1,5 @@
 <?php
 
-    include_once 'libs/model.php';
-
     class Model {
         
         function __construct(){

@@ -1,11 +1,9 @@
 <?php
 
     class AdminModel extends Model {
-        private $status;
 
         function __construct(){
             parent::__construct();
-            $this -> status = 'pendiente';
         }
 
         function validateStatusPrestamos($num_client){

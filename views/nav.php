@@ -1,5 +1,5 @@
 <nav class="menu" id="menu">
-    <button class="button-menu"><i class="fa fa-home fa-2x"></i></button>
+    <button class="button-menu"><i class="fa fa-solid fa-bars"></i></button>
     <div class="menu-content" id="menu-content">
         <ul>
           <li>

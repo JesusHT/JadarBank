@@ -13,7 +13,6 @@
 </head>
 <body>
     <?php $this -> showMessages();?>
-
     <main class="main">
         <?php $this -> navController(); ?>
         <section class="content" id="content-main">
@@ -30,14 +29,16 @@
                 <p class="mb-1"><span>Saldo actual:</span> $<?php echo $account['saldo']; ?> mxn</p>
                 <p class="mb-1"><span>Crédito disponible:</span> $<?php echo $account['credito'] - $account['usado']; ?> mxn</p>
                 <div class="content-buttons">
-                    <form action="<?php echo constant('URL');?>main/retiros" method="POST">
-                        <button class="btn" >
+                    <form action="<?php echo constant('URL');?>main/movimientos" method="GET">
+                        <input type="hidden" name="v" value="retiro">
+                        <button class="btn">
                             <span><i class="fa-regular fa-money-bill"></i></span>
                             Retiros          
                         </button>
                     </form>
-                    <form action="<?php echo constant('URL');?>main/tranferencias" method="post">
-                        <button class="btn" onclick="openModal(deposito)">
+                    <form action="<?php echo constant('URL');?>main/movimientos" method="GET">
+                        <input type="hidden" name="v" value="transferencia">
+                        <button class="btn">
                             <span><i class="fa-light fa-money-bill-transfer"></i></span>
                             Tranferencias        
                         </button>
@@ -46,10 +47,13 @@
                         <span><i class="fa-regular fa-memo-circle-check"></i></span>
                         Estado de cuenta 
                     </button>
-                    <button class="btn" onclick="openModal(prestamos)">
-                        <span><i class="fa-regular fa-hand-holding-dollar"></i></span>
-                        Prestamo personal
-                    </button>
+                    <form action="<?php echo constant('URL');?>main/movimientos" method="GET">
+                        <input type="hidden" name="v" value="prestamo">
+                        <button class="btn">
+                            <span><i class="fa-regular fa-hand-holding-dollar"></i></span>
+                            Prestamo personal
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>

@@ -1,13 +1,12 @@
 <?php  
     $accountClient = $this -> d['cuenta'];
+    $contacts      = $this -> d['contactos'];
 ?>
 <style>
-     .modal-content {
-        transform: translate(0%, 0%)!important;
-     }
+    .modal-content {transform: translate(0%, 100px)!important;}
 </style>
-
 <div id="retiro" class="modal">
+    <?php $this -> showMessages();?>
     <div class="modal-content">
         <div class="modal-header">
             <div class="title">
@@ -19,8 +18,9 @@
         </div>
         <div class="modal-body">
             <hr>
-            <form action="" method="POST">
-                <input type="hidden" name="accion" value="trasferencia">
+            <input type="hidden" name="saldo" id="saldo" value="<?php echo $accountClient['saldo']; ?>">
+            <form action="<?php echo constant('URL');?>main/trasferencia" method="POST">
+                <input type="hidden" name="accion" value="1">
 
                 <!-- DESTINATARIO -->
                 <div id="Destinatario" class="activo">
@@ -31,11 +31,14 @@
                         <input type="text"   name="alias" id="alias"                           class="mb-1" placeholder="Ingrese el alias">
                         <div class="content-button">
                             <button type="button" id="return"  class="btn">Regresar</button>
-                            <button type="button" id="guardar" class="btn">Guardar</button>
+                            <button type="button" id="guardar" class="btn-Success">Continuar</button>
                         </div>
                     </div>
                     <div class="guardados" id="guardados">
-    
+                        <?php if ($contacts !== NULL) echo $contacts;?>
+                        <div class="content-button">
+                            <button type="button" id="btn-select" class="btn-Success" disabled>Continuar</button>
+                        </div>
                     </div>
                 </div>
 
@@ -43,9 +46,10 @@
                 <div id="Importe">
                     <h3>Importe (2-3)</h3>
                     <input type="number" name="cantidad" id="cantidad">
+                    <span>En tu cuenta tienes: $<?php echo $accountClient['saldo']; ?> mxn</span>
 
                     <div class="content-button">
-                        <button type="button" class="btn" id="btn-importe">Continuar</button>
+                        <button type="button" class="btn-Success" id="btn-importe" disabled>Continuar</button>
                     </div>
                 </div>
 
@@ -55,7 +59,7 @@
                     <input type="text" name="motivo" id="motivo">
 
                     <div class="content-button">
-                        <button type="submit" class="btn">Continuar</button>
+                        <button type="submit" class="btn-Success">Continuar</button>
                     </div>
                 </div>
             </form>

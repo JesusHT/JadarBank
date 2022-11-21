@@ -27,7 +27,7 @@
             $query -> execute(['num_client'=> $this -> num_cliente]);
 
             $this->nResultados = $query->fetch(PDO::FETCH_OBJ)->total; 
-            $this->totalPaginas = round($this->nResultados / $this->resultadosPorPagina);
+            $this->totalPaginas = ceil($this->nResultados / $this->resultadosPorPagina);
 
             if(isset($_GET['pagina'])){
                 if(!is_numeric($_GET['pagina'])){
@@ -88,7 +88,6 @@
                     if ($this -> indice == 0) {$i = $this -> indice + 1;}
                     foreach($results as $prestamo){
 
-                        if($prestamo -> num_client !== $this -> num_ejecutivo)
                         $data .=
                                 '<tr>
                                     <td>'. $i                        .'</td>

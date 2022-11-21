@@ -108,8 +108,6 @@
 
                     if ($this -> indice == 0) {$i = $this -> indice + 1;}
                     foreach($results as $user){
-
-                        if($user -> num_client !== $this -> num_ejecutivo)
                         $data .=
                                 '<tr>
                                     <td>'. $i         .'</td>

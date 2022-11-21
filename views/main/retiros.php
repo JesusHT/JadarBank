@@ -1,8 +1,8 @@
 <?php  
     $accountClient = $this -> d['cuenta'];
 ?>
-
 <div id="retiro" class="modal">
+    <?php $this -> showMessages();?>
     <div class="modal-content">
         <div class="modal-header">
             <div class="title">
@@ -15,6 +15,7 @@
             <hr>
             <input type="hidden" name="saldo" id="saldo" value="<?php echo $accountClient['saldo']; ?>">
             <form action="<?php echo constant('URL');?>main/retiro" method="POST">
+                <input type="hidden" name="accion" value="0">
                  <input type="hidden" name="num_client" id="num_client" value="<?php echo $accountClient['num_client']; ?>">
                  <input type="number" name="cant" id="cant">
                  <span>En tu cuenta tienes: $<?php echo $accountClient['saldo']; ?> mxn</span>

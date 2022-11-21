@@ -89,14 +89,14 @@
 }
 
 .modal-body {
+
     span {
         display: block;
         font-size: 12px;
         margin-bottom: 10px;
     }
 
-    input {
-        width: 42%;
+    input[type=text], input[type=number]{
         border-style: none;
         border-bottom: 1px solid;
         border-color: #000;
@@ -104,14 +104,28 @@
         outline: none;
         height: 40px;
         font-size: 16px;
+        margin-bottom: 10px;
     }
 
     .error {
         margin-top: 10px;
-        background-color: #cc05058c;
+        background-color: #cc05056b;
+        padding: 0px 10px;
         border-radius: 10px;
-        color: #cc0605;
-        border-color: #cc0605;
+        color: #000;
+        border-bottom-color: #cc0605;
+        border-bottom-right-radius: unset;
+        border-bottom-left-radius: unset;
+    }
+
+    .cant-error {
+        background-color: #cc05056b!important;
+        border-radius: 10px;
+        padding-left: 10px;
+        color: #000;
+        border-bottom-color: #cc0605;
+        border-bottom-right-radius: unset;
+        border-bottom-left-radius: unset;
     }
 
     .content-button {
@@ -120,20 +134,95 @@
     }
 
     input[type=number]{
-        -moz-appearance: textfield;
+        appearance: textfield;
+    }
+
+    select {
+        display: inline-block;
+        width: 100%;
+        max-width: 250px;
+        padding: 8px 10px;
+        border: 1px;
+        border-style: solid;
+        border-color: #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+    }
+
+    .content-form {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+
+        select {
+            width: 50%;
+            height: 100%;
+        }
+
+        input {
+            width: 30%;
+            min-width:170px;
+            height: 34px;
+            border-color: #c18700;
+        }
+
+        span[data-descr] {
+            display: initial;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            text-decoration: underline;
+            color: #000;
+            top: 11px;
+            right: 23px;
+            cursor: help;
+            
+            &:hover::after, &:focus::after{
+                content: attr(data-descr);
+                position: absolute;
+                left: 0;
+                top: 24px;
+                min-width: 205px;
+                border: 1px #aaaaaa solid;
+                border-radius: 10px;
+                background-color: #e5e5e5;
+                padding: 12px;
+                color: #000000;
+                font-size: 14px;
+                z-index: 1;
+            }
+            i {
+                font-size: medium;
+            }
+        }
+    }
+
+    .content-input {
+        width: 100%;
+        display: none;
+        justify-content: center;
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        span {
+            display: inline!important;
+            font-size: medium;
+        }
     }
 }
 
-.modal-header {
+
+
+.modal-header { 
     width: auto;
-    
-    
+      
     .title {
         display: inline-block;   
         width: 50%;
-        h2 {
-            margin-left: 15px;
-        }
     }
 
     .closed {
@@ -155,7 +244,7 @@
 }
 
 .modal {
-    display: block!important;
+    display: block;
 }
 
 .activo {
@@ -164,18 +253,43 @@
 
 .inactivo {
     display: none!important;
-
 }
 
 #Importe, #Destinatario, #Motivo, #nuevo{
     display: none;
-    padding: 10px;
 
     h3 {
         padding-bottom: 10px;
     }
 }
 
-input[type=radio] {
-    display: none;
+.guardados {
+    padding: 10px;
+
+    label {
+        display: block;
+        padding: 10px;
+        border-style: none;
+        margin-bottom: 10px;
+        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+
+        cursor: pointer;
+    }
+
+    input[type=radio]{
+        display: contents;
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+
+        &:checked + label {
+            background-color: #3e8692;
+            color: #fff;
+        }
+    }
+
+    .disable + label {
+        display: none!important;
+    }
 }

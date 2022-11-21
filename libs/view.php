@@ -7,7 +7,7 @@
 
             if (!empty($_GET['url']) && $_GET['url'] !== 'recuperar' && $_GET['url'] !== 'registro' && strpos($_GET['url'], 'registro') !== 0) {
                 require_once 'config/session.php';
-            }       
+            }
 
             require 'views/' . $nombre . '.php';
         }
@@ -112,6 +112,14 @@
                 require_once 'views/nav.php';
             } else {
                 require_once 'views/navClient.php';
+            }
+        }
+
+        public function configClient(){
+            if ($_SESSION['role'] !== 'admin') {
+                $config = $this -> d['config'];
+                $styles = ['','active-check'];
+                require_once 'views/perfil/configuraciones.php';
             }
         }
     }

@@ -67,10 +67,26 @@
                 $query = $this -> prepare('UPDATE cuenta SET saldo = :saldo WHERE num_client = :num_client');
                 $query -> execute([
                     'num_client'   => $this -> num_client,
-                    'saldo'        => $this -> monto
+                    'saldo'        => $this -> monto + $this -> getSaldo()
                 ]);
                 
                 return true;
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
+
+        public function getSaldo(){
+            try {
+                $query = $this -> prepare('SELECT saldo FROM cuenta WHERE num_client = :num_client');
+                $query -> execute(['num_client'=> $this -> num_client]);
+
+                if($query->rowCount() == 1){
+                    $account = $query -> fetch(PDO::FETCH_ASSOC); 
+
+                    return $account['saldo'];
+                }
             } catch (PDOException $e) {
                 echo $e;
                 return false;
@@ -87,13 +103,13 @@
                 echo $e;
             }
 
-            $this -> num_prestamo = $this -> num_client . '-'. date('y-n-d') . '-' . $cant['id'] + 1;
+            $this -> num_prestamo = $this -> num_client . '-'. date('ynd') . $cant['id'] + 1;
         }
-        public function setNum_client   ($num_client  ){ $this -> num_client   = $num_client   ;}
-        public function setMonto        ($monto       ){ $this -> monto        = $monto        ;}
-        public function setInteres      ($interes     ){ $this -> interes      = $interes      ;}
-        public function setPlazo        ($plazo       ){ $this -> plazo        = $plazo        ;}
-        public function setStatus       ($status      ){ $this -> status       = $status       ;}
+        public function setNum_client ($num_client){ $this -> num_client   = $num_client   ;}
+        public function setMonto      ($monto     ){ $this -> monto        = $monto        ;}
+        public function setInteres    ($interes   ){ $this -> interes      = $interes      ;}
+        public function setPlazo      ($plazo     ){ $this -> plazo        = $plazo        ;}
+        public function setStatus     ($status    ){ $this -> status       = $status       ;}
     }
 
 ?>

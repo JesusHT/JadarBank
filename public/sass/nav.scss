@@ -120,12 +120,13 @@
     .menu button {
         display: block;
         position: absolute;
-        text-align: right;
         background-color: #212121;
         border-color: #212121;
         color: #999;
         cursor: pointer;
-        transform: translateX(160px);
+        transform: translateX(180px);
+        max-width: 45px;
+        padding: 0px 10px;
 
         &:hover{ 
           color:#fff;

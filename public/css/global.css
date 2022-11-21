@@ -33,6 +33,18 @@ body {
   color: #fff;
   padding: 15px; }
 
+.text-Error {
+  color: #cc0605; }
+
+.text-Info {
+  color: #0096d2; }
+
+.text-Success {
+  color: #00a135; }
+
+.text-Warning {
+  color: #e5be01; }
+
 .bg-Error {
   width: 100%;
   position: fixed;
@@ -128,6 +140,66 @@ body {
 .bg-warning {
   background-color: #e5be01; }
 
+.btn-Error {
+  display: inline-block;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #cc0605;
+  border-style: none;
+  border-radius: 10px; }
+
+.btn-Info {
+  display: inline-block;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #0096d2;
+  border-style: none;
+  border-radius: 10px; }
+
+.btn-Success {
+  display: inline-block;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #00a135;
+  border-style: none;
+  border-radius: 10px; }
+
+.btn-Warning {
+  display: inline-block;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #e5be01;
+  border-style: none;
+  border-radius: 10px; }
+
+.btn-Error:hover {
+  background-color: #a60504; }
+
+.btn-Info:hover {
+  background-color: #0088be; }
+
+.btn-Success:hover {
+  background-color: #007a28; }
+
+.btn-Warning:hover {
+  background-color: #d1ae01; }
+
 .text-white {
   color: #fff; }
 
@@ -135,10 +207,10 @@ body {
   color: #000; }
 
 .btn {
+  display: inline-block;
   padding: 5px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   cursor: pointer; }
 
@@ -148,7 +220,20 @@ body {
 .text-center {
   text-align: center; }
 
-.actual {
+#paginas ul {
+  margin: 10px 0;
+  padding: 0; }
+#paginas li {
+  display: inline-block;
+  margin: 0;
+  padding: 5px; }
+  #paginas li a {
+    background: #e4e4e4;
+    border: solid black 1px;
+    color: #323232;
+    padding: 5px 15px;
+    text-decoration: none; }
+#paginas .actual {
   background: #14457c !important;
   color: #fff !important; }
 

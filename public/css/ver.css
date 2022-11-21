@@ -8,6 +8,8 @@
   grid-template-areas: "img info info info info" "prestamos prestamos prestamos prestamos prestamos" "prestamos prestamos prestamos prestamos prestamos" "prestamos prestamos prestamos prestamos prestamos"; }
   .content .img {
     grid-area: img;
+    display: flex;
+    justify-content: center;
     border-style: solid;
     border-width: 1px;
     border-color: #000; }

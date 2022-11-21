@@ -22,6 +22,8 @@
     require_once 'models/tableprestamosmodel.php';
     require_once 'models/listasolicitudesmodel.php';
     require_once 'models/cuentasmodel.php';
+    require_once 'models/updateinfomodel.php';
+    require_once 'models/movimientosmodel.php';
     
     $app = new App();
 ?>

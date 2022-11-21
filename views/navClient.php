@@ -1,5 +1,5 @@
 <nav class="menu" id="menu">
-    <button class="button-menu"><i class="fa fa-home fa-2x"></i></button>
+    <button class="button-menu"><i class="fa fa-solid fa-bars"></i></button>
     <div class="menu-content" id="menu-content">
         <ul>
             <li>
@@ -22,14 +22,6 @@
                     <i class="fa fa-user fa-2x"></i>
                     <span class="nav-text">
                         Perfil
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo constant('URL');?>acciones">
-                    <i class="fa fa-font fa-2x"></i>
-                    <span class="nav-text">
-                        Transacciones 
                     </span>
                 </a>
             </li>

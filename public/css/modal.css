@@ -2,7 +2,7 @@
   display: none;
   position: fixed;
   margin: auto 0;
-  z-index: 2;
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
