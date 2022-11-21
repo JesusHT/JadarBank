@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 18-11-2022 a las 00:39:55
+-- Tiempo de generación: 21-11-2022 a las 17:08:50
 -- Versión del servidor: 8.0.31-0ubuntu0.22.04.1
 -- Versión de PHP: 8.1.2-1ubuntu2.8
 
@@ -51,11 +51,34 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `name`, `fena`, `curp`, `img_client`, `domicilio`, `codPostal`, `estado`, `ciudad`, `pais`, `tel`, `email`, `pass`, `num_client`, `role`, `status`) VALUES
-(4, 'Jose Miguel Alvarado Gonzales', '2022-10-11', 'AMGJ030920HDFRRSA2', 'Asus.jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28865, 'Colima', 'Manzanillo', 'México', 3143767148, 'jose@gmail.com', '$2y$10$xfDI4hAu79C0t.pN5y1osupUmZ5D.rv5cwOtf6YFJu3aLOh8BFnii', 'AC1', 'user', 'activo'),
+(4, 'Jose Miguel Alvarado Gonzales', '2022-10-11', 'AMGJ030920HDFRRSA2', 'Asus.jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28865, 'Colima', 'Manzanillo', 'México', 3143767148, 'jose@gmail.com', '$2y$10$LAS37qA/dH3nT4rrjt4g7epa.3i.F0xA2Of0w.r7xteg6R4u17aGK', 'AC1', 'user', 'activo'),
 (5, 'Joel Gutierrez Domiguez', '2022-10-10', 'AfaGJ030920Hdsjk21', 'Asus.jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28899, 'Afghanistan', 'Baglan', 'Afganistán', 3143767148, 'joel@gmail.com', '$2y$10$KiFxILazbNKq7.HDeaYNpe5EAIj10qpwnEubH0WxzSnhSVK905HYS', 'AC5', 'user', 'activo'),
 (6, 'Juanito El Huerfanito', '2022-11-21', 'AMGJ030920HDFRRSA2', 'Asus.jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28865, 'México', 'Albarrada', 'México', 3143767148, 'juan@gmail.com', '$2y$10$KvUMCbCHtHtsfSWAsSlnKu6KntFSljvmakzFSQsxtQAXnK1dgWRNe', 'AC7', 'user', 'inactivo'),
 (10, 'Maria Guadalupe', '2002-01-08', 'AMGJ030920HDFRRSA2', 'prueba (copia).jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28865, 'Diber', 'Ali Hanit', 'Albania', 3143767148, 'mario12@gmail.com', '$2y$10$oQT83vztZkI1UnXpku5dX.yraTFFTHkqDmynkJBvlM7CC7alUsnPq', 'AC10', 'user', 'inactivo'),
 (11, 'Jairo Preaciado Ayala', '2003-03-01', 'AMGJ030920HDFRRSA2', 'prueba (4.ª copia).jpg', 'Fraccionamiento Valle Pariso calle valle de las granadas #279', 28865, 'Berat', 'Agalli', 'Albania', 3143767148, 'jairo@gmail.com', '$2y$10$FcfuywP6r6YOhNjzz/1trepXYqccs67c5QcREli2Bxu.bb.FEDP0u', 'AC11', 'user', 'inactivo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `configuracion`
+--
+
+CREATE TABLE `configuracion` (
+  `id` int NOT NULL,
+  `num_client` varchar(50) NOT NULL,
+  `validacion` tinyint(1) NOT NULL,
+  `cobro` tinyint(1) NOT NULL,
+  `movimientos` tinyint(1) NOT NULL,
+  `sesion` tinyint(1) NOT NULL,
+  `promociones` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `configuracion`
+--
+
+INSERT INTO `configuracion` (`id`, `num_client`, `validacion`, `cobro`, `movimientos`, `sesion`, `promociones`) VALUES
+(1, 'AC1', 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -77,9 +100,9 @@ CREATE TABLE `cuenta` (
 --
 
 INSERT INTO `cuenta` (`id`, `num_client`, `num_cuenta`, `saldo`, `credito`, `usado`) VALUES
-(1, 'AC1', 111001123456789121, 10000, 2000, 0),
-(2, 'AC5', 111001321205065539, 10000, 2000, 0),
-(4, 'AC10', 111001877771473741, 0, 2000, 0),
+(1, 'AC1', 111001123456789121, 2100, 2000, 1100),
+(2, 'AC5', 111001321205065539, 3000, 2000, 0),
+(4, 'AC10', 111001877771473741, 1000, 2000, 0),
 (5, 'AC11', 111001824828154101, 0, 2000, 0);
 
 -- --------------------------------------------------------
@@ -128,6 +151,14 @@ CREATE TABLE `guardados` (
   `alias` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Volcado de datos para la tabla `guardados`
+--
+
+INSERT INTO `guardados` (`id`, `num_client`, `clabeInterbancaria`, `alias`) VALUES
+(1, 'AC1', 111001321205065539, 'Joel'),
+(3, 'AC1', 111001877771473741, 'Juanito El Huerfanito');
+
 -- --------------------------------------------------------
 
 --
@@ -136,13 +167,21 @@ CREATE TABLE `guardados` (
 
 CREATE TABLE `movimientos` (
   `id` int NOT NULL,
-  `num_cliente` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `num_client` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `cargo` varchar(255) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   `cant` float NOT NULL,
   `fecha` date NOT NULL,
   `saldo` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `movimientos`
+--
+
+INSERT INTO `movimientos` (`id`, `num_client`, `cargo`, `descripcion`, `cant`, `fecha`, `saldo`) VALUES
+(6, 'AC1', 'presatamo', 'Prestamo personal', 100, '2022-11-21', 100),
+(7, 'AC1', 'presatamo', 'Prestamo personal', 1000, '2022-11-21', 1100);
 
 -- --------------------------------------------------------
 
@@ -162,6 +201,13 @@ CREATE TABLE `prestamos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- Volcado de datos para la tabla `prestamos`
+--
+
+INSERT INTO `prestamos` (`id`, `num_client`, `num_prestamo`, `monto`, `interes`, `plazo`, `fe_asignado`, `status`) VALUES
+(41, 'AC1', 'AC1-2211211', 1000, 0.075, 1, '2022-11-21', 'pendiente');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -171,6 +217,12 @@ CREATE TABLE `prestamos` (
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id`),
   ADD KEY `num_cliente` (`num_client`);
+
+--
+-- Indices de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `cuenta`
@@ -196,7 +248,7 @@ ALTER TABLE `guardados`
 --
 ALTER TABLE `movimientos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `num_cliente` (`num_cliente`);
+  ADD KEY `num_cliente` (`num_client`);
 
 --
 -- Indices de la tabla `prestamos`
@@ -216,6 +268,12 @@ ALTER TABLE `cliente`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
@@ -231,19 +289,19 @@ ALTER TABLE `ejecutivo`
 -- AUTO_INCREMENT de la tabla `guardados`
 --
 ALTER TABLE `guardados`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `movimientos`
 --
 ALTER TABLE `movimientos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
