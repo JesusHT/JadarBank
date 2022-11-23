@@ -45,7 +45,11 @@
         function getPages(){
             $actual = '';
             $data = "<ul>";
-    
+            
+            if ($this -> totalPaginas == 1) {
+                return;
+            }
+
             for($i=1; $i <= $this -> totalPaginas; $i++){
                 
                 if($i == $this->paginaActual){
@@ -96,8 +100,11 @@
                                     <td class="text-center">'. $prestamo -> interes*100  .'%</td>
                                     <td>'. $prestamo -> plazo        .' Meses</td>
                                     <td>'. $prestamo -> status        .'</td>
-                                    <td>                                            
-                                        <button type="button" class="btn" onclick="openModal('.$prestamo -> id.')"><i class="fa-solid fa-eye"></i></button>
+                                    <td>
+                                        <form action="http://jadarbank.com/ver/desglose" method="GET">
+                                            <input type="hidden" name="v" value="'. $prestamo -> num_prestamo .'">
+                                            <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>
+                                        </form>                                            
                                     </td>
                                 </tr>';
                         $i++;

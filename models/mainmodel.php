@@ -48,7 +48,7 @@
             $load = new PrestamosModel();
             $load -> setNum_client($this -> customer -> getNum_client());
             $load -> setMonto($cantidad);     
-            $load -> setInteres(0.075);     
+            $load -> setInteres(constant('Interes'));     
             $load -> setPlazo($plazo);     
             $load -> setStatus('pendiente');     
             $load -> setNum_prestamo();

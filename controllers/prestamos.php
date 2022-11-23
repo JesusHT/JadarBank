@@ -16,7 +16,7 @@
             $this -> redirectRole();
             $this -> view -> render('prestamos/index');
             $this -> cuota          = 0;
-            $this -> interes        = 0.075/12;
+            $this -> interes        = constant('Interes')/12;
             $this -> totalIntereses = 0;
             $this -> tableHtml      = '';
         }
@@ -150,7 +150,7 @@
                 $this -> model -> setNum_client($num_client);
                 $this -> model -> setNum_prestamo();
                 $this -> model -> setMonto($cantidad);
-                $this -> model -> setInteres(0.075);
+                $this -> model -> setInteres(constant('Interes'));
                 $this -> model -> setPlazo($plazo);
                 $this -> model -> setStatus('pendiente');
 

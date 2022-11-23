@@ -16,7 +16,7 @@ $bg-secondary-modal:rgb(0,0,0);
     background-color: $bg-body-modal;
     
     .modal-content {
-        transform: translate(0%, 100%);
+        transform: translate(0%, 100px);
         position: relative;
         background-color: $bg-content-modal;
         margin: auto;

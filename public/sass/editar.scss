@@ -1,5 +1,9 @@
 @import url(../css/global.css);
 
+.content {
+    height: fit-content;
+}
+
 form {
 
     input[type=text], input[type=password], input[type=date], select {
@@ -22,22 +26,59 @@ form {
         display: block;
         margin-bottom: 10px;
     }
+
+    .content-img {
+        display: grid;
+        justify-content: center;
+
+        .btn-edit-img {
+            margin-bottom: 0;
+            position: relative;
+            font-size: large;
+            top: -40px;
+            padding-left: 132px;
+    
+            span {
+                padding: 5px;
+                border-radius: 10px;
+                background-color: #e2e2e2;
+                cursor: pointer;
+    
+                &:hover {
+                    background-color: #d8d8d8;
+                    color: rgba(0, 0, 0, 0.822);
+                }
+            }
+        }
+    }
+
+    .content-btn-submit {
+        display: inline-flex;
+        justify-content: right;
+        width: 77%;
+    }
 }
 
 img {
-    width: 250px;
-    height: auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
 }
 
-.btn-a  {
-    border: solid 1px;
-    border-color:#8f8f9d;
-    background-color: #e9e9ed;
-    margin-top: 10px;
-    color: #000;
+.btn-a {
+    background-color: #0d4755;
+    border-style:solid;
+    border-width: 1px;
+    border-color: #000;
+    color: #fff;
+    padding: 10px;
+    max-width: 100px;
+    max-height: auto;
+    cursor: pointer;
+    border-radius: 10px;
 
-    &:hover{
-        background-color: #d0d1d6;
+    &:hover {
+        background-color: #3e8692;
     }
 }
 

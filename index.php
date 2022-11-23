@@ -24,6 +24,7 @@
     require_once 'models/cuentasmodel.php';
     require_once 'models/updateinfomodel.php';
     require_once 'models/movimientosmodel.php';
+    require_once 'models/loanmodel.php';
     
     $app = new App();
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 21-11-2022 a las 17:08:50
+-- Tiempo de generación: 23-11-2022 a las 04:47:54
 -- Versión del servidor: 8.0.31-0ubuntu0.22.04.1
 -- Versión de PHP: 8.1.2-1ubuntu2.8
 
@@ -186,6 +186,19 @@ INSERT INTO `movimientos` (`id`, `num_client`, `cargo`, `descripcion`, `cant`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pagos`
+--
+
+CREATE TABLE `pagos` (
+  `id` int NOT NULL,
+  `num_prestamo` text NOT NULL,
+  `fecha` date NOT NULL,
+  `cant` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `prestamos`
 --
 
@@ -205,7 +218,7 @@ CREATE TABLE `prestamos` (
 --
 
 INSERT INTO `prestamos` (`id`, `num_client`, `num_prestamo`, `monto`, `interes`, `plazo`, `fe_asignado`, `status`) VALUES
-(41, 'AC1', 'AC1-2211211', 1000, 0.075, 1, '2022-11-21', 'pendiente');
+(41, 'AC1', 'AC1-2211211', 1000, 0.075, 12, '2022-10-22', 'pendiente');
 
 --
 -- Índices para tablas volcadas
@@ -249,6 +262,12 @@ ALTER TABLE `guardados`
 ALTER TABLE `movimientos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `num_cliente` (`num_client`);
+
+--
+-- Indices de la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `prestamos`
@@ -296,6 +315,12 @@ ALTER TABLE `guardados`
 --
 ALTER TABLE `movimientos`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `pagos`
+--
+ALTER TABLE `pagos`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`

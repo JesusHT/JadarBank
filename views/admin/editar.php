@@ -19,10 +19,13 @@
             <form action="<?php echo constant('URL'); ?>editar/update"  method="POST" enctype="multipart/form-data">
                 <input type="text"   name="name" id="name"  value="<?php echo $user['name']?>" placeholder="Nombre Completo">
                 <input type="text"   name="curp" id="curp"  value="<?php echo $user['curp']?>" placeholder="CURP">           
-                <label for="img_client"> 
-                    <span class="margin">Foto del cliente (Actual)</span>
+                <span class="margin">Foto del cliente (Actual)</span>
+                <div class="content-img">
                     <img src="<?php echo constant('URL') . 'public/img/' . $user['img_client']; ?>" alt="img_client">
-                </label> 
+                    <label for="img_client" class="btn-edit-img"> 
+                        <span><i class="fa-solid fa-pen-to-square"></i></span>
+                    </label> 
+                </div>
                 <input type="file" name="img_client" id="img_client">
                 <label for="fena">Fecha de nacimiento</label>
                 <input type="date"   name="fena" id="fena"  value="<?php echo $user['fena'] ?>">
@@ -39,7 +42,9 @@
                 <input type="text" name="domicilio" id="domicilio" value="<?php echo $user['domicilio']; ?>">
                 <input type="password" name="passEjecutivo" id="passEjecutivo" placeholder="Contraseña">
                 <a href="<?php echo constant('URL');?>editar/volver" class="btn btn-a">Regresar</a>
-                <button type="submit" class="btn">Actualizar</button>
+                <div class="content-btn-submit">
+                    <button type="submit" class="btn-Success">Actualizar</button>
+                </div>
             </form>
         </section>
     </main> 

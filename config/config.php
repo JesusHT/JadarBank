@@ -15,4 +15,7 @@
     define('NAME', 'JadarBank');
     define('HOST-MAIL', 'smtp.hostinger.com');
     define('PASSWORD-MAIL', '!Root123');
+
+    # Interes 
+    define('Interes',0.075);
 ?> 
