@@ -15,7 +15,6 @@
 
             $this -> customer = new UserModel();
             $this -> customer -> getUsers($_SESSION['user']);
-
         }
         
         function queryAccount(){

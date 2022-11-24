@@ -1,6 +1,4 @@
-<?php  
-    $user   = $this -> d['client'];
-?>
+<?php  $user   = $this -> d['client']; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

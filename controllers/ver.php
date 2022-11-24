@@ -60,7 +60,7 @@
         }
 
         function loan($data){
-            $this -> view -> render("ver/desglose",[
+            $this -> view -> render("templates/desglose",[
                 "loan" => $data
             ]);
         }

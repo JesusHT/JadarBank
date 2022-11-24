@@ -2,9 +2,6 @@
     $accountClient = $this -> d['cuenta'];
     $contacts      = $this -> d['contactos'];
 ?>
-<style>
-    .modal-content {transform: translate(0%, 100px)!important;}
-</style>
 <div id="retiro" class="modal">
     <?php $this -> showMessages();?>
     <div class="modal-content">
@@ -25,13 +22,13 @@
                 <!-- DESTINATARIO -->
                 <div id="Destinatario" class="activo">
                     <h3>Destinatario (1-3)</h3>
-                    <button type="button" class="btn" id="btn-nuevo">Nuevo</button>
+                    <button type="button" class="btn" id="btn-nuevo"><i class="fa-sharp fa-solid fa-plus"></i></button>
                     <div id="nuevo">
                         <input type="number" name="clabeInterbancaria" id="clabeInterbancaria" class="mb-1" placeholder="Ingrese la clabe interbancaria">
                         <input type="text"   name="alias" id="alias"                           class="mb-1" placeholder="Ingrese el alias">
                         <div class="content-button">
                             <button type="button" id="return"  class="btn">Regresar</button>
-                            <button type="button" id="guardar" class="btn-Success">Continuar</button>
+                            <button type="button" id="guardar" class="btn-Success" disabled>Continuar</button>
                         </div>
                     </div>
                     <div class="guardados" id="guardados">

@@ -26,11 +26,27 @@ Cant.addEventListener("change", () => {
     } 
 });
 
+Clave.addEventListener("change", () => {
+    if (Clave.value != '' && Alias.value != '' && Clave.value > 0) {
+        Guardar.disabled = false;
+    } else {
+        Guardar.disabled = true;
+    }
+});
+
+Alias.addEventListener("change", () => {
+    if (Clave.value != '' && Alias.value != '' && Clave.value > 0) {
+        Guardar.disabled = false;
+    } else {
+        Guardar.disabled = true;
+    }
+});
+
 btnNuevo.addEventListener('click',()=>{
     Nuevo.classList.add('activo');
     Guardados.classList.add('inactivo');
     btnNuevo.classList.add('inactivo');
-})
+});
 
 btnSelect.addEventListener('click', ()=> {
     btnNuevo.classList.add('inactivo');
@@ -41,7 +57,7 @@ btnSelect.addEventListener('click', ()=> {
     });
     btnSelect.classList.add('inactivo');
     Importe.classList.add('activo');
-})
+});
 
 radios.forEach(element => {
     document.getElementById(element.id).addEventListener('change', () =>{
@@ -67,19 +83,15 @@ Guardar.addEventListener('click', () =>{
     document.getElementById('radio1').checked = true;
     Nuevo.classList.remove('activo');
     Importe.classList.add('activo');
-})
+});
 
 Return.addEventListener('click', () => {
     Nuevo.classList.remove('activo');
     btnNuevo.classList.remove('inactivo');
     Guardados.classList.remove('inactivo');
-})
+});
 
 btnImporte.addEventListener('click',()=>{
     btnImporte.classList.add('inactivo')
     Motivo.classList.add('activo');
-})
-
-
-
-
+});

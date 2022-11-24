@@ -28,6 +28,7 @@
             $this -> level       = 'H';
             $this -> frameSize   = 1;
             $this -> contenido   = '';
+            $this -> movimientos = ["retiros", "tranferencias", "prestamos"];
         }
 
         function account(){
@@ -44,17 +45,13 @@
 
         function movimientos(){
             if ($this -> existGET(['v'])) {
-                if ($_GET['v'] === 'transferencia') {
-                    $this -> tranferencias();
+                for ($i=0; $i < 3; $i++) {
+                    if ($_GET['v'] === $this -> movimientos[$i]){
+                        $this -> {$_GET['v']}();
+                        return;
+                    }
                 }
-
-                if ($_GET['v'] === 'retiro') {
-                    $this -> retiros();
-                }
-                
-                if($_GET['v'] === 'prestamo'){
-                    $this -> prestamos();
-                }
+                $this -> cerrar();
             }
         }
 

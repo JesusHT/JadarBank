@@ -3,7 +3,7 @@
   width: 400px;
   position: fixed;
   left: 50%;
-  transform: translate(calc(-50% + 80px), 20%); }
+  transform: translate(calc(-50% + 80px), 50px); }
   #msform .form-content {
     margin: 0 10%;
     width: 80%;

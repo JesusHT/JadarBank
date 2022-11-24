@@ -1,6 +1,4 @@
-<?php  
-    $account = $this -> d['account'];
-?>
+<?php $account = $this -> d['account']; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,43 +15,36 @@
         <?php $this -> navController(); ?>
         <section class="content" id="content-main">
             <!-- <div class="massage bg-warning"><p class="">Tiene un prestamo que esta por vencerse</p></div> -->
-            <div class="header">
-                <div class="content-customer-data">
+            <header>
+                <div class="img">
                     <img src="<?php echo constant('URL') . 'public/img/' . $cliente['img_client']; ?>" alt="Imagen del cliente">
-                    <h1>Bienvenido <?php echo $cliente['name']; ?></h1>
                 </div>
-            </div>
+                <div class="title">
+                    <h1>¡Bienvenido, <?php echo $cliente['name']; ?>!</h1>
+                </div>
+            </header>
             <div class="body">
                 <p class="mb-1"><span>Número de cuenta:</span> <?php echo $cliente['num_client']; ?></p>
                 <p class="mb-1"><span>Clabe interbancaria: </span><?php echo $account['num_cuenta']; ?> </p>
                 <p class="mb-1"><span>Saldo actual:</span> $<?php echo $account['saldo']; ?> mxn</p>
                 <p class="mb-1"><span>Crédito disponible:</span> $<?php echo $account['credito'] - $account['usado']; ?> mxn</p>
                 <div class="content-buttons">
-                    <form action="<?php echo constant('URL');?>main/movimientos" method="GET">
-                        <input type="hidden" name="v" value="retiro">
-                        <button class="btn">
-                            <span><i class="fa-regular fa-money-bill"></i></span>
-                            Retiros          
-                        </button>
-                    </form>
-                    <form action="<?php echo constant('URL');?>main/movimientos" method="GET">
-                        <input type="hidden" name="v" value="transferencia">
-                        <button class="btn">
-                            <span><i class="fa-light fa-money-bill-transfer"></i></span>
-                            Tranferencias        
-                        </button>
-                    </form>
-                    <button class="btn">
-                        <span><i class="fa-regular fa-memo-circle-check"></i></span>
+                    <a href="<?php echo constant('URL');?>main/movimientos?v=retiros">
+                        <span><i class="fa-solid fa-money-simple-from-bracket"></i></i></span>
+                         Retiros  
+                    </a>
+                    <a href="<?php echo constant('URL');?>main/movimientos?v=tranferencias">
+                        <span><i class="fa-solid fa-money-bill-transfer"></i></span>
+                        Tranferencias        
+                    </a>
+                    <a href="<?php echo constant('URL');?>main/movimientos?v=">
+                        <span><i class="fa-solid fa-memo-circle-check"></i></span>
                         Estado de cuenta 
-                    </button>
-                    <form action="<?php echo constant('URL');?>main/movimientos" method="GET">
-                        <input type="hidden" name="v" value="prestamo">
-                        <button class="btn">
-                            <span><i class="fa-regular fa-hand-holding-dollar"></i></span>
-                            Prestamo personal
-                        </button>
-                    </form>
+                    </a>
+                    <a href="<?php echo constant('URL');?>main/movimientos?v=prestamos">
+                        <span><i class="fa-solid fa-hand-holding-dollar"></i></span>
+                        Prestamo personal
+                    </a>
                 </div>
             </div>
         </section>

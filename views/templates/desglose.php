@@ -1,6 +1,11 @@
-<?php  
-    $loan = $this -> d['loan'];
+<?php 
+    $loan = $this -> d['loan']; 
+    $url = $_GET['url'];
+    $url = rtrim($url, '/');
+    $url = explode('/', $url);
 ?>
+
+<link rel="stylesheet" href="<?php echo constant('URL')?>public/css/desglose.css">
 
 <div id="retiro" class="modal">
     <?php $this -> showMessages();?>
@@ -10,7 +15,7 @@
                 <h2>Desglose </h2>
             </div>
             <div class="closed">
-                <a href="<?php echo constant('URL');?>ver/cerrar"><i class="fa-solid fa-circle-xmark"></i></a>
+                <a href="<?php echo constant('URL') . $url[0];?>/cerrar"><i class="fa-solid fa-circle-xmark"></i></a>
             </div>    
             <hr>
         </div>

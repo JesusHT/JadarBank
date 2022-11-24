@@ -6,6 +6,7 @@
         private $resultadosPorPagina;
         private $indice;
         private $num_cliente;
+        private $ruta;
 
         function __construct(){
             parent::__construct();
@@ -15,7 +16,13 @@
             $this -> paginaActual = 1;
 
             $query = new UserModel();            
-            $query -> getUsers($_SESSION['ver']);
+            if (isset($_SESSION['ver'])) {
+                $query -> getUsers($_SESSION['ver']);
+                $this -> ruta = constant('URL') . 'ver/';
+            } else {
+                $query -> getUsers($_SESSION['user']);
+                $this -> ruta = constant('URL') . 'consulta/';
+            }
             
             $this -> num_cliente = $query -> getNum_client();
             $this -> calPaginas();
@@ -82,6 +89,7 @@
                                     <td class="text-center">Plazo</td>
                                     <td class="text-center">Estatus </td>
                                     <td class="text-center">Ver</td>
+                                    <td class="text-center">Pagar</td>
                                 </tr>
                             </thead>
                             <tbody>';
@@ -101,9 +109,15 @@
                                     <td>'. $prestamo -> plazo        .' Meses</td>
                                     <td>'. $prestamo -> status        .'</td>
                                     <td>
-                                        <form action="http://jadarbank.com/ver/desglose" method="GET">
+                                        <form action="'. $this -> ruta.'desglose" method="GET">
                                             <input type="hidden" name="v" value="'. $prestamo -> num_prestamo .'">
-                                            <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>
+                                            <button type="submit" class="btn ver"><i class="fa-solid fa-eye"></i></button>
+                                        </form>                                            
+                                    </td>
+                                    <td>
+                                        <form action="'. $this -> ruta.'pagar" method="POST">
+                                            <input type="hidden" name="num_prestamo" value="'. $prestamo -> num_prestamo .'">
+                                            <button type="submit" class="btn pagar"><i class="fa-solid fa-solid fa-dollar-sign"></i></i></button>
                                         </form>                                            
                                     </td>
                                 </tr>';

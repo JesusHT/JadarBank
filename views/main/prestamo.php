@@ -18,7 +18,7 @@
         </div>
         <div class="modal-body">
             <hr>
-            <h3 class="mt-1 text-center ">Simular prestamos</h4>
+            <h3 class="mt-1 text-center ">Simular prestamo</h4>
             <input type="hidden" id="credito" value="<?php echo $accountClient['credito'] - $accountClient['usado']; ?>">
             <form action="<?php echo constant('URL');?>main/generateLoan" method="POST" id="form-prestamos">
                 <input type="hidden" name="accion" value="2">

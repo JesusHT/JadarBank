@@ -19,16 +19,16 @@
         }
 
         function perfilCliente($query){
-                $this -> cliente = $query -> get($_SESSION['user'],NULL);
-                $query -> getUsers($_SESSION['user']);
-                $config = new CuentasModel();
-                
-                $this -> config = $config -> queryConfiguration($query -> getNum_client());
-                
-                $this -> view -> render('perfil/index', [
-                    'client' => $this -> cliente,
-                    'config' => $this -> config
-                ]);
+            $this  -> cliente = $query -> get($_SESSION['user'],NULL);
+            $query -> getUsers($_SESSION['user']);
+            $config = new CuentasModel();
+            
+            $this -> config = $config -> queryConfiguration($query -> getNum_client());
+            
+            $this -> view -> render('perfil/index', [
+                'client' => $this -> cliente,
+                'config' => $this -> config
+            ]);
         }
     }
 
