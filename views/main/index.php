@@ -14,7 +14,7 @@
     <main class="main">
         <?php $this -> navController(); ?>
         <section class="content" id="content-main">
-            <!-- <div class="massage bg-warning"><p class="">Tiene un prestamo que esta por vencerse</p></div> -->
+            <div class="massage"><?php echo $this -> d['aviso']; ?></div>
             <header>
                 <div class="img">
                     <img src="<?php echo constant('URL') . 'public/img/' . $cliente['img_client']; ?>" alt="Imagen del cliente">

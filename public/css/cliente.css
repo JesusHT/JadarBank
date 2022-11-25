@@ -13,7 +13,10 @@
     border-radius: 15px;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); }
     .content .massage p {
-      padding: 10px; }
+      padding: 10px;
+      border-radius: 10px; }
+    .content .massage .bg-error {
+      color: #fff; }
   .content header {
     display: flex;
     grid-area: header;

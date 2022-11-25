@@ -11,11 +11,16 @@
         private $status         ;
         private $cuota          ;
 
-        private $interesDia     ;
+        
         private $interesTotal   ;
         private $diasTotales    ;
         private $diasPorMes     ;
+        
+        private $interesDia     ;
         private $style          ;
+        private $fechas         ;
+        private $pagos          ;
+        private $count          ;
 
         private $año            ;
         private $mes            ;
@@ -29,10 +34,12 @@
 
         function __construct(){
             parent::__construct();
-            $this -> diasPorMes = [31,28,31,30,31,30,31,30,31,30,31,30];
+            $this -> diasPorMes  = [31,28,31,30,31,30,31,30,31,30,31,30];
             $this -> diasTotales = 0;
-            $this -> interesDia = 0;
-            $this -> p_fecha = date('d-m-Y');
+            $this -> p_fecha     = date('d-m-Y');
+            $this -> año         = date('Y'); 
+            $this -> mes         = date('m');
+            $this -> dia         = date('d');
         }
 
         function ExistLoan($key){
@@ -72,51 +79,56 @@
 
         function calDatePayments(){
             $data  = '';
-            $style = '';
             $this -> cuotaFija();
-
-            $año = $this -> calDate(2);
-            $mes = $this -> calDate(5);
-            $dia = $this -> calDate(8);
+            $this -> pagosVencidos($this -> fe_asignado, $this -> plazo, $this -> num_prestamo);
 
             for ($i=1; $i <= $this -> plazo ; $i++) { 
-                if ($mes < 12) {
-                    $mes += 1;
-                } else {
-                    $mes =  1;
-                    $año += 1;
-                }
-
-                $this -> validatePayment($this -> ceros($mes), $año, $dia);
-
                 $data .= '<tr>
                             <td class="text-center">' . $i .'</td>
-                            <td>20' . $año . '-' . $this -> ceros($mes) . '-' . $this -> ceros($dia) . '</td>
-                            <td class="'. $this -> style .' text-center status"><i class="fa-solid fa-circle"></i></td>
-                            <td>$'. $this -> decimales($this -> cuota)                      .'</td>
-                            <td>$'. $this -> decimales($this -> interesDia)                 .'</td>
-                            <td>$'. $this -> decimales($this -> cuota + $this -> interesDia).'</td>
+                            <td>'. $this -> fechas[$i] . '</td>
+                            <td class="'. $this -> style[$i] .' text-center status"><i class="fa-solid fa-circle"></i></td>
+                            <td>$'. $this -> decimales($this -> cuota)                          .'</td>
+                            <td>$'. $this -> decimales($this -> interesDia[$i])                 .'</td>
+                            <td>$'. $this -> decimales($this -> cuota + $this -> interesDia[$i]).'</td>
                         </tr>';
 
-                $this -> style = '';
-                $this -> interesDia = 0;
             }
 
             return $data;
         }
 
-        function validarPrestamos($num_client){
+        function aviso($num_client){
             try {
-                $query = $this -> prepare('SELECT fe_asignado FROM prestamos WHERE num_client = :num_client');
+                $query = $this -> prepare("SELECT fe_asignado FROM prestamos WHERE num_client = :num_client AND status = 'pendiente'");
                 $query -> execute(['num_client' => $num_client]);
 
                 $results = $query -> fetchAll(PDO::FETCH_OBJ);
 
                 if (count($results) > 0) {  
                     foreach ($results as $result) {
+                        $this -> fe_asignado = $result -> fe_asignado;
+
+                        $año = $this -> calDate(2);
+                        $mes = $this -> calDate(5);
+                        $dia = $this -> calDate(8);
+
+                        $año = (int)'20'.$año;
+                        $mes = (int)$mes;
+                        $dia = (int)$dia;
+                        $dia = $this -> ceros($dia);
+
+                        $fecha = $dia.'-'.$this -> ceros($mes) .'-'. $año;
+
+                        if ($this -> validarFechas($fecha)) {
+                            return true;
+                        } else if ($this -> validarFechas($fecha) === NULL){
+                            return NULL;
+                        }
                         
                     }
                 }
+                
+                return false;
 
             } catch (PDOException $e) {
                 echo $e;
@@ -124,49 +136,9 @@
             }
         }
 
-        function validatePayment($mes, $año, $dia){
-            $fechaActual = $dia . '-' . $mes . '-' . 20 . $año;
-            echo $fechaActual . '<br>';
+        function pagosVencidos($fecha, $plazo, $num_prestamo){
+            $this -> pagosAlDia($num_prestamo);
 
-            try {
-                $query = $this -> prepare('SELECT * FROM pagos WHERE num_prestamo = :num_prestamo');
-                $query -> execute(['num_prestamo' => $this -> num_prestamo]);
-                $payments = $query -> fetchAll(PDO::FETCH_OBJ);
-
-                if (count($payments) > 0) {
-                    return true;
-                }
-
-                if ($this -> pagosVencidos($fechaActual, $this -> plazo)) {
-                    $this -> calInteres($dia, $mes, $año);       
-                    $this -> style = 'atrasado';
-                    return;
-                } else if($dia == date('d') && $mes == date('m') && $año == date('y')){
-                    $this -> style = 'pendiente';
-                }
-
-            } catch (PDOException $e){
-                echo $e;
-                return false;
-            }
-        }
-
-        function calInteres($dia, $mes, $año){
-            $this -> totalDias();
-            $this -> calInteresTotal();
-
-            $interes = $this -> interesTotal / $this -> diasTotales;
-            $this -> calDiasDeAtraso($dia, $mes, $año);
-            $this -> interesDia = $this -> DiasAtraso * $interes;
-        }
-
-        function totalDias(){
-            for ($i=0; $i < $this -> plazo; $i++) { 
-                $this -> diasTotales += $this -> diasPorMes[$i];
-            }
-        }
-
-        function pagosVencidos($fecha, $plazo){
             $this -> fe_asignado = $fecha;
             $this -> plazo       = $plazo;
 
@@ -174,7 +146,13 @@
             $mes = $this -> calDate(5);
             $dia = $this -> calDate(8);
 
-            for ($i=0; $i <= $this -> plazo; $i++) { 
+            $año = (int)'20'.$año;
+            $mes = (int)$mes;
+            $dia = (int)$dia;
+            $dia = $this -> ceros($dia);
+
+            for ($i=1; $i <= $this -> plazo; $i++) { 
+                
                 if ($mes < 12) {
                     $mes += 1;
                 } else {
@@ -182,13 +160,46 @@
                     $año += 1;
                 }
 
-                $fechaActual = $dia . '-' . $mes . '-' . $año;
+                $fecha = $dia.'-'.$this -> ceros($mes) .'-'. $año;
+                $this -> fechas[$i] = $fecha;
 
-                if ($this -> validarFechas($fechaActual)) {
-                    return true;
+                if($this -> validarFechas($fecha)){
+                    $this -> style[$i] = 'atrasado';
+                    $this -> interesDia[$i] = $this -> calInteres($dia, $mes, $año);
+                } else if($this -> validarFechas($fecha) === NULL){
+                    $this -> style[$i] = 'pendiente';
+                    $this -> interesDia[$i] = 0; 
+                } else {
+                    $this -> style[$i] = '';
+                    $this -> interesDia[$i] = 0;    
+                } 
+            }
+
+            for ($i=1; $i < $this -> count + 1; $i++) { 
+                $this -> style[$i] = 'pagado';
+            }
+
+        }
+
+        function pagosAlDia($num_prestamo){
+            try {
+                $query = $this -> prepare('SELECT * FROM pagos WHERE num_prestamo = :num_prestamo');
+                $query -> execute(['num_prestamo' => $num_prestamo]);
+                $payments = $query -> fetchAll(PDO::FETCH_OBJ);
+
+                if (count($payments) <= 0) {
+                    return false;
                 }
-
+            } catch (PDOException $e){
+                echo $e;
                 return false;
+            }
+
+            $this -> count = 0;
+
+            foreach ($payments as $payment) {
+                $this -> pagos[$this -> count] = $payment -> fecha;
+                $this -> count += 1;
             }
         }
 
@@ -197,25 +208,37 @@
             $fecha_entrada = strtotime($fecha);
 
             if($fecha_actual > $fecha_entrada){
-               return true;
+                return true;
+            } else if ($fecha_actual == $fecha_entrada){
+                return NULL;
             }
 
             return false;
         }
 
-        function calDiasDeAtraso($dia, $mes, $año){
-            $ano2 = "20" . date('y');
-            $mes2 = date('m');
-            $dia2 = date('d');
+        function calInteres($dia, $mes, $año){
+            $this -> totalDias();
+            $this -> calInteresTotal();
 
-            $fecha  = mktime(0,0,0,$mes,$dia, '20'.$año);
-            $fecha2 = mktime(4,12,0,$mes2,$dia2,$ano2);
-        
+            $interes = $this -> interesTotal / $this -> diasTotales;
+            $this -> calDiasDeAtraso($dia, $mes, $año);
+
+            return $this -> DiasAtraso * $interes;
+        }
+
+        function totalDias(){
+            for ($i=0; $i < $this -> plazo; $i++) { 
+                $this -> diasTotales += $this -> diasPorMes[$i];
+            }
+        }
+
+        function calDiasDeAtraso($dia, $mes, $año){
+
+            $fecha  = mktime(0,0,0,$mes,$dia,$año);
+            $fecha2 = mktime(4,12,0,$this -> mes,$this -> dia,$this -> año);
             $calDiferencia = $fecha - $fecha2;
-        
             $value = $calDiferencia / (60 * 60 * 24);
-        
-            $value= abs($value);
+            $value = abs($value);
             $value = floor($value);
 
             $this -> DiasAtraso = $value;

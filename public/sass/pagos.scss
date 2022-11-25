@@ -1,0 +1,72 @@
+.modal {
+    display: block;
+    .modal-content {
+        max-width: 550px;
+
+        .modal-header { 
+            width: auto;
+              
+            .title {
+                display: inline-block;   
+                width: 50%;
+            }
+        
+            .closed {
+                display: inline-flex;
+                width: 45%;
+                justify-content: right;
+                
+                a {
+                    color: #cc0605;
+                    cursor: pointer;
+                    font-size: 20px;
+        
+                    &:hover {
+                        color: #f20805;
+                    }
+                }
+        
+            }
+        } 
+        
+        .modal-body {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+
+            .btn-submit {
+                display: flex;
+                width: 100%;
+                justify-content: right;
+                margin-top: 10px;                
+            }
+
+            .montos {
+                display: grid;
+                width: 100%;
+                justify-content: center;
+
+                input {
+                    visibility: hidden;
+                    height: 0;
+                    width: 0;
+    
+                    &:checked + label {
+                        background-color: #3e8692;
+                        color: #fff;
+                    }
+                }
+    
+                label {
+                    display: block;
+                    padding: 10px;
+                    border-style: solid;
+                    border-color: #000;
+                    border-width: 1px;
+                    border-radius: 10px;
+                }
+            }
+        }   
+
+    }   
+}
