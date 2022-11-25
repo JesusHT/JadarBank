@@ -1,4 +1,4 @@
-<?php $user = $this -> d['client']; ?>
+<?php $user = $this -> d['client']; $messages = $this -> d['aviso'];?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -14,7 +14,13 @@
     <main class="main">
         <?php $this -> navController(); ?>
         <section class="content"  id="content-main">
-            <div class="message"><?php echo $this -> d['aviso']; ?></div>
+            <div class="message">
+                <?php 
+                    foreach ($messages as $message) {
+                        echo $message;
+                    }
+                ?>
+            </div>
             <div class="img">
                 <img src="<?php echo constant('URL');?>public/img/<?php echo $user['img_client']; ?>" alt="">
             </div>

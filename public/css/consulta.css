@@ -2,38 +2,19 @@
 .content-table {
   display: flex;
   justify-content: center; }
-  .content-table table {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-width: 1px;
-    border-spacing: 0px;
+  .content-table .pagar {
+    background-color: #c18700;
+    color: #fff;
     border-style: none;
-    border-collapse: separate;
-    background-color: #fff; }
-    .content-table table tr, .content-table table td {
-      border-width: 2px;
-      padding: 5px;
-      border-bottom-color: #3e8692;
-      border-bottom-style: solid;
-      border-bottom-width: 1px; }
-    .content-table table thead tr td {
-      background-color: #0d4755;
-      color: #fff; }
-
-.pagar {
-  background-color: #c18700;
-  color: #fff;
-  border-style: none;
-  border-radius: 10px; }
-  .pagar:hover {
-    background-color: #ad7900; }
-
-.ver {
-  background-color: #0d4755;
-  color: #fff;
-  border-style: none;
-  border-radius: 10px; }
-  .ver:hover {
-    background-color: #0a3944; }
+    border-radius: 10px; }
+    .content-table .pagar:hover {
+      background-color: #ad7900; }
+  .content-table .ver {
+    background-color: #0d4755;
+    color: #fff;
+    border-style: none;
+    border-radius: 10px; }
+    .content-table .ver:hover {
+      background-color: #0a3944; }
 
 /*# sourceMappingURL=consulta.css.map */

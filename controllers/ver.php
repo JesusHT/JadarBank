@@ -28,18 +28,12 @@
         }
 
         public function aviso(){
-            $data = '';
 
             $client = new UserModel();
             $client -> getUsers($_SESSION['ver']);
 
-            if ($this -> loan -> aviso($client -> getNum_client())) {
-                $data = '<p class="bg-error">!Tiene un prestamo vencido pagalo pronto!</p>';
-            } else if ($this -> loan -> aviso($client -> getNum_client()) === NULL){
-                $data = '<p class="bg-warning">!Tiene un prestamo que esta proximo avencerse paga lo más antes posible!</p>';
-            }
+            return $this -> loan -> aviso($client -> getNum_client());
 
-            return $data;
         }
 
         public function setTable(){
@@ -71,7 +65,6 @@
                     $data = $Loan -> calDatePayments($_GET['v']);
 
                     $this -> loan($data);
-
                 }
             }
         }

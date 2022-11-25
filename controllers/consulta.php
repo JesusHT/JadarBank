@@ -35,36 +35,10 @@
                 if ($this -> validateData(['v'])){
                     $Loan = new LoanModel();
                     $Loan -> ExistLoan($_GET['v']);
-                    $data = $Loan -> calDatePayments($num_prestamo);
+                    $data = $Loan -> calDatePayments($_GET['v']);
                     $this -> loan($data);
                 }
             }
-        }
-
-        function pagar(){
-            if ($this -> existPOST(['num_prestamo'])) {
-                $Loan = new LoanModel();
-                $Loan -> existLoan($_POST['num_prestamo']);
-                $Loan -> pagosAlDia($_POST['num_prestamo']);
-
-                if($Loan -> aviso($this -> customer -> getNum_client())){
-                    
-                } 
-
-                $Loan -> cuotaFija();
-
-                $this -> view -> render("templates/pagos",[
-                    'Num'   => $Loan -> getCount(),
-                    'plazo' => $Loan -> getPlazo(),
-                    'cuota' => $this -> decimales($Loan -> getCuota()),
-                    'total' => $this -> decimales($Loan -> getCuota() * ($Loan -> getPlazo() - $Loan -> getCount()))
-                ]);
-
-                return;
-            }
-
-            $this -> cerrar();
-
         }
         
         function loan($data){

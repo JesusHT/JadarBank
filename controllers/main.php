@@ -19,9 +19,11 @@
             $this -> redirectRole();
 
             $account = $this -> account();
+            $this -> loan = new LoanModel();
 
             $this -> view -> render('main/index',[
                 'account' => $account,
+                'aviso' => $this -> getAviso()
             ]);
             
             $this -> rute        = constant('URL-IMG');
@@ -44,19 +46,11 @@
             return $query -> queryContacts();
         }
 
-        function getAviso(){
-            $data = '';
-
+        public function getAviso(){
             $client = new UserModel();
             $client -> getUsers($_SESSION['user']);
 
-            if ($this -> loan -> aviso($client -> getNum_client())) {
-                $data = '<p class="bg-error">!Tiene un prestamo vencido pagalo pronto!</p>';
-            } else {
-                $data = '<p class="bg-warning">!Tiene un prestamo que esta proximo avencerse paga lo más antes posible!</p>';
-            }
-
-            return $data;
+            return $this -> loan -> aviso($client -> getNum_client());
         }
 
         function movimientos(){

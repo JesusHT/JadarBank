@@ -17,7 +17,7 @@
         private $fechas       ;
         private $style        ;
         private $interesDia   ;
-
+        private $aviso        = array();
         
         function __contruct(){
             parent::__construct(); 
@@ -69,47 +69,12 @@
 
                 $results = $query -> fetchAll(PDO::FETCH_OBJ);
 
-                if (count($results) > 0) {  
-                    foreach ($results as $result) {
-                        $query2 = $this -> prepare("SELECT * FROM pagos WHERE num_prestamo = num_prestamo");
-                        $query2 -> execute(['num_prestamo' => $result -> num_prestamo]);
-                        $payments = $query2 -> fetch(PDO::FETCH_ASSOC);      
-
-                        for ($i=0; $i < $result -> plazo; $i++) { 
-                            $this -> fe_asignado = $result -> fe_asignado;
-
-                            $año = $this -> separateDate(2);
-                            $mes = $this -> separateDate(5);
-                            $dia = $this -> separateDate(8);
-
-                            if ($mes < 12) { 
-                                $mes += 1;
-                            } else {
-                                $mes =  1;
-                                $año += 1;
-                            }
-                           
-                            $fecha = $this -> ceros($dia).'-'.$this -> ceros($mes) .'-'. $año;
-
-                            if (count($payments) > 0 && $i <= count($payments)) {
-                                foreach ($payments as $payment) { 
-                                    if ($this -> differenceDate($fecha) && !$this -> dateValidate($fecha, $this -> reacomodarFecha($payment -> fecha))) {
-                                        return true;
-                                    }
-                                }         
-                            } 
-
-                            if ($this -> differenceDate($fecha)) {
-                                return true;
-                            } 
-
-                            if ($this -> differenceDate($fecha) === NULL) {
-                                return NULL;
-                            }           
-                        } 
-                    }
+                foreach ($results as $result) {
+                    $this -> existLoan($result -> num_prestamo);
+                    $this -> calPayments($result -> num_prestamo);
                 }
-                return false;
+
+                return $this -> aviso;
 
             } catch (PDOException $e) {
                 echo $e;
@@ -152,9 +117,11 @@
                         }
                     }
                 } else if($this -> differenceDate($fecha)){
+                    array_push($this -> aviso, "<p class='bg-error'>!Tiene un prestamo vencido pagalo pronto! (". $this -> num_prestamo  .")</p>");
                     $this -> style[$i] = 'atrasado';
                     $this -> interesDia[$i] = $this -> calInteres($this -> ceros($dia), $this -> ceros($mes), $año);
                 } else if($this -> differenceDate($fecha) === NULL){
+                    array_push($this -> aviso, '<p class="bg-warning">!Tiene un prestamo que esta próximo a vencerse paga lo más antes posible! ('. $this -> num_prestamo  .')</p>');
                     $this -> style[$i] = 'pendiente';
                     $this -> interesDia[$i] = 0; 
                 } else {
@@ -174,6 +141,20 @@
             return $this -> DiasAtraso * $interes;
         }
 
+        function dateMessage($fe_pago, $fe_plazo){
+            $fecha  = mktime($fe_pago);
+            $fecha2 = mktime($fe_plazo);
+
+            echo $fecha . '<br>';
+            echo $fecha2;
+
+            if ($fecha != $fecha2) {
+                return true;
+            }
+
+            return false;
+        }
+
         function calDiasDeAtraso($dia, $mes, $año){  
 
             $fecha  = mktime(0,0,0,$mes,$dia,$año);
@@ -191,7 +172,6 @@
         public function cuotaFija(){
             $this -> cuota = $this -> monto * ((pow(1+$this->interes,$this->plazo)*$this->interes) / (pow(1+$this->interes,$this->plazo)-1)); 
         }
-
 
         function reacomodarFecha($fecha){
             $this -> fe_asignado = $fecha;
