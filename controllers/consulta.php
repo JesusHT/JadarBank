@@ -35,7 +35,7 @@
                 if ($this -> validateData(['v'])){
                     $Loan = new LoanModel();
                     $Loan -> ExistLoan($_GET['v']);
-                    $data = $Loan -> calDatePayments();
+                    $data = $Loan -> calDatePayments($num_prestamo);
                     $this -> loan($data);
                 }
             }
@@ -44,13 +44,23 @@
         function pagar(){
             if ($this -> existPOST(['num_prestamo'])) {
                 $Loan = new LoanModel();
-                $Loan -> ExistLoan($_POST['num_prestamo']);
+                $Loan -> existLoan($_POST['num_prestamo']);
+                $Loan -> pagosAlDia($_POST['num_prestamo']);
 
                 if($Loan -> aviso($this -> customer -> getNum_client())){
                     
-                }
+                } 
 
-                $this -> view -> render("templates/pagos");
+                $Loan -> cuotaFija();
+
+                $this -> view -> render("templates/pagos",[
+                    'Num'   => $Loan -> getCount(),
+                    'plazo' => $Loan -> getPlazo(),
+                    'cuota' => $this -> decimales($Loan -> getCuota()),
+                    'total' => $this -> decimales($Loan -> getCuota() * ($Loan -> getPlazo() - $Loan -> getCount()))
+                ]);
+
+                return;
             }
 
             $this -> cerrar();
@@ -64,6 +74,8 @@
         function payment($data){
             $this -> view -> render("templates/pagos",["payment" =>$data]);
         }
+
+        function decimales($value){return number_format($value, 2, '.', '');}
         
         function cerrar(){$this -> redirect("consulta");}
     }

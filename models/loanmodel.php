@@ -1,48 +1,36 @@
 <?php 
 
     class LoanModel extends Model {
+        # Variable de tabla prestamo
+        private $num_client   ;
+        private $num_prestamo ;
+        private $monto        ;
+        private $interes      ;
+        private $plazo        ;
+        private $fe_asignado  ;
+        private $status       ;
 
-        private $num_client     ;
-        private $num_prestamo   ;
-        private $monto          ;
-        private $interes        ;
-        private $plazo          ;
-        private $fe_asignado    ;
-        private $status         ;
-        private $cuota          ;
+        private $fechaActual  ;
+        private $calPagos     ;
+        private $cuota        ;
 
-        
-        private $interesTotal   ;
-        private $diasTotales    ;
-        private $diasPorMes     ;
-        
-        private $interesDia     ;
-        private $style          ;
-        private $fechas         ;
-        private $pagos          ;
-        private $count          ;
+        private $fechas       ;
+        private $style        ;
+        private $interesDia   ;
+        private $diasPorMes   ;
+        private $diasTotales  ;
 
-        private $año            ;
-        private $mes            ;
-        private $dia            ;
 
-        private $DiasAtraso     ;
+        function __contruct(){
+            parent::__contruct();
 
-        private $p_num_prestamo ;
-        private $p_fecha        ;
-        private $p_cant         ; 
-
-        function __construct(){
-            parent::__construct();
             $this -> diasPorMes  = [31,28,31,30,31,30,31,30,31,30,31,30];
             $this -> diasTotales = 0;
-            $this -> p_fecha     = date('d-m-Y');
-            $this -> año         = date('Y'); 
-            $this -> mes         = date('m');
-            $this -> dia         = date('d');
+
+            $this -> fechaActual = date('d-m-Y');
         }
 
-        function ExistLoan($key){
+        function existLoan($key){
             try {
                 $query = $this -> prepare('SELECT * FROM prestamos WHERE num_prestamo = :num_prestamo');
                 $query -> execute(['num_prestamo' => $key]);
@@ -61,161 +49,84 @@
             }
         }
 
-        function payment(){
-            try {
-                $query = $this -> prepare('INSERT INTO pagos (num_prestamo, fecha, cant) VALUES (:num_prestamo, :fecha, :cant)');
-                $query -> execute([
-                    'num_prestamo' => $this -> p_num_prestamo,
-                    'fecha'        => $this -> p_fecha,
-                    'cant'         => $this -> p_cant
-                ]);
-
-                return true;
-            } catch (PDOException $e){
-                echo $e;
-                return false;
-            }
-        }
-
-        function calDatePayments(){
+        function calDatePayments($num_prestamo){
             $data  = '';
             $this -> cuotaFija();
-            $this -> pagosVencidos($this -> fe_asignado, $this -> plazo, $this -> num_prestamo);
+            $this -> calPayments($num_prestamo);
 
             for ($i=1; $i <= $this -> plazo ; $i++) { 
-                $data .= '<tr>
-                            <td class="text-center">' . $i .'</td>
-                            <td>'. $this -> fechas[$i] . '</td>
-                            <td class="'. $this -> style[$i] .' text-center status"><i class="fa-solid fa-circle"></i></td>
-                            <td>$'. $this -> decimales($this -> cuota)                          .'</td>
-                            <td>$'. $this -> decimales($this -> interesDia[$i])                 .'</td>
-                            <td>$'. $this -> decimales($this -> cuota + $this -> interesDia[$i]).'</td>
-                        </tr>';
-
+                $data .= 
+                    '<tr>
+                        <td class="text-center">' . $i .'</td>
+                        <td>'. $this -> fechas[$i] . '</td>
+                        <td class="'. $this -> style[$i] .' text-center status"><i class="fa-solid fa-circle"></i></td>
+                        <td>$'. $this -> decimales($this -> cuota)                          .'</td>
+                        <td>$'. $this -> decimales($this -> interesDia[$i])                 .'</td>
+                        <td>$'. $this -> decimales($this -> cuota + $this -> interesDia[$i]).'</td>
+                    </tr>';
             }
 
             return $data;
         }
 
-        function aviso($num_client){
+        function calPayments($num_prestamo){
             try {
-                $query = $this -> prepare("SELECT fe_asignado FROM prestamos WHERE num_client = :num_client AND status = 'pendiente'");
-                $query -> execute(['num_client' => $num_client]);
-
-                $results = $query -> fetchAll(PDO::FETCH_OBJ);
-
-                if (count($results) > 0) {  
-                    foreach ($results as $result) {
-                        $this -> fe_asignado = $result -> fe_asignado;
-
-                        $año = $this -> calDate(2);
-                        $mes = $this -> calDate(5);
-                        $dia = $this -> calDate(8);
-
-                        $año = (int)'20'.$año;
-                        $mes = (int)$mes;
-                        $dia = (int)$dia;
-                        $dia = $this -> ceros($dia);
-
-                        $fecha = $dia.'-'.$this -> ceros($mes) .'-'. $año;
-
-                        if ($this -> validarFechas($fecha)) {
-                            return true;
-                        } else if ($this -> validarFechas($fecha) === NULL){
-                            return NULL;
-                        }
-                        
-                    }
-                }
-                
-                return false;
-
+                $query = $this -> prepare('SELECT * FROM pagos WHERE num_prestamo = :num_prestamo');
+                $query -> execute(['num_prestamo' => $num_prestamo]);
+                $payments = $query -> fetchAll(PDO::FETCH_OBJ);
             } catch (PDOException $e) {
                 echo $e;
                 return false;
             }
-        }
 
-        function pagosVencidos($fecha, $plazo, $num_prestamo){
-            $this -> pagosAlDia($num_prestamo);
-
-            $this -> fe_asignado = $fecha;
-            $this -> plazo       = $plazo;
-
-            $año = $this -> calDate(2);
-            $mes = $this -> calDate(5);
-            $dia = $this -> calDate(8);
-
-            $año = (int)'20'.$año;
-            $mes = (int)$mes;
-            $dia = (int)$dia;
-            $dia = $this -> ceros($dia);
+            $año = $this -> separateDate(2);
+            $mes = $this -> separateDate(5);
+            $dia = $this -> separateDate(8);
 
             for ($i=1; $i <= $this -> plazo; $i++) { 
-                
-                if ($mes < 12) {
+
+                if ($mes < 12) { 
                     $mes += 1;
                 } else {
                     $mes =  1;
                     $año += 1;
                 }
 
-                $fecha = $dia.'-'.$this -> ceros($mes) .'-'. $año;
+                $fecha = $dia. '-' . $mes . '-' . $año;
+
                 $this -> fechas[$i] = $fecha;
 
-                if($this -> validarFechas($fecha)){
-                    $this -> style[$i] = 'atrasado';
-                    $this -> interesDia[$i] = $this -> calInteres($dia, $mes, $año);
-                } else if($this -> validarFechas($fecha) === NULL){
-                    $this -> style[$i] = 'pendiente';
-                    $this -> interesDia[$i] = 0; 
+                if (count($payments) > 0) {
+                    foreach ($payments as $payment) {
+                        if ($this -> dataValidate($fecha, $payment -> fecha)) {
+                            $this -> style[$i]      = 'pagado';
+                            $this -> interesDia[$i] = 0;
+                        } else if($this -> differenceDate($fecha)){
+                            $this -> style[$i] = 'atrasado';
+                            $this -> interesDia[$i] = $this -> calInteres($dia, $mes, $año);
+                        } else if($this -> differenceDate($fecha) === NULL){
+                            $this -> style[$i] = 'pendiente';
+                            $this -> interesDia[$i] = 0; 
+                        } else {
+                            $this -> style[$i] = '';
+                            $this -> interesDia[$i] = 0;    
+                        }
+                    }
                 } else {
-                    $this -> style[$i] = '';
-                    $this -> interesDia[$i] = 0;    
-                } 
-            }
-
-            for ($i=1; $i < $this -> count + 1; $i++) { 
-                $this -> style[$i] = 'pagado';
-            }
-
-        }
-
-        function pagosAlDia($num_prestamo){
-            try {
-                $query = $this -> prepare('SELECT * FROM pagos WHERE num_prestamo = :num_prestamo');
-                $query -> execute(['num_prestamo' => $num_prestamo]);
-                $payments = $query -> fetchAll(PDO::FETCH_OBJ);
-
-                if (count($payments) <= 0) {
-                    return false;
-                }
-            } catch (PDOException $e){
-                echo $e;
-                return false;
-            }
-
-            $this -> count = 0;
-
-            foreach ($payments as $payment) {
-                $this -> pagos[$this -> count] = $payment -> fecha;
-                $this -> count += 1;
+                    if($this -> differenceDate($fecha)){
+                        $this -> style[$i] = 'atrasado';
+                        $this -> interesDia[$i] = $this -> calInteres($dia, $mes, $año);
+                    } else if($this -> differenceDate($fecha) === NULL){
+                        $this -> style[$i] = 'pendiente';
+                        $this -> interesDia[$i] = 0; 
+                    } else {
+                        $this -> style[$i] = '';
+                        $this -> interesDia[$i] = 0;    
+                    }
+                }   
             }
         }
-
-        function validarFechas($fecha){
-            $fecha_actual  = strtotime($this -> p_fecha);
-            $fecha_entrada = strtotime($fecha);
-
-            if($fecha_actual > $fecha_entrada){
-                return true;
-            } else if ($fecha_actual == $fecha_entrada){
-                return NULL;
-            }
-
-            return false;
-        }
-
+        
         function calInteres($dia, $mes, $año){
             $this -> totalDias();
             $this -> calInteresTotal();
@@ -224,12 +135,6 @@
             $this -> calDiasDeAtraso($dia, $mes, $año);
 
             return $this -> DiasAtraso * $interes;
-        }
-
-        function totalDias(){
-            for ($i=0; $i < $this -> plazo; $i++) { 
-                $this -> diasTotales += $this -> diasPorMes[$i];
-            }
         }
 
         function calDiasDeAtraso($dia, $mes, $año){
@@ -244,25 +149,53 @@
             $this -> DiasAtraso = $value;
         }
 
-        function calInteresTotal(){
-            $this -> interesTotal = ($this -> plazo * $this -> cuota) - $this -> monto;
-        }
-
-        function calDate($n){
-            $result = '';
-    
-            for ($i = $n; $i <= $n+1; $i++) {
-                $result .= $this -> fe_asignado[$i];
+        function totalDias(){
+            for ($i=0; $i < $this -> plazo; $i++) { 
+                $this -> diasTotales += $this -> diasPorMes[$i];
             }
-            
-            return $result;
         }
 
         public function cuotaFija(){
             $this -> cuota = $this -> monto * ((pow(1+$this->interes,$this->plazo)*$this->interes) / (pow(1+$this->interes,$this->plazo)-1)); 
         }
 
-        function ceros($value){ return str_pad($value, 2, "0", STR_PAD_LEFT);}
+        function separateDate($n){
+            $result = '';
+    
+            for ($i = $n; $i <= $n+1; $i++) 
+                $result .= $this -> fe_asignado[$i];
+
+            if ($n === 2) 
+                $result = (int)'20'. $result;
+            else 
+                $result = (int)$this -> ceros($result);
+            
+            return $result;
+        }
+
+        function differenceDate($fecha){
+            $fecha_actual  = strtotime($this -> fechaActual);
+            $fecha_entrada = strtotime($fecha);
+
+            if($fecha_actual > $fecha_entrada)
+                return true;
+            else if ($fecha_actual == $fecha_entrada)
+                return NULL;
+
+            return false;
+        }
+
+        function dateValidate($fecha,$fecha2){
+            $fecha_actual  = strtotime($fecha2);
+            $fecha_entrada = strtotime($fecha);
+
+            if($fecha_actual >= $fecha_entrada)
+                return true;
+            
+            return false;
+        }
+
+        function ceros($value){return str_pad($value, 2, "0", STR_PAD_LEFT);}
         function decimales($value){return number_format($value, 2, '.', '');}
 
         function from($array){
@@ -274,9 +207,6 @@
             $this -> fe_asignado   = $array['fe_asignado'];
             $this -> status        = $array['status'];
         }
-
-        function setNum_prestamo($num_prestamo){ $this -> p_num_prestamo = $num_prestamo ;}
-        function setCant($cant)                { $this -> p_cant = $cant                 ;}
     }
 
 ?>

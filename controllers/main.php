@@ -19,11 +19,9 @@
             $this -> redirectRole();
 
             $account = $this -> account();
-            $this -> loan = new LoanModel();
 
             $this -> view -> render('main/index',[
                 'account' => $account,
-                'aviso'   => $this -> getAviso()
             ]);
             
             $this -> rute        = constant('URL-IMG');
