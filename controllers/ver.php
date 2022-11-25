@@ -14,15 +14,32 @@
             
             $query = new UserModel();
             $this -> cliente = $query -> get($_SESSION['ver'],NULL);
-            
+            $this -> loan = new LoanModel();
+
             $tabla   = $this -> setTable();
             $paginas = $this -> setPages();
 
             $this -> view -> render('ver/index',[
                 'client' => $this -> cliente,
                 'tabla' => $tabla,
-                'page' => $paginas
+                'page' => $paginas,
+                'aviso' => $this -> aviso()
             ]);
+        }
+
+        public function aviso(){
+            $data = '';
+
+            $client = new UserModel();
+            $client -> getUsers($_SESSION['ver']);
+
+            if ($this -> loan -> aviso($client -> getNum_client())) {
+                $data = '<p class="bg-error">!Tiene un prestamo vencido pagalo pronto!</p>';
+            } else if ($this -> loan -> aviso($client -> getNum_client()) === NULL){
+                $data = '<p class="bg-warning">!Tiene un prestamo que esta proximo avencerse paga lo más antes posible!</p>';
+            }
+
+            return $data;
         }
 
         public function setTable(){
@@ -49,9 +66,9 @@
                 if ($this -> validateData(['v'])){
                     $Loan = new LoanModel();
                     
-                    $Loan -> ExistLoan($_GET['v']);
+                    $Loan -> existLoan($_GET['v']);
 
-                    $data = $Loan -> calDatePayments();
+                    $data = $Loan -> calDatePayments($_GET['v']);
 
                     $this -> loan($data);
 

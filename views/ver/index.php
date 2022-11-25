@@ -1,6 +1,4 @@
-<?php  
-    $user = $this -> d['client'];
-?>
+<?php $user = $this -> d['client']; ?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -16,6 +14,7 @@
     <main class="main">
         <?php $this -> navController(); ?>
         <section class="content"  id="content-main">
+            <div class="message"><?php echo $this -> d['aviso']; ?></div>
             <div class="img">
                 <img src="<?php echo constant('URL');?>public/img/<?php echo $user['img_client']; ?>" alt="">
             </div>
@@ -32,10 +31,9 @@
                 </div>
             </div>
             <div class="prestamos">
-               
+            
                 <div class="content-table">
                     <?php echo $this -> d['tabla'];?>
-
                     <div id="paginas">
                         <?php echo $this -> d['page'];?>
                     </div>

@@ -20,7 +20,7 @@
                 <a href="<?php echo constant('URL'); ?>admin" class="btn-refresh bg-secondary"><i class="fa-solid fa-rotate"></i></a>
             </form>
 
-	        <table class="table table-dark mt-3">
+	        <table>
                 <thead>
                     <tr>
                         <td>#</td>

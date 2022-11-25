@@ -237,4 +237,31 @@ body {
   background: #14457c !important;
   color: #fff !important; }
 
+table {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-width: 1px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-collapse: separate;
+  background-color: #fff; }
+  table tr, table td {
+    border-width: 1px;
+    padding: 5px;
+    border-style: solid;
+    border-color: black;
+    background-color: #fff; }
+  table thead tr > td {
+    text-align: center;
+    padding: 10px; }
+  table tr, table td {
+    border-width: 1px;
+    padding: 5px;
+    border-style: solid;
+    border-color: black;
+    background-color: #fff; }
+  table thead tr td {
+    background-color: #0d4755;
+    color: #fff; }
+
 /*# sourceMappingURL=global.css.map */
