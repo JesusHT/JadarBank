@@ -1,29 +1,28 @@
 .modal {
     display: block;
-    .modal-content {
-        max-width: 550px;
 
+    .modal-content {
+        width: 30%;
         .modal-header { 
-            width: auto;
-              
+            display: flex;
+            
             .title {
-                display: inline-block;   
-                width: 50%;
+                display: flex;   
+                width: 70%;
             }
         
             .closed {
-                display: inline-flex;
-                width: 45%;
+                display: flex;
+                width: 30%;
                 justify-content: right;
+                padding: 10px;
                 
                 a {
                     color: #cc0605;
-                    cursor: pointer;
                     font-size: 20px;
+                    cursor: pointer;
         
-                    &:hover {
-                        color: #f20805;
-                    }
+                    &:hover { color: #f20805;}
                 }
         
             }
@@ -31,8 +30,8 @@
         
         .modal-body {
             display: flex;
-            width: 100%;
             justify-content: center;
+            padding: 10px 0;
 
             .btn-submit {
                 display: flex;
@@ -56,6 +55,9 @@
                         color: #fff;
                     }
                 }
+
+                h3 {padding:10px 0;}
+                .sub-title  {padding:10px 0;}
     
                 label {
                     display: block;

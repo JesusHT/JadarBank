@@ -1,7 +1,8 @@
 .modal {
   display: block; }
   .modal .modal-content {
-    max-width: 550px; }
+    width: 30%;
+    min-width: 550px; }
     .modal .modal-content .modal-header {
       width: auto; }
       .modal .modal-content .modal-header .title {

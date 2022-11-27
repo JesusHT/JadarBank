@@ -115,7 +115,7 @@
                                         </form>                                            
                                     </td>
                                     <td>
-                                        <form action="'. $this -> ruta.'pagar" method="POST">
+                                        <form action="'. $this -> ruta.'pagos" method="POST">
                                             <input type="hidden" name="num_prestamo" value="'. $prestamo -> num_prestamo .'">
                                             <button type="submit" class="btn pagar"><i class="fa-solid fa-solid fa-dollar-sign"></i></i></button>
                                         </form>                                            

@@ -2,6 +2,7 @@
 
     class Consulta extends Controller {
 
+        private $loan;
         private $customer;
 
         function __construct(){
@@ -13,6 +14,7 @@
 
             $this -> customer = new UserModel();
             $this -> customer -> getUsers($_SESSION['user']);
+            $this -> loan     = new LoanModel();
 
             $this -> view -> render('consulta/index',[
                 'tabla' => $tabla,
@@ -33,20 +35,33 @@
         public function desglose(){
             if ($this -> existGET(['v'])) {
                 if ($this -> validateData(['v'])){
-                    $Loan = new LoanModel();
-                    $Loan -> ExistLoan($_GET['v']);
-                    $data = $Loan -> calDatePayments($_GET['v']);
+                    $this -> loan -> ExistLoan($_GET['v']);
+                    $data = $this -> loan -> calDatePayments($_GET['v']);
+
                     $this -> loan($data);
                 }
             }
+        }
+
+        public function pagar(){
+
+        }
+
+        public function pagos(){
+            $data = $this -> loan -> calPayment($_POST['num_prestamo']);
+
+            $this -> payment($data,$_POST['num_prestamo']);
         }
         
         function loan($data){
             $this -> view -> render("templates/desglose",["loan" => $data]);
         }
 
-        function payment($data){
-            $this -> view -> render("templates/pagos",["payment" =>$data]);
+        function payment($data, $num_prestamo){
+            $this -> view -> render("templates/pagos",[
+                "payment" =>$data,
+                "num_prestamo" => $num_prestamo
+            ]);
         }
 
         function decimales($value){return number_format($value, 2, '.', '');}

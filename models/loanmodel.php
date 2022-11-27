@@ -18,9 +18,11 @@
         private $style        ;
         private $interesDia   ;
         private $aviso        = array();
+        private $dataPayment  = array();
         
         function __contruct(){
             parent::__construct(); 
+            $this -> fechasPagadas = 0;
         }
 
         function existLoan($key){
@@ -131,6 +133,68 @@
 
             }
         }
+
+        function calPayment($num_prestamo){
+            $this -> existLoan($num_prestamo);
+            $this -> dateCal();
+            $this -> countPayments();
+            $this -> cuotaFija();
+
+            $total   = $this -> cuota * ($this -> plazo - $this -> fechasPagadas);
+            $interes = 0;
+
+            if ($this -> differenceDate($this -> dataPayment[$this -> fechasPagadas])) {
+                $this -> fe_asignado = $this -> dataPayment[$this -> fechasPagadas+1];
+
+                $año = $this -> separateDate(2);
+                $mes = $this -> separateDate(5);
+                $dia = $this -> separateDate(8);
+
+                $interes = $this -> calInteres($dia, $mes, $año);
+            }
+
+            $data = array("pago"=> $this -> decimales($this -> cuota + $interes),  "interes"=> $this -> decimales($interes), "total"=>$this -> decimales($total + $interes), "plazo"=> $this -> fechasPagadas + 1, "plazos" => $this -> plazo);
+
+            return $data;
+        }
+
+        function countPayments(){
+            try {
+                $query = $this -> prepare('SELECT * FROM pagos WHERE num_prestamo = :num_prestamo');
+                $query -> execute(['num_prestamo' => $this -> num_prestamo]);
+                $payments = $query -> fetchAll(PDO::FETCH_OBJ);
+
+                if (count($payments) > 0 ) {
+                    $count = 0;
+
+                    foreach ($payments as $payment) {
+                        $this -> fechasPagadas += $count;
+                        $count += 1;
+                    }
+                } 
+
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
+
+        function dateCal(){
+            $año = $this -> separateDate(2);
+            $mes = $this -> separateDate(5);
+            $dia = $this -> separateDate(8);
+
+            for ($i=1; $i <= $this -> plazo; $i++) { 
+                if ($mes < 12) { 
+                    $mes += 1;
+                } else {
+                    $mes =  1; 
+                    $año += 1;
+                }
+
+                array_push($this -> dataPayment, $año . '-' . $this -> ceros($mes) . '-' . $this -> ceros($dia));
+            }
+        }
         
         function calInteres($dia, $mes, $año){
             $this -> calInteresTotal();
@@ -144,9 +208,6 @@
         function dateMessage($fe_pago, $fe_plazo){
             $fecha  = mktime($fe_pago);
             $fecha2 = mktime($fe_plazo);
-
-            echo $fecha . '<br>';
-            echo $fecha2;
 
             if ($fecha != $fecha2) {
                 return true;
@@ -169,7 +230,7 @@
             $this -> DiasAtraso = $value;
         }
 
-        public function cuotaFija(){
+        function cuotaFija(){
             $this -> cuota = $this -> monto * ((pow(1+$this->interes,$this->plazo)*$this->interes) / (pow(1+$this->interes,$this->plazo)-1)); 
         }
 

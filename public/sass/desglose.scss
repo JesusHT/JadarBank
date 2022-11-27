@@ -1,7 +1,9 @@
 .modal {
     display: block;
+
     .modal-content {
-        max-width: 550px;
+        width: 30%;
+        min-width: 550px;
 
         .modal-header { 
             width: auto;

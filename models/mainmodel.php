@@ -54,7 +54,7 @@
             $load -> setNum_prestamo();
 
             if ($load -> generarPrestamo() && $this -> updateCredito($cantidad)){
-                if ($this -> generarMovimiento($accion, $cantidad)) {
+                if ($this -> generarMovimiento($accion, $cantidad, "Prestamo personal")) {
                     return true;
                 }
             }
@@ -131,12 +131,12 @@
             }
         }
 
-        function generarMovimiento($accion, $cantidad){
+        function generarMovimiento($accion, $cantidad, $descripcion){
             $movimientos = new MovimientosModel();
 
             $movimientos -> setNum_client($this -> customer -> getNum_client());
             $movimientos -> setCargo($accion);      
-            $movimientos -> setDescripcion("Prestamo personal");
+            $movimientos -> setDescripcion($descripcion);
             $movimientos -> setMonto($cantidad);      
             $movimientos -> setSaldo(); 
 

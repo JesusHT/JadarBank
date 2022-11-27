@@ -1,26 +1,27 @@
 .modal {
   display: block; }
   .modal .modal-content {
-    max-width: 550px; }
+    width: 30%; }
     .modal .modal-content .modal-header {
-      width: auto; }
+      display: flex; }
       .modal .modal-content .modal-header .title {
-        display: inline-block;
-        width: 50%; }
+        display: flex;
+        width: 70%; }
       .modal .modal-content .modal-header .closed {
-        display: inline-flex;
-        width: 45%;
-        justify-content: right; }
+        display: flex;
+        width: 30%;
+        justify-content: right;
+        padding: 10px; }
         .modal .modal-content .modal-header .closed a {
           color: #cc0605;
-          cursor: pointer;
-          font-size: 20px; }
+          font-size: 20px;
+          cursor: pointer; }
           .modal .modal-content .modal-header .closed a:hover {
             color: #f20805; }
     .modal .modal-content .modal-body {
       display: flex;
-      width: 100%;
-      justify-content: center; }
+      justify-content: center;
+      padding: 10px 0; }
       .modal .modal-content .modal-body .btn-submit {
         display: flex;
         width: 100%;
@@ -37,6 +38,10 @@
           .modal .modal-content .modal-body .montos input:checked + label {
             background-color: #3e8692;
             color: #fff; }
+        .modal .modal-content .modal-body .montos h3 {
+          padding: 10px 0; }
+        .modal .modal-content .modal-body .montos .sub-title {
+          padding: 10px 0; }
         .modal .modal-content .modal-body .montos label {
           display: block;
           padding: 10px;
