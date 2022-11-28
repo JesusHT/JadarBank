@@ -56,7 +56,7 @@
                     <input type="text" name="motivo" id="motivo">
 
                     <div class="content-button">
-                        <button type="submit" class="btn-Success">Continuar</button>
+                        <button type="submit" class="btn-Success">Transferir</button>
                     </div>
                 </div>
             </form>

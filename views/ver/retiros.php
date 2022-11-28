@@ -7,17 +7,17 @@
                 <h2>Retiros</h2>
             </div>
             <div class="closed">
-                <a href="<?php echo constant('URL');?>/main/cerrar"><i class="fa-solid fa-circle-xmark"></i></a>
+                <a href="<?php echo constant('URL');?>ver/cerrar"><i class="fa-solid fa-circle-xmark"></i></a>
             </div>
         </div>
         <div class="modal-body">
             <hr>
             <input type="hidden" name="saldo" id="saldo" value="<?php echo $accountClient['saldo']; ?>">
-            <form action="<?php echo constant('URL');?>main/retiro" method="POST">
+            <form action="<?php echo constant('URL');?>ver/retiro" method="POST">
                 <input type="hidden" name="accion" value="0">
                  <input type="hidden" name="num_client" id="num_client" value="<?php echo $accountClient['num_client']; ?>">
                  <input type="number" name="cant" id="cant">
-                 <span>En tu cuenta tienes: $<?php echo $accountClient['saldo']; ?> mxn</span>
+                 <span>El cliente tiene: $<?php echo $accountClient['saldo']; ?> mxn</span>
                  <div class="content-button">
                     <button type="submit" class="btn-Success">Retirar</button>
                  </div>

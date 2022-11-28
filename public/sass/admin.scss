@@ -23,7 +23,7 @@ $bg-secondary-modal:rgb(0,0,0);
     background-color: $bg-body-modal;
     
     .modal-content {
-        transform: translate(0%, 200%);
+        transform: translate(0%, 100px);
         position: relative;
         background-color: $bg-content-modal;
         margin: auto;
@@ -144,4 +144,25 @@ $bg-secondary-modal:rgb(0,0,0);
 
 .tamp {
     max-width:395px;
+}
+
+.btn-Success {
+    background-color: #0d4755;
+    color: #fff;
+    border-style: none;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: #0a3944;
+    }
+}
+
+table {
+    border-style: none;
+
+    thead tr,td {border-style: none;}
+
+    tbody {
+        tr, td {border-bottom:solid 1px #3e8692;}    
+    }
 }

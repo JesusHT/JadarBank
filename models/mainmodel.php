@@ -3,6 +3,7 @@
 
         private $customer;
         private $account;
+        private $customer2;
 
         function __construct(){
             parent::__construct();
@@ -11,6 +12,8 @@
             $this -> customer -> getUsers($_SESSION['user']);
             $this -> account  = new CuentasModel();
             $this -> account -> queryAccount();
+
+            $this -> customer2 = new CustomersModel();
         }
 
         function updateSaldo($cant){
@@ -28,16 +31,24 @@
             }
         }
 
-        function transferencia($cant, $clabe){
+        function transferencia($cant, $clabe, $accion){
+            $this -> customer2 -> queryAccountForClabe($clabe);
+            $nuevoSaldo = $cant + $this -> customer2 -> getSaldo();
+
             try {
                 $query = $this -> prepare('UPDATE cuenta SET saldo = :saldo WHERE num_cuenta = :num_cuenta');
                 $query -> execute([
-                    'saldo' => $cant, 
+                    'saldo' => $nuevoSaldo, 
                     'num_cuenta' => $clabe
                 ]);
 
-                return true;
+                if (
+                    $this -> generarMovimiento($accion, $cant, "Transferencia a " . $clabe . '.', $this -> customer  -> getNum_client()) &&
+                    $this -> generarMovimiento(4, $cant, "Transferencia recibida." , $this -> customer2 -> getNum_client())
 
+                ) {
+                    return true;
+                }
             } catch (PDOException $e){
                 echo $e;
                 return false;
@@ -54,7 +65,7 @@
             $load -> setNum_prestamo();
 
             if ($load -> generarPrestamo() && $this -> updateCredito($cantidad)){
-                if ($this -> generarMovimiento($accion, $cantidad, "Prestamo personal")) {
+                if ($this -> generarMovimiento($accion, $cantidad, "Prestamo personal",$this -> customer -> getNum_client())) {
                     return true;
                 }
             }
@@ -131,15 +142,15 @@
             }
         }
 
-        function generarMovimiento($accion, $cantidad, $descripcion){
+        function generarMovimiento($accion, $cantidad, $descripcion, $num_client){
             $movimientos = new MovimientosModel();
-
-            $movimientos -> setNum_client($this -> customer -> getNum_client());
+            
+            $movimientos -> setNum_client($num_client);
             $movimientos -> setCargo($accion);      
             $movimientos -> setDescripcion($descripcion);
             $movimientos -> setMonto($cantidad);      
             $movimientos -> setSaldo(); 
-
+            
             if ($movimientos -> generarMovimiento()) {
                 return true;
             }

@@ -78,6 +78,7 @@
 
         public function createAccount(){
             $this -> createNumAccount();
+            $this -> createConfig($this -> num_client);
 
             try {
                 $query = $this -> prepare('INSERT INTO cuenta (num_client, num_cuenta, saldo, credito) VALUES (:num_client, :num_cuenta, :saldo, :credito)');
@@ -86,6 +87,24 @@
                     'num_cuenta' => $this -> cuentaClave,
                     'saldo'      => 0,
                     'credito'    => 2000
+                ]);
+                return true;
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
+
+        public function createConfig($num_client){
+            try {
+                $query = $this -> prepare('INSERT INTO configuracion (num_client, validacion, cobro, movimientos, sesion, promociones) VALUES (:num_client, :validacion, :cobro, :movimientos, :sesion, :promociones)');
+                $query -> execute([
+                    'num_client'  => $num_client,
+                    'validacion'  =>1,
+                    'cobro'       =>1,
+                    'movimientos' =>1,
+                    'sesion'      =>1,
+                    'promociones' =>1
                 ]);
                 return true;
             } catch (PDOException $e) {

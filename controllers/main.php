@@ -22,8 +22,9 @@
             $this -> loan = new LoanModel();
 
             $this -> view -> render('main/index',[
-                'account' => $account,
-                'aviso' => $this -> getAviso()
+                'account'      => $account,
+                'aviso'        => $this -> getAviso(),
+                'movimientos'  => $this -> getMovimientos()
             ]);
             
             $this -> rute        = constant('URL-IMG');
@@ -46,11 +47,19 @@
             return $query -> queryContacts();
         }
 
-        public function getAviso(){
+        function getAviso(){
             $client = new UserModel();
             $client -> getUsers($_SESSION['user']);
 
             return $this -> loan -> aviso($client -> getNum_client());
+        }
+
+        function getMovimientos(){
+            $client = new UserModel();
+            $client -> getUsers($_SESSION['user']);
+            $movimientos = new MovimientosModel();
+
+            return $movimientos -> queryMovimientos($client -> getNum_client());
         }
 
         function movimientos(){
@@ -80,10 +89,18 @@
                     return;
                 }
 
+                $client = new UserModel();
+                $client -> getUsers($_SESSION['user']);
+
                 $this -> model -> updateSaldo($cant);
+                $this -> model -> generarMovimiento($_POST['accion'], $cant, "" , $client -> getNum_client());
+
                 $this -> generateQR($num_client, $cant);
 
-                $_SESSION['accion'] = 'Retiro';
+                $_SESSION['ruta']       = 'main';
+                $_SESSION['accion']     = 'Retiro';
+                $_SESSION['num_client'] = $num_client;
+                $_SESSION['cantidad']   = $this -> decimales($cant);
                 $this -> redirect('instrucciones');
 
             }
@@ -140,7 +157,7 @@
                     $this -> model -> setContact($_POST['alias'], $_POST['clabeInterbancaria']);
                 }
 
-                if ($this -> model -> transferencia($cant, $_POST['opciones'])) {
+                if ($this -> model -> transferencia($cant, $_POST['opciones'], $_POST['accion'])) {
                     $this -> model -> updateSaldo($cant);
                     
                     $this -> redirect('main', ['success' => Success::SUCCESS_ACTION]);
@@ -183,6 +200,12 @@
                 "cuenta" => $account
             ]);
         }
+
+        function generarEstadoDeCuenta(){
+            $this -> redirect('estadodecuenta');
+        }
+
+        function decimales($value){return number_format($value, 2, '.', '');}
 
         function cerrar(){$this -> redirect("main");}
     }

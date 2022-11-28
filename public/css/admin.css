@@ -12,7 +12,7 @@
   background-color: black;
   background-color: rgba(0, 0, 0, 0.4); }
   .modal .modal-content {
-    transform: translate(0%, 200%);
+    transform: translate(0%, 100px);
     position: relative;
     background-color: #fefefe;
     margin: auto;
@@ -103,5 +103,20 @@
 
 .tamp {
   max-width: 395px; }
+
+.btn-Success {
+  background-color: #0d4755;
+  color: #fff;
+  border-style: none;
+  border-radius: 10px; }
+  .btn-Success:hover {
+    background-color: #0a3944; }
+
+table {
+  border-style: none; }
+  table thead tr, table td {
+    border-style: none; }
+  table tbody tr, table tbody td {
+    border-bottom: solid 1px #3e8692; }
 
 /*# sourceMappingURL=admin.css.map */

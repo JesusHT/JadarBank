@@ -42,6 +42,26 @@
       display: flex;
       justify-content: right;
       margin-top: 85px; }
+      .content .info .content-btn-estadodecuenta button {
+        font-family: 'Antic Didone';
+        font-weight: bold;
+        width: auto;
+        padding: 10px;
+        font-size: small;
+        border-radius: 10px;
+        border-style: solid;
+        border-color: #0d4755;
+        border-width: 1px;
+        background-color: #46808a;
+        color: #fff;
+        text-align: center; }
+        .content .info .content-btn-estadodecuenta button:hover {
+          background-color: #0d4755; }
+        .content .info .content-btn-estadodecuenta button span {
+          display: block;
+          margin-bottom: 5px; }
+        .content .info .content-btn-estadodecuenta button i {
+          font-size: 20px; }
   .content .prestamos {
     grid-area: prestamos;
     border-style: none;
@@ -49,6 +69,32 @@
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); }
+    .content .prestamos .acciones {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .content .prestamos .acciones button, .content .prestamos .acciones a {
+        font-family: 'Antic Didone';
+        font-weight: bold;
+        width: 160px;
+        padding: 10px 0;
+        margin: 0 10px;
+        font-size: small;
+        border-radius: 10px;
+        border-style: solid;
+        border-color: #0d4755;
+        border-width: 1px;
+        background-color: #46808a;
+        color: #fff;
+        text-align: center;
+        text-decoration: none; }
+        .content .prestamos .acciones button:hover, .content .prestamos .acciones a:hover {
+          background-color: #0d4755; }
+        .content .prestamos .acciones button span, .content .prestamos .acciones a span {
+          display: block;
+          margin-bottom: 5px; }
+        .content .prestamos .acciones button i, .content .prestamos .acciones a i {
+          font-size: 20px; }
 
 .btn-back {
   background-color: #0d4755;
@@ -59,7 +105,8 @@
   padding: 10px;
   max-width: 100px;
   max-height: auto;
-  cursor: pointer; }
+  cursor: pointer;
+  border-radius: 10px; }
   .btn-back:hover {
     background-color: #3e8692; }
 
@@ -80,5 +127,133 @@
     border-radius: 10px; }
     .content-table .ver:hover {
       background-color: #0a3944; }
+
+table {
+  border-style: none; }
+  table thead tr, table td {
+    border-style: none; }
+  table tbody tr, table tbody td {
+    border-bottom: solid 1px #3e8692; }
+
+.modal {
+  display: block; }
+  .modal .modal-body span {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px; }
+  .modal .modal-body #clabe {
+    display: block; }
+  .modal .modal-body input[type=text], .modal .modal-body input[type=number] {
+    border-style: none;
+    border-bottom: 1px solid;
+    border-color: #000;
+    background-color: transparent;
+    outline: none;
+    height: 40px;
+    font-size: 16px;
+    margin-bottom: 10px; }
+  .modal .modal-body .error {
+    margin-top: 10px;
+    background-color: #cc05056b !important;
+    padding: 0px 10px;
+    border-radius: 10px;
+    color: #000;
+    border-bottom-color: #cc0605 !important;
+    border-bottom-right-radius: unset;
+    border-bottom-left-radius: unset; }
+  .modal .modal-body .cant-error {
+    background-color: #cc05056b !important;
+    border-radius: 10px;
+    padding-left: 10px;
+    color: #000;
+    border-bottom-color: #cc0605;
+    border-bottom-right-radius: unset;
+    border-bottom-left-radius: unset; }
+  .modal .modal-body .content-button {
+    display: flex;
+    justify-content: right; }
+  .modal .modal-body input[type=number] {
+    appearance: textfield; }
+  .modal .modal-body .btn-Success {
+    margin-left: 10px;
+    background-color: #3e8692;
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px; }
+    .modal .modal-body .btn-Success:hover {
+      background-color: #0d4755; }
+  .modal .modal-body select {
+    display: inline-block;
+    width: 100%;
+    max-width: 250px;
+    padding: 8px 10px;
+    border: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff; }
+  .modal .modal-body .content-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; }
+    .modal .modal-body .content-form select {
+      width: 50%;
+      height: 100%; }
+    .modal .modal-body .content-form input {
+      width: 30%;
+      min-width: 170px;
+      height: 34px;
+      border-color: #c18700; }
+    .modal .modal-body .content-form span[data-descr] {
+      display: initial;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      text-decoration: underline;
+      color: #000;
+      top: 11px;
+      right: 23px;
+      cursor: help; }
+      .modal .modal-body .content-form span[data-descr]:hover::after, .modal .modal-body .content-form span[data-descr]:focus::after {
+        content: attr(data-descr);
+        position: absolute;
+        left: 0;
+        top: 24px;
+        min-width: 205px;
+        border: 1px #aaaaaa solid;
+        border-radius: 10px;
+        background-color: #e5e5e5;
+        padding: 12px;
+        color: #000000;
+        font-size: 14px;
+        z-index: 1; }
+      .modal .modal-body .content-form span[data-descr] i {
+        font-size: medium; }
+  .modal .modal-body .content-input {
+    width: 100%;
+    display: none;
+    justify-content: center; }
+    .modal .modal-body .content-input label {
+      display: block;
+      margin-bottom: 10px; }
+    .modal .modal-body .content-input span {
+      display: inline !important;
+      font-size: medium; }
+  .modal .modal-header {
+    width: auto; }
+    .modal .modal-header .title {
+      display: inline-block;
+      width: 50%; }
+    .modal .modal-header .closed {
+      display: inline-flex;
+      width: 45%;
+      justify-content: right; }
+      .modal .modal-header .closed a {
+        color: #cc0605;
+        cursor: pointer;
+        font-size: 20px; }
+        .modal .modal-header .closed a:hover {
+          color: #f20805; }
 
 /*# sourceMappingURL=ver.css.map */

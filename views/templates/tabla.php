@@ -38,7 +38,7 @@
     <table>
         <thead>
             <tr>
-                <td colspan="2" rowspan="2">Préstamo Resultados</td>
+                <td colspan="2">Préstamo Resultados</td>
             </tr>
         </thead>
         <tbody>

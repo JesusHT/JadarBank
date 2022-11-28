@@ -75,7 +75,7 @@
 
         function getTablePrestamos(){
             try {
-                $query = $this -> prepare("SELECT * FROM prestamos WHERE num_client = :num_client LIMIT :pos, :n");
+                $query = $this -> prepare("SELECT * FROM prestamos WHERE num_client = :num_client AND status = 'pendiente' LIMIT :pos, :n");
                 $query -> execute(['num_client' => $this -> num_cliente,'pos' => $this->indice, 'n' => $this->resultadosPorPagina]);
                 
                 $results = $query -> fetchAll(PDO::FETCH_OBJ);

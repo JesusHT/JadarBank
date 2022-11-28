@@ -114,18 +114,18 @@
                                     <td>'. $user -> name       .'</td>
                                     <td class="text-center">'. $user -> num_client .'</td>
                                     <td>                                            
-                                        <button type="button" class="btn" onclick="openModal('.$user -> id.',`'. $user -> num_client .'`)"><i class="fa-solid fa-trash-can"></i></button>
+                                        <button type="button" class="btn-Error" onclick="openModal('.$user -> id.',`'. $user -> num_client .'`)"><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
                                     <td>
                                         <form action="'. constant('URL') .'admin/update" method="POST">
                                             <input type="hidden" name="actualizar" value="'.  $user -> id .'">
-                                            <button type="submit" class="btn"><i class="fa-solid fa-pencil"></i></button>	
+                                            <button type="submit" class="btn-Warning"><i class="fa-solid fa-pencil"></i></button>	
                                         </form>
                                     </td>
                                     <td>
                                         <form action="'. constant('URL') .'admin/ver" method="POST">
                                             <input type="hidden" name="ver" value="'.  $user -> id .'">
-                                            <button type="submit" class="btn"><i class="fa-solid fa-eye"></i></button>	
+                                            <button type="submit" class="btn-Success"><i class="fa-solid fa-eye"></i></button>	
                                         </form>
                                     </td>
                                 </tr>';

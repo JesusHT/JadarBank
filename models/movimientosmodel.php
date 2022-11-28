@@ -6,13 +6,13 @@
         private $descripcion;
         private $monto;
         private $saldo;
-        private $num_client ;
+        private $num_client;
 
         function __construct(){
             parent::__construct();
 
             $this -> fecha = date('y-m-d');
-            $this -> movimientos = ['retiro', 'trasferencia', 'presatamo', 'pago', 'otro'];
+            $this -> movimientos = ['retiro', 'transferencia', 'presatamo', 'pago','recibido','otro'];
         }
 
         function generarMovimiento(){
@@ -44,6 +44,49 @@
 
                     return $account['saldo'];
                 }
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+        }
+
+        function queryMovimientos($num_client){
+            try {
+                $query = $this -> prepare('SELECT * FROM movimientos WHERE num_client = :num_client ORDER BY id DESC');
+                $query -> execute(['num_client'=> $num_client]);
+                
+                $movimientos = $query -> fetchAll(PDO::FETCH_OBJ);
+                $data = '<table>
+                            <thead>
+                                <tr>
+                                    <td>Información</td>
+                                    <td class="text-center">Cantidad</td>
+                                </tr>
+                            </thead>
+                            <tbody>';
+
+                if (count($movimientos) > 0) {
+                    foreach($movimientos as $movimiento){
+                        $data .= '<tr>
+                                    <td class="informacion">
+                                        <p class="cargo">'      . $movimiento -> cargo       . ' - '. $movimiento -> fecha .'</p>
+                                        <p>Descripción: '. $movimiento -> descripcion .'</p>
+                                    </td>';
+
+                        if ($movimiento -> cargo == "presatamo" || $movimiento -> cargo == 'recibido') {
+                            $data .= '<td class="cant"><p><span class="mas"><i class="fa-solid fa-plus-large"></i></span>$'. $movimiento -> cant   . '</p></td></tr>';
+                        } else {
+                            $data .= '<td class="cant"><p><span class="menos"><i class="fa-solid fa-hyphen"></i></span>$'. $movimiento -> cant . '</p></td></tr>';
+                        }
+                    }
+                    
+                    $data .= '</tbody></table>';
+
+                    return $data;
+                }
+
+                return '<p class="bg-lightblue data">No hay movimientos aún.</p>';
+                
             } catch (PDOException $e) {
                 echo $e;
                 return false;

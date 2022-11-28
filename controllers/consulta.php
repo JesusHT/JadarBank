@@ -12,9 +12,10 @@
             $tabla   = $this -> setTable();
             $paginas = $this -> setPages();
 
-            $this -> customer = new UserModel();
-            $this -> customer -> getUsers($_SESSION['user']);
+            $this -> customer = new CustomersModel();
             $this -> loan     = new LoanModel();
+            $this -> customer -> queryCustomer($_SESSION['user']);
+            $this -> customer -> queryAccountForNumClient($this -> customer -> getNum_client());
 
             $this -> view -> render('consulta/index',[
                 'tabla' => $tabla,
@@ -36,7 +37,7 @@
             if ($this -> existGET(['v'])) {
                 if ($this -> validateData(['v'])){
                     $this -> loan -> ExistLoan($_GET['v']);
-                    $data = $this -> loan -> calDatePayments($_GET['v']);
+                    $data = $this -> loan -> calDatePayments();
 
                     $this -> loan($data);
                 }
@@ -44,7 +45,29 @@
         }
 
         public function pagar(){
+            if ($this -> existPOST(['pago', 'accion', 'num_prestamo'])) {
+                $data = $this -> loan -> calPayment($_POST['num_prestamo']);
 
+                if (!$data['pago'] == $_POST['pago'] || !$data['total'] == $_POST['pago']) {
+                   $this -> redirect('consulta/pagos', ['error' => Errors::ERROR_LOAN_CANT]);
+                }
+
+                if($data['pago'] == $_POST['pago'] && $this -> customer -> getSaldo() >= $_POST['pago']){
+                    if ($this -> loan -> pagarPrestamo($_POST['num_prestamo'], $_POST['accion'], $data['interes'], $_POST['pago'], $this -> customer -> getSaldo())) {
+                        $this -> redirect('consulta', ['success' => Success::SUCCESS_LOAN_PAYMENT]);
+                        return;
+                    }
+                } 
+
+                if ($data['total'] == $_POST['pago'] && $this -> customer -> getSaldo() >= $_POST['pago']) {
+                    if ($this -> loan -> pagarTotalPrestamo($_POST['num_prestamo'], $_POST['accion'], $data['interes'], $_POST['pago'], $this -> customer -> getSaldo())) {
+                        $this -> redirect('consulta', ['success' => Success::SUCCESS_LOAN_PAGADO]);
+                        return;
+                    }
+                }
+
+                $this -> redirect('consulta/pagos', ['error' => Errors::ERROR_RETIRO]);
+            }
         }
 
         public function pagos(){

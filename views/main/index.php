@@ -30,10 +30,10 @@
                 </div>
             </header>
             <div class="body">
-                <p class="mb-1"><span>Número de cuenta:</span> <?php echo $cliente['num_client']; ?></p>
-                <p class="mb-1"><span>Clabe interbancaria: </span><?php echo $account['num_cuenta']; ?> </p>
-                <p class="mb-1"><span>Saldo actual:</span> $<?php echo $account['saldo']; ?> mxn</p>
-                <p class="mb-1"><span>Crédito disponible:</span> $<?php echo $account['credito'] - $account['usado']; ?> mxn</p>
+                <p class="mb-1 mt-1 info"><span>Número de cuenta:</span> <?php echo $cliente['num_client']; ?></p>
+                <p class="mb-1 info"><span>Clabe interbancaria: </span><?php echo $account['num_cuenta']; ?> </p>
+                <p class="mb-1 info"><span>Saldo actual:</span> $<?php echo $account['saldo']; ?> mxn</p>
+                <p class="mb-1 info"><span>Crédito disponible:</span> $<?php echo $account['credito'] - $account['usado']; ?> mxn</p>
                 <div class="content-buttons">
                     <a href="<?php echo constant('URL');?>main/movimientos?v=retiros">
                         <span><i class="fa-solid fa-money-simple-from-bracket"></i></i></span>
@@ -43,7 +43,7 @@
                         <span><i class="fa-solid fa-money-bill-transfer"></i></span>
                         Tranferencias        
                     </a>
-                    <a href="<?php echo constant('URL');?>main/movimientos?v=">
+                    <a href="<?php echo constant('URL');?>main/generarEstadoDeCuenta">
                         <span><i class="fa-solid fa-memo-circle-check"></i></span>
                         Estado de cuenta 
                     </a>
@@ -51,6 +51,11 @@
                         <span><i class="fa-solid fa-hand-holding-dollar"></i></span>
                         Prestamo personal
                     </a>
+                </div>
+
+                <h4>Últimos movimientos realizados</h4>
+                <div class="movimientos">
+                    <?php echo $this -> d['movimientos']; ?>
                 </div>
             </div>
         </section>

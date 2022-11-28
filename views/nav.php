@@ -34,14 +34,6 @@
               </a>
           </li>
           <li>
-              <a href="<?php echo constant('URL');?>transacciones">
-                  <i class="fa fa-font fa-2x"></i>
-                  <span>
-                      Transacciones 
-                  </span>
-              </a>
-          </li>
-          <li>
               <a href="<?php echo constant('URL');?>prestamos">
                   <i class="fa fa-sack-dollar fa-2x"></i>
                   <span>

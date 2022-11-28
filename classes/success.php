@@ -10,7 +10,10 @@
         const SUCCESS_ADMIN_DELETEUSER      = "8407f4908e4d134ccfc130f6acb0985a";
         const SUCCESS_LOAN_APPROVED         = "b0828988288407f4908e1e04407f485a";
         const SUCCESS_REQUEST_DENIED        = "840728988f4982884lkdjslj123kljdl";
-        const SUCCESS_ACTION                = "848407f07288f4982884lkdjslj123kl";
+        const SUCCESS_ACTION                = "84847288f4982884lkd840728988f498";
+        const SUCCESS_LOAN_PAGADO           = "b082848408407f490872898848484288";
+        const SUCCESS_LOAN_PAYMENT          = "b088408281e06fb34a5e411884847288";
+
         
         private $successList = [];
 
@@ -24,7 +27,9 @@
                 Success::SUCCESS_ADMIN_DELETEUSER    => "Usuario eliminado exitosamente",
                 Success::SUCCESS_LOAN_APPROVED       => "Prestamo aprobado",
                 Success::SUCCESS_REQUEST_DENIED      => "Solicitud rechazada correctamente",
-                Success::SUCCESS_ACTION              => "Transferencia hecha exitosamente"
+                Success::SUCCESS_ACTION              => "Transferencia hecha exitosamente",
+                Success::SUCCESS_LOAN_PAGADO         => "¡Felicidades has pagado el total de tu prestamo!",
+                Success::SUCCESS_LOAN_PAYMENT        => "Su pago mensual se ha realizado correctamente."
             ];
         }
 

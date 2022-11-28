@@ -65,6 +65,28 @@
             display: flex;
             justify-content: right;
             margin-top: 85px; 
+
+            button  {
+                font-family: 'Antic Didone';
+                font-weight: bold;
+                width:auto;
+                padding: 10px;
+                font-size: small;
+                border-radius: 10px;
+                border-style: solid;
+                border-color: #0d4755;
+                border-width: 1px;
+                background-color: #46808a;
+                color: #fff;
+                text-align: center;
+                
+                &:hover {background-color: #0d4755;}
+
+                span {display: block; margin-bottom: 5px;}
+
+                i {font-size: 20px;}
+            }
+
         }
     }
 
@@ -75,6 +97,35 @@
         padding: 10px;
         border-radius: 10px;
         box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+
+        .acciones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            button, a {
+                font-family: 'Antic Didone';
+                font-weight: bold;
+                width: 160px;
+                padding: 10px 0;
+                margin: 0 10px;
+                font-size: small;
+                border-radius: 10px;
+                border-style: solid;
+                border-color: #0d4755;
+                border-width: 1px;
+                background-color: #46808a;
+                color: #fff;
+                text-align: center;
+                text-decoration: none;
+                
+                &:hover {background-color: #0d4755;}
+
+                span {display: block; margin-bottom: 5px;}
+
+                i {font-size: 20px;}
+            }
+        }
     }
 }
 
@@ -88,6 +139,7 @@
     max-width: 100px;
     max-height: auto;
     cursor: pointer;
+    border-radius: 10px;
 
     &:hover {
         background-color: #3e8692;
@@ -120,3 +172,186 @@
         }
     }
 }
+
+table {
+    border-style: none;
+
+    thead tr,td {border-style: none;}
+
+    tbody {
+        tr, td {border-bottom:solid 1px #3e8692;}    
+    }
+}
+
+.modal {
+    display: block;
+
+
+.modal-body {
+
+    span {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    #clabe {
+        display: block;
+    }
+
+    input[type=text], input[type=number]{
+        border-style: none;
+        border-bottom: 1px solid;
+        border-color: #000;
+        background-color: transparent;
+        outline: none;
+        height: 40px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .error {
+        margin-top: 10px;
+        background-color: #cc05056b!important;
+        padding: 0px 10px;
+        border-radius: 10px;
+        color: #000;
+        border-bottom-color: #cc0605!important;
+        border-bottom-right-radius: unset;
+        border-bottom-left-radius: unset;
+    }
+
+    .cant-error {
+        background-color: #cc05056b!important;
+        border-radius: 10px;
+        padding-left: 10px;
+        color: #000;
+        border-bottom-color: #cc0605;
+        border-bottom-right-radius: unset;
+        border-bottom-left-radius: unset;
+    }
+
+    .content-button {
+        display: flex;
+        justify-content: right;
+    }
+
+    input[type=number]{ appearance: textfield;}
+
+    .btn-Success {
+        margin-left: 10px;
+        background-color: #3e8692;
+        border-color: #000;
+        border-style: solid;
+        border-width: 1px;
+    
+        &:hover {background-color: #0d4755;}
+    }
+
+    select {
+        display: inline-block;
+        width: 100%;
+        max-width: 250px;
+        padding: 8px 10px;
+        border: 1px;
+        border-style: solid;
+        border-color: #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+    }
+
+    .content-form {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+
+        select {
+            width: 50%;
+            height: 100%;
+        }
+
+        input {
+            width: 30%;
+            min-width:170px;
+            height: 34px;
+            border-color: #c18700;
+        }
+
+        span[data-descr] {
+            display: initial;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            text-decoration: underline;
+            color: #000;
+            top: 11px;
+            right: 23px;
+            cursor: help;
+            
+            &:hover::after, &:focus::after{
+                content: attr(data-descr);
+                position: absolute;
+                left: 0;
+                top: 24px;
+                min-width: 205px;
+                border: 1px #aaaaaa solid;
+                border-radius: 10px;
+                background-color: #e5e5e5;
+                padding: 12px;
+                color: #000000;
+                font-size: 14px;
+                z-index: 1;
+            }
+            i {
+                font-size: medium;
+            }
+        }
+    }
+
+    .content-input {
+        width: 100%;
+        display: none;
+        justify-content: center;
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        span {
+            display: inline!important;
+            font-size: medium;
+        }
+    }
+}
+
+
+
+.modal-header { 
+    width: auto;
+      
+    .title {
+        display: inline-block;   
+        width: 50%;
+    }
+
+    .closed {
+        display: inline-flex;
+        width: 45%;
+        justify-content: right;
+        
+        a {
+            color: #cc0605;
+            cursor: pointer;
+            font-size: 20px;
+
+            &:hover {
+                color: #f20805;
+            }
+        }
+
+    }
+}
+}
+

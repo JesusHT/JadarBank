@@ -32,6 +32,9 @@
         const ERROR_ACTION                           = "2194aal26d01221alknds81slh23hkas";
         const ERROR_NOEXIST_NUM_ACCOUNT              = "a9cd22126d01221232194aalknd11307";
 
+        const ERROR_LOAN_CANT                        = "aa9cd92194a2192194aalknd4aalkac2";
+        const ERROR_MONEY_CANT                       = "111001321205a9cd22126d0106553dd9";
+
 
         private $errorsList = [];
 
@@ -52,6 +55,7 @@
                 Errors::ERROR_PRESTAMOS_CANT                    => 'La cantidad del prestamo debe ser minimo 100 pesos y maximo 1,000,000 pesos',
                 Errors::ERROR_LOAN                              => 'No dispones de suficiente linea de credito para relizar esta operación',
                 Errors::ERROR_PRESTAMOS_STATUS                  => 'El cliente tiene un adeudo!',
+                Errors::ERROR_LOAN_CANT                         => 'La cantidad a pagar es incorrecta',
                 
                 # Errores de sesión 
                 Errors::ERROR_SESSION                           => 'NO HAS INICIADO SESIÓN!',
@@ -74,7 +78,8 @@
                 Errors::ERROR_ACTION                            => 'No se ha podido realizar el movimiento, intentelo mas tarde.',
 
                 Errors::ERROR_RETIRO                            => 'No dispones de la cantidad suficiente para hacer esta transacción.',
-                Errors::ERROR_NOEXIST_NUM_ACCOUNT               => 'No existe la cuenta clabe ingresada, asegurse de haber ingresado correctamente el dato.'
+                Errors::ERROR_NOEXIST_NUM_ACCOUNT               => 'No existe la cuenta clabe ingresada, asegurse de haber ingresado correctamente el dato.',
+                Errors::ERROR_MONEY_CANT                        => 'El cliente no tiene suficiente dinero para realizar esta operación, pidele que ingrese dinero a su cuenta'
 
             ];
         }

@@ -18,8 +18,8 @@
             
             $this -> view = new View();
             $this -> views = [
-                "admin" => ["admin", "nuevo", "transacciones", "prestamos", "editar", "ver", "tabla", "ayuda", "perfil", "solicitud"], 
-                "user" =>  ["main", "acciones", "consulta", "ayuda", "perfil", "instrucciones"]];
+                "admin" => ["admin", "nuevo", "transacciones", "prestamos", "editar", "ver", "tabla", "ayuda", "perfil", "solicitud", "instrucciones", "estadodecuenta"], 
+                "user" =>  ["main", "acciones", "consulta", "ayuda", "perfil", "instrucciones", "estadodecuenta"]];
             
         }
 
@@ -167,7 +167,13 @@
                     unset($_SESSION['editar']);
                 }
 
-                if ($_GET['url'] !== 'ver' && strpos($_GET['url'], 'ver') !== 0) {
+                if ($_GET['url'] !== 'ver' && 
+                    strpos($_GET['url'], 'ver') !== 0 && 
+                    $_GET['url'] !== 'instrucciones' && 
+                    strpos($_GET['url'], 'instrucciones') !== 0 &&
+                    $_GET['url'] !== 'estadodecuenta' &&
+                    strpos($_GET['url'], 'estadodecuenta')
+                ) {
                     unset($_SESSION['ver']);
                 }
 
@@ -177,6 +183,9 @@
 
                 if($_GET['url'] !== 'instrucciones' && strpos($_GET['url'], 'instrucciones') !== 0){
                     unset($_SESSION['accion']);
+                    unset($_SESSION['num_client']);
+                    unset($_SESSION['cantidad']);
+                    unset($_SESSION['ruta']);
                 }
             }
         }
