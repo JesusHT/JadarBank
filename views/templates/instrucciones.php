@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instrucciones de retiro</title>
+    <title>Instrucciones para <?php echo $this -> d['accion']; ?></title>
     <style>
       .content {
         display: flex;
@@ -40,12 +40,12 @@
 </head>
 <body>
     <div class="content">
-        <h1>Retiro</h1>
+        <h1><?php echo $this -> d['accion']; ?></h1>
         <div class="content-img">
             <p> Número de cliente: <?php echo $this -> d['num_client']; ?> <br>
                 Cantidad:         $<?php echo $this -> d['cantidad'];   ?>
                 <br><br>
-                Para retirar el dinero muestra este código QR en ventanilla en alguna de nuestras sucursales más cercanas.
+                Para <?php echo $this -> d['accion']; ?> el efectivo muestra este código QR en ventanilla en alguna de nuestras sucursales más cercanas.
                 <br><br>
                 Tambien puedes ir a una de las siguiente tiendas:
                 <br><br>

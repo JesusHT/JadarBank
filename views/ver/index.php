@@ -51,9 +51,9 @@
                         <span><i class="fa-solid fa-money-simple-from-bracket"></i></i></span>
                          Retiros  
                     </a>
-                    <a href="<?php echo constant('URL');?>ver/movimientos?v=tranferencias">
+                    <a href="<?php echo constant('URL');?>ver/movimientos?v=depositos">
                         <span><i class="fa-solid fa-money-bill-transfer"></i></span>
-                        Tranferencias        
+                        Depositos        
                     </a>
                 </div>
                 <h4>Prestamos activos del cliente: </h4>

@@ -13,6 +13,8 @@
         const SUCCESS_ACTION                = "84847288f4982884lkd840728988f498";
         const SUCCESS_LOAN_PAGADO           = "b082848408407f490872898848484288";
         const SUCCESS_LOAN_PAYMENT          = "b088408281e06fb34a5e411884847288";
+        const SUCCESS_NEWPASS_GENERATE      = "ni0ds0iiosndonskldnibiubiib21728";
+        const SUCCESS_SOLICITUD             = "ni0dsb088ni0ds0iiodjdj484847288f";
 
         
         private $successList = [];
@@ -29,7 +31,9 @@
                 Success::SUCCESS_REQUEST_DENIED      => "Solicitud rechazada correctamente",
                 Success::SUCCESS_ACTION              => "Transferencia hecha exitosamente",
                 Success::SUCCESS_LOAN_PAGADO         => "¡Felicidades has pagado el total de tu prestamo!",
-                Success::SUCCESS_LOAN_PAYMENT        => "Su pago mensual se ha realizado correctamente."
+                Success::SUCCESS_LOAN_PAYMENT        => "Su pago mensual se ha realizado correctamente.",
+                Success::SUCCESS_NEWPASS_GENERATE    => "Nueva contraseña generada revise el correo que proporciono",
+                Success::SUCCESS_SOLICITUD           => "Solicitud enviada correctamente!"
             ];
         }
 

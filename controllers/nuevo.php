@@ -1,5 +1,7 @@
 <?php
 
+    require './Includes/PHPMailer/email.php';
+
     class Nuevo extends Controller {
         
         function __construct(){
@@ -7,7 +9,7 @@
             $this -> redirectRole();
             $this -> view -> render('nuevo/index', []);
         }
-
+        
         function newUser(){
             if ($this -> existPOST([
                 'name',
@@ -85,9 +87,16 @@
                 $query -> setRole("user");
                 $query -> setStatus("activo");
 
-                if ($query -> save() && $query -> createAccount()) {
-                    $this->redirect('nuevo', ['success' => Success::SUCCESS_SIGNUP_NEWUSER]);
-                    return;
+                $templates = new Templates();
+                $email2    = new Email();
+
+                $body = $templates -> newUser($name, $pass);
+
+                if ($query -> save() && $query -> createAccount() ) {
+                    if ($email2 -> sendMail($email, $name, "Bienvenido", $body)) {
+                        $this->redirect('nuevo', ['success' => Success::SUCCESS_SIGNUP_NEWUSER]);
+                        return;
+                    }
                 }
             }
 

@@ -12,7 +12,7 @@
             parent::__construct();
 
             $this -> fecha = date('y-m-d');
-            $this -> movimientos = ['retiro', 'transferencia', 'presatamo', 'pago','recibido','otro'];
+            $this -> movimientos = ['retiro', 'transferencia', 'presatamo', 'pago','recibido','depositos','otro'];
         }
 
         function generarMovimiento(){
@@ -73,7 +73,7 @@
                                         <p>Descripción: '. $movimiento -> descripcion .'</p>
                                     </td>';
 
-                        if ($movimiento -> cargo == "presatamo" || $movimiento -> cargo == 'recibido') {
+                        if ($movimiento -> cargo == "presatamo" || $movimiento -> cargo == 'recibido' || $movimiento -> cargo == 'depositos') {
                             $data .= '<td class="cant"><p><span class="mas"><i class="fa-solid fa-plus-large"></i></span>$'. $movimiento -> cant   . '</p></td></tr>';
                         } else {
                             $data .= '<td class="cant"><p><span class="menos"><i class="fa-solid fa-hyphen"></i></span>$'. $movimiento -> cant . '</p></td></tr>';

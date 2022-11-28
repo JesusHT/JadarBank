@@ -1,4 +1,5 @@
 <?php
+    require './Includes/PHPMailer/email.php';
 
     class Solicitud extends Controller {
         
@@ -35,9 +36,12 @@
                     $this->redirect('solicitud', ['error' => Errors::ERROR_REQUESTS_CUSTOMERS]);
                     return;
                 }
-
+                
                 $query -> getUsers($id);
-                if ($query -> createAccount()){
+                $templates = new Templates();
+                $email2    = new Email();
+                $body = $templates -> acceptado($query -> getName());
+                if ($query -> createAccount() && $email2 -> sendMail($query -> getEmail(), $query -> getName(), "Bienvenido", $body)){
                     $this->redirect('solicitud', ['success' => Success::SUCCESS_SIGNUP_NEWUSER]);
                     return;
                 }

@@ -1,11 +1,4 @@
 @import url(../css/global.css);
-body {
-  height: 600px;
-  background-image: url("../img/background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center; }
-
 .btn-login {
   display: block;
   margin: auto;
@@ -51,7 +44,7 @@ body {
 
 .login-content {
   width: 320px;
-  height: 445px;
+  height: 345px;
   background-color: #fff;
   border-style: solid;
   border-width: 1px;
@@ -61,7 +54,8 @@ body {
   position: absolute;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
-  padding: 50px 30px; }
+  padding: 50px 30px;
+  border-radius: 10px; }
   .login-content img {
     width: 100px;
     height: 100px;
@@ -100,4 +94,4 @@ body {
     .login-content a:hover {
       color: #57585a; }
 
-/*# sourceMappingURL=login.css.map */
+/*# sourceMappingURL=recuperar.css.map */

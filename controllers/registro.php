@@ -96,7 +96,7 @@
                 $query -> setStatus("pendiente");
 
                 if ($query -> save()) {
-                    $this->redirect('registro', ['success' => Success::SUCCESS_SIGNUP_NEWUSER]);
+                    $this->redirect('registro', ['success' => Success::SUCCESS_SOLICITUD]);
                     return;
                 }
 

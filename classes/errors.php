@@ -74,7 +74,7 @@
                 Errors::ERROR_DATA_FORMAT_STRING                => 'La petición no puede contener strings',
                 
                 # Otros Errores
-                Errors::ERROR_NOEXIST_CLIENT                    => 'No existe el cliente!',
+                Errors::ERROR_NOEXIST_CLIENT                    => 'No existe el cliente, asegurse de haber ingresado los datos correctos.',
                 Errors::ERROR_ACTION                            => 'No se ha podido realizar el movimiento, intentelo mas tarde.',
 
                 Errors::ERROR_RETIRO                            => 'No dispones de la cantidad suficiente para hacer esta transacción.',

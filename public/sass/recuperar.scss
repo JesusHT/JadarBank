@@ -1,0 +1,124 @@
+// Importamos el css global
+
+@import url(../css/global.css);
+
+.btn-login {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    --color: #c18700;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 17px;
+    border: 1px solid;
+    text-transform: uppercase;
+    color: var(--color);
+    z-index: 1;
+
+    &::before, &::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 50px;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        border-radius: 50%;
+        z-index: -1;
+        background-color: var(--color);
+        transition: 1s ease;
+    }
+    
+    &::before {
+        top: -1em;
+        left: -1em;
+    }
+       
+    &::after {
+        left: calc(100% + 1em);
+        top: calc(100% + 1em);
+    }
+       
+    &:hover::before, &:hover::after {
+        height: 410px;
+        width: 410px;
+    }
+       
+    &:hover {color: #fff;}
+       
+    &:active {filter: brightness(.8);}
+
+}
+
+.login-content {
+    width: 320px;
+    height: 345px;
+    background-color: #fff;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 50px 30px;
+    border-radius: 10px;
+
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        left: calc(50% - 50px);
+
+    }
+
+    h1 {
+        margin: 0;
+        padding: 50px 0 20px;
+        text-align: center;
+        font-size: 22px;
+    }
+
+    label {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        display: block;
+    }
+
+    input {
+        width: 100%;
+        margin-bottom: 20px;
+        border-style: none;
+        border-bottom: 1px solid;
+        border-color: #000;
+        background: transparent;
+        outline: none;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    a {
+        display: block;
+        margin-top: 5px;
+        text-decoration: none;
+        font-size: 12px;
+        line-height: 20px;
+        color:#000;
+        text-align: center;
+        
+
+        &:hover {
+            color: #57585a;
+        }
+    }
+  }
+

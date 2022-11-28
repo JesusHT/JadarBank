@@ -81,12 +81,13 @@
             $this -> createConfig($this -> num_client);
 
             try {
-                $query = $this -> prepare('INSERT INTO cuenta (num_client, num_cuenta, saldo, credito) VALUES (:num_client, :num_cuenta, :saldo, :credito)');
+                $query = $this -> prepare('INSERT INTO cuenta (num_client, num_cuenta, saldo, credito, usado) VALUES (:num_client, :num_cuenta, :saldo, :credito,:usado)');
                 $query -> execute([
                     'num_client' => $this -> num_client,
                     'num_cuenta' => $this -> cuentaClave,
                     'saldo'      => 0,
-                    'credito'    => 2000
+                    'credito'    => 2000,
+                    'usado'      => 0
                 ]);
                 return true;
             } catch (PDOException $e) {
@@ -153,6 +154,19 @@
             }
         }
 
+        public function updatePass($email, $newpass){
+            try{
+                $query = $this->prepare('UPDATE cliente SET pass = :pass WHERE email = :email');
+                $query -> execute([ 'email' => $email, 'pass' => $newpass]);
+
+                return true;
+
+            } catch(PDOException $e){
+                echo $e;
+                return false;
+            }
+        }
+
         public function update($id){
             try {
                 $query = $this->prepare('UPDATE cliente SET name = :name, fena = :fena, curp = :curp, img_client = :img_client, domicilio = :domicilio, codPostal = :codPostal, estado = :estado, municipio = :municipio, pais = :pais, tel = :tel, email = :email, pass = :pass  WHERE id = :id');
@@ -185,6 +199,23 @@
             try{
                 $query = $this -> prepare('SELECT * FROM cliente WHERE id = :id');
                 $query->execute(['id' => $id]);
+                
+                if($query->rowCount() == 1){
+                    $item = $query -> fetch(PDO::FETCH_ASSOC); 
+                    $user = $this  -> from($item);
+
+                    return $user;
+                }
+            }catch(PDOException $e){
+                return NULL;
+            }
+        }
+
+        
+        function getUsersForEmail($email){
+            try{
+                $query = $this -> prepare('SELECT * FROM cliente WHERE email = :email');
+                $query->execute(['email' => $email]);
                 
                 if($query->rowCount() == 1){
                     $item = $query -> fetch(PDO::FETCH_ASSOC); 

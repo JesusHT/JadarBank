@@ -5,7 +5,7 @@
             $this->d = $data;
             $this->handleMessages();
 
-            if (!empty($_GET['url']) && $_GET['url'] !== 'recuperar' && $_GET['url'] !== 'registro' && strpos($_GET['url'], 'registro') !== 0) {
+            if (!empty($_GET['url']) && $_GET['url'] !== 'recuperar' && strpos($_GET['url'], 'recuperar') !== 0 && $_GET['url'] !== 'registro' && strpos($_GET['url'], 'registro') !== 0) {
                 require_once 'config/session.php';
             }
 

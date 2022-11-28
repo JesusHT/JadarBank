@@ -38,12 +38,13 @@
             
 
             $this -> view -> render('templates/instrucciones',[
-                'logo1' => $logo1,
-                'logo2' => $logo2,
-                'logo3' => $logo3,
+                'logo1'      => $logo1,
+                'logo2'      => $logo2,
+                'logo3'      => $logo3,
                 'num_client' => $_SESSION['num_client'],
-                'cantidad' => $_SESSION['cantidad'],
-                'qr' => $qr
+                'cantidad'   => $_SESSION['cantidad'],
+                'qr'         => $qr,
+                'accion'     => $_SESSION['accion']
             ]);
             
         }

@@ -48,7 +48,7 @@
             $this -> level       = 'H';
             $this -> frameSize   = 1;
             $this -> contenido   = '';
-            $this -> movimientos = ["retiros", "tranferencias"];
+            $this -> movimientos = ["retiros", "depositos"];
         }
 
         public function aviso(){
@@ -82,13 +82,7 @@
             ]);
         }
 
-        function tranferencias(){
-            $account  = ['saldo' => $this -> cliente -> getSaldo(), 'num_client' => $this -> cliente -> getNum_client()];
-
-            $this -> view -> render("ver/transferir",[
-                "cuenta"    => $account
-            ]);
-        }
+        function depositos(){$this -> view -> render("ver/depositos");}
 
         function retiro(){
             if ($this -> existPOST(['num_client', 'cant', 'accion'])) {
@@ -114,50 +108,52 @@
                 $this -> generateQR($num_client, $cant);
 
                 $_SESSION['ruta']       = 'ver';
-                $_SESSION['accion']     = 'Retiro';
+                $_SESSION['accion']     = 'retirar';
                 $_SESSION['num_client'] = $num_client;
                 $_SESSION['cantidad']   = $this -> decimales($cant);
                 $this -> redirect('instrucciones');
             }
         }
 
-        function trasferencia(){
-            if ($this -> existPOST(['accion', 'clabe', 'cant', 'motivo'])) {
+        function deposito(){
+            if ($this -> existPOST(['accion', 'clabe', 'cant'])) {
 
                 if ($this -> validateData(['accion','cant','clabe'])) {
-                    $this -> redirect('ver/tranferencias', ['error' => Errors::ERROR_DATA_EMPTY]);
+                    $this -> redirect('ver/depositos', ['error' => Errors::ERROR_DATA_EMPTY]);
                     return;
                 }
 
                 if (!empty($_POST['motivo'])) {
                     if ($this -> validateData(['motivo'])) {
-                        $this -> redirect('ver/tranferencias', ['error' => Errors::ERROR_DATA]);
+                        $this -> redirect('ver/depositos', ['error' => Errors::ERROR_DATA]);
                         return;
                     }
                 }
 
                 $cant = $this -> getPost('cant');
 
-                if ($this -> cliente -> getSaldo() < $cant) {
-                    $this->redirect('ver/tranferencias', ['error' => Errors::ERROR_MONEY_CANT]);
-                    return;
-                }
-
                 if (!$this -> model -> existClabe($_POST['clabe'])) {
-                    $this->redirect('ver/tranferencias', ['error' => Errors::ERROR_NOEXIST_CLIENT]);
+                    $this->redirect('ver/depositos', ['error' => Errors::ERROR_NOEXIST_CLIENT]);
                     return;
                 }
 
-                if ($this -> model -> transferencia($cant, $_POST['clabe'], $_POST['accion'], $this -> cliente -> getNum_client())) {
-                    $this -> model -> updateSaldo($cant, $this -> cliente -> getSaldo(), $this -> cliente -> getNum_client());
-                    
-                    $this -> redirect('ver', ['success' => Success::SUCCESS_ACTION]);
+                if ($this -> model -> transferencia($cant, $_POST['clabe'], $_POST['accion'])) {
+                    $cliente = new CustomersModel();
+                    $cliente -> queryAccountForClabe($_POST['clabe']);
+                    $_SESSION['ruta']       = 'ver';
+                    $_SESSION['accion']     = 'depositar';
+                    $_SESSION['num_client'] = $cliente -> getNum_client();
+                    $_SESSION['cantidad']   = $this -> decimales($cant);
+                    $this -> redirect('instrucciones');
                     return;
                 }
 
-                $this -> redirect('ver/tranferencias', ['error' => Errors::ERROR_ACTION]);
+                $this -> redirect('ver/depositos', ['error' => Errors::ERROR_ACTION]);
                 return;
             }
+
+            $this -> redirect('ver/depositos', ['error' => Errors::ERROR_DATA_EMPTY]);
+            return;
         }
 
         function generateQR($num_client, $cant){

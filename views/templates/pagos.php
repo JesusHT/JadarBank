@@ -40,6 +40,7 @@
                     <p class="sub-title">Pagar el total de la deuda</p>
                     <input type="radio" name="pago" id="1" value="<?php echo $loan['total'] ?>">
                     <label for="1">
+                        <p>Pago: $<?php echo $loan['totalSin'];?></p>
                         <p>Intereses: $<?php echo $loan['interes']; ?></p>
                         <div class="btn-submit">
                             <p>Total: $<?php echo $loan['total'] ?></p>

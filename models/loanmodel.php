@@ -111,7 +111,7 @@
 
                 foreach ($results as $result) {
                     $this -> existLoan($result -> num_prestamo);
-                    $this -> calPayments();
+                    $this -> calPaymentsAviso($result -> num_prestamo);
 
                 }
 
@@ -156,6 +156,45 @@
             }
         }
 
+        function calPaymentsAviso($num_prestamo){
+            try {
+                $query = $this -> prepare("SELECT * FROM pagos WHERE num_prestamo = :num_prestamo");
+                $query -> execute(['num_prestamo' => $num_prestamo]);
+                $payments = $query -> fetchAll(PDO::FETCH_OBJ);
+            } catch (PDOException $e) {
+                echo $e;
+                return false;
+            }
+
+            $año = $this -> separateDate(2);
+            $mes = $this -> separateDate(5);
+            $dia = $this -> separateDate(8);
+
+            for ($i=1; $i <= $this -> plazo; $i++) { 
+
+                if ($mes < 12) { 
+                    $mes += 1;
+                } else {
+                    $mes =  1;
+                    $año += 1;
+                }
+
+                $fecha = $this -> ceros($dia). '-' . $this -> ceros($mes) . '-' . $año;
+
+                if (count($payments) > 0 && $i <= count($payments)) {
+                    foreach ($payments as $payment) {
+                        if ($this -> dateValidate($fecha, $this -> reacomodarFecha($payment -> fecha))) {
+                        }
+                    }
+                } else if($this -> differenceDate($fecha)){
+                    array_push($this -> aviso, "<p class='bg-error'>!Tiene un prestamo vencido pagalo pronto! (". $this -> num_prestamo  .")</p>");
+
+                } else if($this -> differenceDate($fecha) === NULL){
+                    array_push($this -> aviso, '<p class="bg-warning">!Tiene un prestamo que esta próximo a vencerse paga lo más antes posible! ('. $this -> num_prestamo  .')</p>');
+                }
+             }
+        }
+
         function calPayment($num_prestamo){
             $this -> existLoan($num_prestamo);
             $this -> dateCal();
@@ -175,7 +214,7 @@
                 $interes = $this -> calInteres($dia, $mes, $año);
             }
 
-            $data = array("pago"=> $this -> decimales($this -> cuota + $interes),  "interes"=> $this -> decimales($interes), "total"=>$this -> decimales($total + $interes), "plazo"=> $this -> fechasPagadas + 1, "plazos" => $this -> plazo);
+            $data = array("pago"=> $this -> decimales($this -> cuota + $interes),  "interes"=> $this -> decimales($interes), "total"=>$this -> decimales($total + $interes), "plazo"=> $this -> fechasPagadas + 1, "plazos" => $this -> plazo, 'totalSin' => $this -> decimales($total));
 
             return $data;
         }

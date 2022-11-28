@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?php echo constant('URL'); ?>public/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet"    href="<?php echo constant('URL'); ?>public/css/instrucciones.css">
-    <title>Instrucciones - <?php echo $_SESSION['accion']; ?></title>
+    <title>Instrucciones para <?php echo $_SESSION['accion']; ?></title>
 </head>
 <body>
     <div class="content">
@@ -14,7 +14,7 @@
             <p> Número de cliente: <?php echo $_SESSION['num_client']; ?><br>
                 Cantidad:         $<?php echo $_SESSION['cantidad'];   ?>
                 <br><br>
-                Para retirar el dinero muestra este código qr en ventanilla en alguna de nuestras sucursales más cercanas.
+                Para <?php echo $_SESSION['accion']; ?> el efectivo muestra este código qr en ventanilla en alguna de nuestras sucursales más cercanas.
                 <br><br>
                 Tambien puedes ir a una de las siguiente tiendas:<br><br>
 

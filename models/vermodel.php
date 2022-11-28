@@ -5,21 +5,6 @@
             parent::__construct();
         }
 
-        function updateSaldo($cant, $saldo, $num_client){
-            $nuevoSaldo = $saldo - $cant;
-
-            try {
-                $query = $this -> prepare('UPDATE cuenta SET saldo = :saldo WHERE num_client = :num_client');
-                $query -> execute(['saldo' => $nuevoSaldo, 'num_client' => $num_client]);
-
-                return true;
-
-            } catch (PDOException $e){
-                echo $e;
-                return false;
-            }
-        }
-
         function generarMovimiento($accion, $cantidad, $descripcion, $num_client){
             $movimientos = new MovimientosModel();
             
@@ -52,7 +37,7 @@
             }
         }
 
-        function transferencia($cant, $clabe, $accion, $num_client){
+        function transferencia($cant, $clabe, $accion){
             $customer = new CustomersModel();
             $customer -> queryAccountForClabe($clabe);
             $nuevoSaldo = $cant + $customer -> getSaldo();
@@ -64,11 +49,7 @@
                     'num_cuenta' => $clabe
                 ]);
 
-                if (
-                    $this -> generarMovimiento($accion, $cant, "Transferencia a " . $clabe . '.', $num_client) &&
-                    $this -> generarMovimiento(4, $cant, "Transferencia recibida." , $customer -> getNum_client())
-
-                ) {
+                if ($this -> generarMovimiento($accion, $cant, "Deposito de efectivo." , $customer -> getNum_client())) {
                     return true;
                 }
             } catch (PDOException $e){
